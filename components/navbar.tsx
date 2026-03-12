@@ -4,8 +4,9 @@ import { useLanguage } from "@/lib/language-context";
 import { Language } from "@/lib/translations";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "@/lib/location-context"
 
-const locations = ["Chennai", "Coimbatore", "Madurai", "Salem", "Trichy", "Tirunelveli"];
+
 
 const primaryLinks = [
   { label: "How It Works", href: "/how-it-works" },
@@ -44,18 +45,20 @@ const moreLinks = [
   },
 ];
 
+const locations = ["Mumbai", "Bangalore", "Delhi", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad"];
+
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [location, setLocation] = useState("Chennai");
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const [listening, setListening] = useState(false);
   const locationRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
+    const { location, setLocation } = useLocation()
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

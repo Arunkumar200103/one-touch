@@ -63,7 +63,7 @@ export default function About() {
       <Navbar />
 
       {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 py-4 mt-[-5rem]">
+      <div className="max-w-7xl mx-auto px-4 py-4 mt-[-5rem">
         <BackToHome />
       </div>
 

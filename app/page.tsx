@@ -8,8 +8,9 @@ import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { useLocation } from "@/lib/location-context"
 
-const locations = ["Mumbai", "Bangalore", "Delhi", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad"];
+ 
 
 const featuredServices = [
   { title: "PACKERS & MOVERS", subtitle: "Professional moving service", image: "/banners/construction-banner.jpg", cta: "GET BEST DEAL", accent: "#f97316" },
@@ -104,7 +105,7 @@ function useReveal(threshold = 0.1) {
 }
 
 export default function LandingPageV2({ slides = featuredServices }: { slides?: Slide[] }) {
-  const [selectedLocation, setSelectedLocation] = useState("Mumbai");
+const { location } = useLocation()
   const { t } = useLanguage();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -235,7 +236,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-3 md:mb-5">
               Popular Near{" "}
               <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                {selectedLocation}
+                {location}
               </span>
             </h2>
           </div>
