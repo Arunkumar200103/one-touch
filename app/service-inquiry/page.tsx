@@ -1,0 +1,354 @@
+"use client";
+
+import { useState, ChangeEvent, FormEvent } from "react";
+import { Navbar } from "@/components/navbar";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { InfoCard } from "@/components/info-card";
+import { BackToHome } from "@/components/back-to-home";
+import { getPageColor } from "@/lib/page-colors";
+import Link from "next/link";
+
+const colors = getPageColor("inquiry");
+
+type FormDataType = {
+  serviceType: string;
+  fullName: string;
+  phone: string;
+  email: string;
+  location: string;
+  description: string;
+};
+
+export default function ServiceInquiry() {
+  const [step, setStep] = useState<number>(1);
+
+  const [formData, setFormData] = useState<FormDataType>({
+    serviceType: "",
+    fullName: "",
+    phone: "",
+    email: "",
+    location: "",
+    description: "",
+  });
+
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      console.log("Form submitted:", formData);
+      setSubmitted(true);
+    }
+  };
+
+  const handleBack = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const services = [
+    "Construction",
+    "Electronics",
+    "Education",
+    "CCTV & Networking",
+    "Furniture",
+    "Technology",
+    "Fabrication",
+    "Other",
+  ];
+
+  if (submitted) {
+    return (
+      <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+        <Navbar />
+
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <BackToHome />
+        </div>
+
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Service Inquiry" },
+          ]}
+          accentColor={colors.primary}
+        />
+
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <div className="bg-white rounded-3xl p-12 shadow-xl text-center">
+            <div
+              className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold"
+              style={{ backgroundColor: colors.light }}
+            >
+              ✓
+            </div>
+
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              Request Submitted Successfully
+            </h1>
+
+            <p className="text-lg text-gray-600 mb-8">
+              Thank you for submitting your service request. We will review your
+              details and connect you with verified service providers shortly.
+            </p>
+
+            <div className="bg-gray-50 p-6 rounded-xl space-y-3 mb-8 text-left">
+              <p>
+                <strong>Service Type:</strong> {formData.serviceType}
+              </p>
+              <p>
+                <strong>Location:</strong> {formData.location}
+              </p>
+              <p>
+                <strong>Contact:</strong> {formData.fullName} ({formData.phone})
+              </p>
+            </div>
+
+            <Link href="/">
+              <button
+                className="px-8 py-3 font-semibold text-white rounded-xl hover:shadow-lg transition-all"
+                style={{ backgroundColor: colors.primary }}
+              >
+                Back to Home
+              </button>
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+      <Navbar />
+
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <BackToHome />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Service Inquiry" },
+          ]}
+          accentColor={colors.primary}
+        />
+
+        {/* Progress */}
+        <div className="mb-12">
+          <div className="flex gap-2 mb-6">
+            {[1, 2, 3].map((num) => (
+              <div
+                key={num}
+                className="flex-1 h-2 rounded-full transition-all"
+                style={{
+                  backgroundColor: step >= num ? colors.primary : "#E5E7EB",
+                }}
+              />
+            ))}
+          </div>
+
+          <p className="text-sm text-gray-600">
+            Step {step} of 3 —{" "}
+            {step === 1
+              ? "Choose Service"
+              : step === 2
+              ? "Your Details"
+              : "Confirm Request"}
+          </p>
+        </div>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-3xl p-8 shadow-xl"
+        >
+          {/* Step 1 */}
+          {step === 1 && (
+            <>
+              <h2
+                className="text-3xl font-bold mb-2"
+                style={{ color: colors.primary }}
+              >
+                What service do you need?
+              </h2>
+
+              <p className="text-gray-600 mb-8">
+                Select a service category that best describes your requirement.
+              </p>
+
+              <div className="space-y-3">
+                {services.map((service) => (
+                  <label
+                    key={service}
+                    className="flex items-center gap-4 p-4 border-2 rounded-xl cursor-pointer"
+                    style={{
+                      borderColor:
+                        formData.serviceType === service
+                          ? colors.primary
+                          : "#E5E7EB",
+                      backgroundColor:
+                        formData.serviceType === service
+                          ? colors.light
+                          : "transparent",
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="serviceType"
+                      value={service}
+                      checked={formData.serviceType === service}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {service}
+                  </label>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Step 2 */}
+          {step === 2 && (
+            <div className="space-y-6">
+              <h2
+                className="text-3xl font-bold"
+                style={{ color: colors.primary }}
+              >
+                Your Contact Details
+              </h2>
+
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+                className="w-full p-4 border-2 border-gray-200 rounded-xl"
+              />
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  className="p-4 border-2 border-gray-200 rounded-xl"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="p-4 border-2 border-gray-200 rounded-xl"
+                />
+              </div>
+
+              <input
+                type="text"
+                name="location"
+                placeholder="City or Area"
+                value={formData.location}
+                onChange={handleInputChange}
+                required
+                className="w-full p-4 border-2 border-gray-200 rounded-xl"
+              />
+
+              <textarea
+                name="description"
+                placeholder="Describe your service requirement"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                className="w-full p-4 border-2 border-gray-200 rounded-xl h-32"
+              />
+            </div>
+          )}
+
+          {/* Step 3 */}
+          {step === 3 && (
+            <div className="space-y-6">
+              <h2
+                className="text-3xl font-bold"
+                style={{ color: colors.primary }}
+              >
+                Review Your Request
+              </h2>
+
+              <div className="bg-gray-50 p-6 rounded-xl space-y-3">
+                <p>
+                  <strong>Service:</strong> {formData.serviceType}
+                </p>
+                <p>
+                  <strong>Name:</strong> {formData.fullName}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {formData.phone}
+                </p>
+                <p>
+                  <strong>Email:</strong> {formData.email}
+                </p>
+                <p>
+                  <strong>Location:</strong> {formData.location}
+                </p>
+                <p>
+                  <strong>Description:</strong> {formData.description}
+                </p>
+              </div>
+
+              <InfoCard
+                title="Next Step"
+                description="After submission, we will connect you with verified service providers who match your request."
+                icon="📋"
+                backgroundColor={colors.light}
+                borderColor={colors.primary}
+                iconColor={colors.primary}
+              />
+            </div>
+          )}
+
+          {/* Buttons */}
+          <div className="flex gap-4 mt-10">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={handleBack}
+                className="flex-1 py-4 font-semibold border-2 border-gray-300 rounded-xl"
+              >
+                Back
+              </button>
+            )}
+
+            <button
+              type="submit"
+              className="flex-1 py-4 font-semibold text-white rounded-xl hover:shadow-lg"
+              style={{ backgroundColor: colors.primary }}
+            >
+              {step === 3 ? "Submit Request" : "Continue"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  );
+}
