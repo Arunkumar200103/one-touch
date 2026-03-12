@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 const locations = ["Mumbai", "Bangalore", "Delhi", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad"];
 
@@ -50,9 +52,7 @@ const testimonials = [
   { name: "Vijay Nair", city: "Hyderabad", text: "Listed my business and got leads within the first week. Excellent ROI.", rating: 5, service: "Business Listing", avatar: "VN" },
 ];
 
-const trendingSearches = [
-  "AC Repair", "Home Cleaning", "Wedding Photographer", "Interior Designer", "Catering Service", "Yoga Classes", "Plumber", "Electrician"
-];
+
 
 const IMG = {
   restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85",
@@ -125,6 +125,18 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
     return () => clearInterval(autoplay);
   }, [emblaApi]);
 
+    const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return
+
+    const scrollAmount = 300
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    })
+  }
+
   return (
     <main className="bg-[#f8f9fc] min-h-screen">
       <Navbar />
@@ -145,7 +157,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
               Discover top rated services near you
             </p>
           </div>
-          <Link href="/services" className="text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+          <Link href="/service-inquiry" className="text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
             View all →
           </Link>
         </div>
@@ -164,7 +176,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
                       <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between">
                         <div>
                           <p className="text-xs font-bold text-white uppercase tracking-wider">Featured</p>
-                          <h3 className="text-xl md:text-2xl font-extrabold text-orange-500 mt-1">{slide.title}</h3>
+                          <h3 className="text-xl md:text-2xl font-extrabold text-white mt-1">{slide.title}</h3>
                         </div>
                         <button className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95">
                           {slide.cta}
@@ -209,54 +221,104 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
         </div>
       </section>
 
-      {/* ── TRENDING TAGS ── */}
-      <section className="relative bg-white overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-50 rounded-full opacity-60 blur-3xl pointer-events-none" />
-        <div className="absolute top-20 -left-20 w-64 h-64 bg-orange-50 rounded-full opacity-50 blur-2xl pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-8 md:pt-12 md:pb-10">
-          <div className="flex flex-wrap items-center gap-2 md:gap-3">
-            <span className="text-[10px] md:text-xs font-semibold text-gray-400 uppercase tracking-wider">Trending</span>
-            {trendingSearches.map((s) => (
-              <button
-                key={s}
-                className="text-[11px] md:text-xs px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-gray-200 bg-white/70 backdrop-blur-md text-gray-600 font-medium hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 shadow-sm hover:shadow-md"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+   
+       <section className="bg-white py-10 md:py-16 border-y border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
 
-      {/* ── CATEGORIES ── */}
-      <section className="bg-white py-10 md:py-16 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between mb-6 md:mb-8">
-            <div>
-              <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-500 uppercase mb-1">All Services</p>
-              <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-3 md:mb-5">
-                Popular Near{" "}
-                <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                  {selectedLocation}
-                </span>
-              </h2>
+        {/* HEADER */}
+        <div className="flex items-center justify-between mb-6 md:mb-8">
+          <div>
+            <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-500 uppercase mb-1">
+              All Services
+            </p>
+
+            <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-3 md:mb-5">
+              Popular Near{" "}
+              <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                {selectedLocation}
+              </span>
+            </h2>
+          </div>
+
+          <Link
+            href="/category/Construction"
+            className="text-xs md:text-sm font-semibold text-blue-600 hover:underline whitespace-nowrap"
+          >
+            Browse all →
+          </Link>
+        </div>
+
+        {/* MOBILE SCROLL CONTROLS */}
+        <div className="relative md:hidden">
+
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          {/* SCROLL AREA */}
+          <div
+            ref={scrollRef}
+            className="overflow-x-auto scrollbar-hide"
+          >
+            <div className="grid grid-rows-2 grid-flow-col gap-3 w-max pr-10">
+
+              {allCategories.map((cat: any) => (
+                <Link
+                  key={cat.name}
+                  href={`/category/${encodeURIComponent(cat.name)}`}
+                >
+                  <div className="flex flex-col items-center gap-1 p-3 w-[80px] bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-400 rounded-xl transition-all duration-300 group cursor-pointer active:scale-95">
+
+                    <span className="text-xl group-hover:scale-110 transition-transform">
+                      {cat.icon}
+                    </span>
+
+                    <p className="text-[10px] font-semibold text-gray-600 group-hover:text-blue-600 text-center leading-tight">
+                      {cat.name}
+                    </p>
+
+                  </div>
+                </Link>
+              ))}
+
             </div>
-            <Link href="/categories" className="text-xs md:text-sm font-semibold text-blue-600 hover:underline whitespace-nowrap">Browse all →</Link>
-          </div>
-
-          {/* Mobile: 4 cols, tablet: 6, desktop: 9 */}
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 md:gap-3">
-            {allCategories.map((cat) => (
-              <Link key={cat.name} href={`/category/${encodeURIComponent(cat.name)}`}>
-                <div className="flex flex-col items-center gap-1 md:gap-2 p-2 md:p-3 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-400 rounded-xl md:rounded-2xl transition-all duration-300 group cursor-pointer active:scale-95">
-                  <span className="text-xl md:text-2xl group-hover:scale-110 transition-transform">{cat.icon}</span>
-                  <p className="text-[9px] md:text-[11px] font-semibold text-gray-600 group-hover:text-blue-600 text-center leading-tight">{cat.name}</p>
-                </div>
-              </Link>
-            ))}
           </div>
         </div>
-      </section>
+
+        {/* DESKTOP GRID */}
+        <div className="hidden md:grid grid-cols-6 lg:grid-cols-9 gap-3">
+          {allCategories.map((cat: any) => (
+            <Link
+              key={cat.name}
+              href={`/category/${encodeURIComponent(cat.name)}`}
+            >
+              <div className="flex flex-col items-center gap-2 p-3 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-400 rounded-2xl transition-all duration-300 group cursor-pointer">
+
+                <span className="text-2xl group-hover:scale-110 transition-transform">
+                  {cat.icon}
+                </span>
+
+                <p className="text-[11px] font-semibold text-gray-600 group-hover:text-blue-600 text-center">
+                  {cat.name}
+                </p>
+
+              </div>
+            </Link>
+          ))}
+        </div>
+
+      </div>
+    </section>
 
       {/* ── TOP PICKS BENTO ── */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
