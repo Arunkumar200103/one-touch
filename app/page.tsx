@@ -48,7 +48,7 @@ const featuredServices: Slide[] = [
 
 
 const allCategories = [
-  { name: "Restaurants", icon: "🍽️" },
+ 
   { name: "Electronics", icon: "📱" },
   { name: "CCTV & Networking", icon: "📹" },
    { name: "Furniture", icon: "🛋️" },
@@ -56,13 +56,13 @@ const allCategories = [
      { name: "Fabrication", icon: "⚙️" },
        { name: "Hotels", icon: "🏨" },
        {name: "Real Estate", icon: "🏢"},
- 
+  { name: "Restaurants", icon: "🍽️" },
+   { name: "Technology", icon: "💻" },
+    { name: "Education", icon: "🎓" },
   { name: "Beauty Spa", icon: "💅" },
   { name: "Home Decor", icon: "🏠" },
   { name: "Wedding", icon: "💍" },
-  { name: "Education", icon: "🎓" },
   { name: "Rent & Hire", icon: "🚗" },
-  { name: "Technology", icon: "💻" },
   {name: "Packers & Movers", icon: "📦" },
   { name: "Automotive", icon: "🚘" },
   { name: "Health & Wellness", icon: "🏥" },
