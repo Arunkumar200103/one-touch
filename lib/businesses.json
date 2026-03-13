@@ -160,5 +160,195 @@
     "socialLinks": {
       "instagram": "https://instagram.com/buildright2"
     }
+  },
+  {
+    "id": 9,
+    "ownerName": "Sujan",
+    "businessName": "BGMI",
+    "category": "Gaming",
+    "description": "BGMI related services and gaming support.",
+    "rating": 4.3,
+    "reviews": 10,
+    "contactNumber": "+91 9585716229",
+    "altContact": "+91 8056823309",
+    "location": "Gobi, Tamil Nadu",
+    "startDate": "2020-12-03",
+    "photos": ["https://drive.google.com/open?id=1pyHd0BhbAORDHUzZwrSI4f52Kp61agzR"],
+    "services": ["Gaming Support"],
+    "yearExperience": 4,
+    "socialLinks": {
+      "facebook": "Limk"
+    }
+  },
+  {
+    "id": 10,
+    "ownerName": "Saravanakumar",
+    "businessName": "Skyline Builders and Interiors",
+    "category": "Construction",
+    "description": "Construction, interior renovation, roof sheet work, painting services, UPVC and plywood modular kitchen wardrobes.",
+    "rating": 4.6,
+    "reviews": 25,
+    "contactNumber": "+91 9443822122",
+    "altContact": "+91 8754944026",
+    "location": "Gobi, Tamil Nadu",
+    "startDate": "2021-07-09",
+    "photos": ["https://drive.google.com/open?id=1ilYTNiMADVlYiMxUbnsrJWNvq1k0Lsmu"],
+    "services": [
+      "Interior Renovation",
+      "Roof Sheet Work",
+      "Painting",
+      "UPVC Works",
+      "Modular Kitchen"
+    ],
+    "yearExperience": 3,
+    "socialLinks": {}
+  },
+  {
+    "id": 11,
+    "ownerName": "R Balraj",
+    "businessName": "BAAS Technologies",
+    "category": "Electronics",
+    "description": "Customized touch switch boards, water level controllers, gate automation and motor controllers.",
+    "rating": 4.7,
+    "reviews": 18,
+    "contactNumber": "+91 9488071144",
+    "altContact": "+91 9488214001",
+    "location": "TRR Nagar, Gobi",
+    "startDate": "2023-09-09",
+    "photos": ["https://drive.google.com/open?id=108QKEDc_qzKq4BsrG6yJqL5gAyBGTrps"],
+    "services": [
+      "Touch Switch Boards",
+      "Water Level Controllers",
+      "Gate Automation",
+      "Motor Controllers"
+    ],
+    "yearExperience": 1,
+    "socialLinks": {}
+  },
+  {
+    "id": 12,
+    "ownerName": "C.H. Dinesh",
+    "businessName": "Harichandra Projects and Electronics",
+    "category": "Electronics",
+    "description": "Electronics and robotics related services and projects.",
+    "rating": 4.8,
+    "reviews": 20,
+    "contactNumber": "+91 9489364369",
+    "altContact": "",
+    "location": "Gobi, Tamil Nadu",
+    "startDate": "2022-06-23",
+    "photos": ["https://drive.google.com/open?id=1bt4v3SQDkhgv9zRIGZwmf1YqE_QS-ETE"],
+    "services": ["Electronics", "Robotics"],
+    "yearExperience": 2,
+    "socialLinks": {
+      "instagram": "https://www.instagram.com/dinesh_electronics_lover"
+    }
+  },
+  {
+    "id": 13,
+    "ownerName": "Surendar J",
+    "businessName": "Spoken Hindi Academy",
+    "category": "Education",
+    "description": "Raanuva Veeran Spoken Hindi Academy providing spoken Hindi coaching.",
+    "rating": 4.9,
+    "reviews": 35,
+    "contactNumber": "+91 6397255377",
+    "altContact": "+91 7010817113",
+    "location": "Gobichettipalayam, Tamil Nadu",
+    "startDate": "2022-09-01",
+    "photos": ["https://drive.google.com/open?id=14EDhNQfjDYBa4q7yWBsuWEFXu4Bqx_Dx"],
+    "services": ["Spoken Hindi Training"],
+    "yearExperience": 2,
+    "socialLinks": {}
+  },
+  {
+    "id": 14,
+    "ownerName": "K S Praveen Kumar",
+    "businessName": "Kaykar Enterprises",
+    "category": "CCTV & Networking",
+    "description": "CCTV service and networking solutions.",
+    "rating": 4.7,
+    "reviews": 28,
+    "contactNumber": "+91 9751184747",
+    "altContact": "+91 9751094747",
+    "location": "L Kallipatti, Gobi",
+    "startDate": "2013-03-03",
+    "photos": [
+      "https://drive.google.com/open?id=1nyBD-P9_3r-h-JHgO6HhZvR-nb0ZkGBu",
+      "https://drive.google.com/open?id=11Ba78fOHKTECoVES9-FpzBVzyk4YuoWA"
+    ],
+    "services": ["CCTV Installation", "Network Setup"],
+    "yearExperience": 11,
+    "socialLinks": {
+      "instagram": "https://www.instagram.com/kaykarenterprises"
+    }
+  },
+  {
+    "id": 15,
+    "ownerName": "Govindaraju",
+    "businessName": "Wood Zone Tiles & Furniture",
+    "category": "Furniture",
+    "description": "Tiles and furniture showroom with modern designs.",
+    "rating": 4.6,
+    "reviews": 32,
+    "contactNumber": "+91 9092743053",
+    "altContact": "+91 9842943053",
+    "location": "Kavindapadi, Akkarai Kodiveri",
+    "startDate": "2012-04-11",
+    "photos": ["https://drive.google.com/open?id=1l1a2vnf25j2x81XjkqOr429jyX0q9PS"],
+    "services": ["Tiles", "Furniture"],
+    "yearExperience": 12,
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/share/1FHqdFWgHd/"
+    }
+  },
+  {
+    "id": 16,
+    "ownerName": "JFM R. Gopalakrishnan",
+    "businessName": "GV Buildtech Solutions",
+    "category": "Fabrication",
+    "description": "UPVC windows and doors, mosquito net windows and fabrication works.",
+    "rating": 4.8,
+    "reviews": 15,
+    "contactNumber": "+91 7200496264",
+    "altContact": "+91 9042967472",
+    "location": "Kugalur, Tamil Nadu",
+    "startDate": "2024-12-11",
+    "photos": ["https://drive.google.com/open?id=1gZYJ1U_vBpYdXAn9B49ec6AUTtlpYUVm"],
+    "services": [
+      "UPVC Windows",
+      "Doors",
+      "Mosquito Nets",
+      "Fabrication"
+    ],
+    "yearExperience": 1,
+    "socialLinks": {
+      "website": "https://gvbuildtechsolutions.com"
+    }
+  },
+  {
+    "id": 17,
+    "ownerName": "Vijai",
+    "businessName": "SHINE",
+    "category": "Electronics",
+    "description": "Computer, printer and CCTV support and sales.",
+    "rating": 4.5,
+    "reviews": 22,
+    "contactNumber": "+91 9842657658",
+    "altContact": "+91 9842646699",
+    "location": "Gobichettipalayam, Tamil Nadu",
+    "startDate": "2010-01-11",
+    "photos": ["https://drive.google.com/open?id=1IwM3LENVu43A5RF3aGxThU17RFKOfgq3"],
+    "services": [
+      "Computer Service",
+      "Printer Service",
+      "CCTV Support",
+      "Electronics Sales"
+    ],
+    "yearExperience": 14,
+    "socialLinks": {
+      "facebook": "Facebook"
+    }
   }
+
 ]

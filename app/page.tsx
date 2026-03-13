@@ -7,43 +7,76 @@ import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import { useLocation } from "@/lib/location-context"
 
- 
+ interface Slide {
+  title: string
+  subtitle: string
+  image: string
+  cta: string
+  accent: string
+  category: string
+}
 
-const featuredServices = [
-  { title: "PACKERS & MOVERS", subtitle: "Professional moving service", image: "/banners/construction-banner.jpg", cta: "GET BEST DEAL", accent: "#f97316" },
-  { title: "RESTAURANTS", subtitle: "Delicious Food at Your Doorstep", image: "/banners/restaurants-banner.jpg", cta: "ORDER NOW", accent: "#ef4444" },
-  { title: "HOME SERVICES", subtitle: "Trusted Professionals", image: "/banners/home-services-banner.jpg", cta: "GET QUOTE", accent: "#eab308" }
+const featuredServices: Slide[] = [
+  { 
+    title: "PACKERS & MOVERS",
+    subtitle: "Professional moving service",
+    image: "/banners/construction-banner.jpg",
+    cta: "GET BEST DEAL",
+    accent: "#f97316",
+    category: "Construction"
+  },
+  { 
+    title: "RESTAURANTS",
+    subtitle: "Delicious Food at Your Doorstep",
+    image: "/banners/restaurants-banner.jpg",
+    cta: "ORDER NOW",
+    accent: "#ef4444",
+    category: "Food"
+  },
+  { 
+    title: "HOME SERVICES",
+    subtitle: "Trusted Professionals",
+    image: "/banners/home-services-banner.jpg",
+    cta: "GET QUOTE",
+    accent: "#eab308",
+    category: "Home Decor"
+  }
 ];
 
-const serviceCategories = [
-  { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: "👔", image: "/businesses/construction-1.jpg" },
-  { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: "🔧", image: "/businesses/electronics-1.jpg" },
-  { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: "🏢", image: "/businesses/furniture-1.jpg" },
-  { name: "Doctors", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "⚕️", image: "/businesses/doctor-1.png" }
-];
+
 
 const allCategories = [
   { name: "Restaurants", icon: "🍽️" },
-  { name: "Hotels", icon: "🏨" },
+  { name: "Electronics", icon: "📱" },
+  { name: "CCTV & Networking", icon: "📹" },
+   { name: "Furniture", icon: "🛋️" },
+   { name: "Construction", icon: "🏗️" },
+     { name: "Fabrication", icon: "⚙️" },
+       { name: "Hotels", icon: "🏨" },
+       {name: "Real Estate", icon: "🏢"},
+ 
   { name: "Beauty Spa", icon: "💅" },
-  { name: "Furniture", icon: "🛋️" },
   { name: "Home Decor", icon: "🏠" },
   { name: "Wedding", icon: "💍" },
-  { name: "CCTV & Networking", icon: "📹" },
   { name: "Education", icon: "🎓" },
   { name: "Rent & Hire", icon: "🚗" },
   { name: "Technology", icon: "💻" },
-  { name: "Fabrication", icon: "⚙️" },
+  {name: "Packers & Movers", icon: "📦" },
   { name: "Automotive", icon: "🚘" },
   { name: "Health & Wellness", icon: "🏥" },
   { name: "Events", icon: "🎉" },
-  { name: "Construction", icon: "🏗️" },
   { name: "Finance", icon: "💰" },
   { name: "Entertainment", icon: "🎭" },
   { name: "Legal", icon: "⚖️" },
+];
+
+const serviceCategories = [
+  { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: "👔", image: "/businesses/construction-1.jpg" ,Category:"Construction"},
+  { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: "🔧", image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
+  { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: "🏢", image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
+  { name: "Doctors", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "⚕️", image: "/businesses/doctor-1.png" ,Category:"Health & Wellness"}
 ];
 
 const testimonials = [
@@ -171,21 +204,46 @@ const { location } = useLocation()
             <div className="relative">
               <div className="overflow-hidden rounded-2xl md:rounded-3xl shadow-lg" ref={emblaRef}>
                 <div className="flex">
-                  {slides.map((slide, index) => (
-                    <div key={index} className="min-w-full relative h-56 sm:h-72 md:h-80 lg:h-100 w-full">
-                      <Image src={slide.image} alt={slide.title} fill className="object-cover" />
-                      <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between">
-                        <div>
-                          <p className="text-xs font-bold text-white uppercase tracking-wider">Featured</p>
-                          <h3 className="text-xl md:text-2xl font-extrabold text-white mt-1">{slide.title}</h3>
-                        </div>
-                        <button className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95">
-                          {slide.cta}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+  {slides.map((slide, index) => (
+    
+    <Link
+      key={index}
+      href={`/category/${encodeURIComponent(slide.category)}`}
+      className="min-w-full"
+    >
+      <div className="relative h-56 sm:h-72 md:h-80 lg:h-100 w-full">
+        
+        <Image
+          src={slide.image}
+          alt={slide.title}
+          fill
+          className="object-cover"
+        />
+
+        <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between">
+          
+          <div>
+            <p className="text-xs font-bold text-white uppercase tracking-wider">
+              Featured
+            </p>
+
+            <h3 className="text-xl md:text-2xl font-extrabold text-white mt-1">
+              {slide.title}
+            </h3>
+          </div>
+
+          <button
+            className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95"
+          >
+            {slide.cta}
+          </button>
+
+        </div>
+      </div>
+    </Link>
+
+  ))}
+</div>
               </div>
               {/* Dots */}
               <div className="flex justify-center gap-2 mt-3">
@@ -201,23 +259,46 @@ const { location } = useLocation()
           </div>
 
           {/* SERVICE CATEGORY CARDS — 2 cols on mobile, 2 cols on lg */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-3 md:gap-5">
-            {serviceCategories.map((service) => (
-              <div
-                key={service.name}
-                className={`relative rounded-xl md:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white p-4 md:p-6 cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
-              >
-                <Image src={service.image} alt={service.name} fill className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" />
-                <div className="relative flex flex-col justify-between h-full min-h-[100px] md:min-h-[130px]">
-                  <div className="text-2xl md:text-3xl">{service.icon}</div>
-                  <div>
-                    <h3 className="font-bold text-sm md:text-lg leading-tight">{service.name}</h3>
-                    <p className="text-xs opacity-90 mt-0.5 md:mt-1">{service.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+ 
+<div className="lg:col-span-2 grid grid-cols-2 gap-3 md:gap-5">
+  {serviceCategories.map((service) => (
+    
+    <Link
+      key={service.name}
+      href={`/category/${encodeURIComponent(service.Category)}`}
+    >
+      <div
+        className={`relative rounded-xl md:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white p-4 md:p-6 cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+      >
+        <Image
+          src={service.image}
+          alt={service.name}
+          fill
+          className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+        />
+
+        <div className="relative flex flex-col justify-between h-full min-h-[100px] md:min-h-[130px]">
+
+          <div className="text-2xl md:text-3xl">
+            {service.icon}
           </div>
+
+          <div>
+            <h3 className="font-bold text-sm md:text-lg leading-tight">
+              {service.name}
+            </h3>
+
+            <p className="text-xs opacity-90 mt-0.5 md:mt-1">
+              {service.subtitle}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </Link>
+
+  ))}
+</div>
 
         </div>
       </section>
