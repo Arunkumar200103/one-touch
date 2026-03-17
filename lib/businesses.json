@@ -172,7 +172,7 @@
     "altContact": "+91 8754944026",
     "location": "Gobi, Tamil Nadu",
     "startDate": "2021-07-09",
-    "photos": ["https://drive.google.com/open?id=1ilYTNiMADVlYiMxUbnsrJWNvq1k0Lsmu"],
+    "photos": ["/businesses/construction-3.png"],
     "services": [
       "Interior Renovation",
       "Roof Sheet Work",
@@ -195,7 +195,7 @@
     "altContact": "+91 9488214001",
     "location": "TRR Nagar, Gobi",
     "startDate": "2023-09-09",
-    "photos": ["https://drive.google.com/open?id=108QKEDc_qzKq4BsrG6yJqL5gAyBGTrps"],
+    "photos": ["/businesses/baas.png"],
     "services": [
       "Touch Switch Boards",
       "Water Level Controllers",
@@ -217,7 +217,7 @@
     "altContact": "",
     "location": "Gobi, Tamil Nadu",
     "startDate": "2022-06-23",
-    "photos": ["https://drive.google.com/open?id=1bt4v3SQDkhgv9zRIGZwmf1YqE_QS-ETE"],
+    "photos": ["/businesses/harichandra.png"],
     "services": ["Electronics", "Robotics"],
     "yearExperience": 2,
     "socialLinks": {
@@ -236,7 +236,7 @@
     "altContact": "+91 7010817113",
     "location": "Gobichettipalayam, Tamil Nadu",
     "startDate": "2022-09-01",
-    "photos": ["https://drive.google.com/open?id=14EDhNQfjDYBa4q7yWBsuWEFXu4Bqx_Dx"],
+    "photos": ["/businesses/raanuvan.png"],
     "services": ["Spoken Hindi Training"],
     "yearExperience": 2,
     "socialLinks": {}
@@ -254,8 +254,7 @@
     "location": "L Kallipatti, Gobi",
     "startDate": "2013-03-03",
     "photos": [
-      "https://drive.google.com/open?id=1nyBD-P9_3r-h-JHgO6HhZvR-nb0ZkGBu",
-      "https://drive.google.com/open?id=11Ba78fOHKTECoVES9-FpzBVzyk4YuoWA"
+"/businesses/cctv-1.jpg"
     ],
     "services": ["CCTV Installation", "Network Setup"],
     "yearExperience": 11,
@@ -275,7 +274,7 @@
     "altContact": "+91 9842943053",
     "location": "Kavindapadi, Akkarai Kodiveri",
     "startDate": "2012-04-11",
-    "photos": ["https://drive.google.com/open?id=1l1a2vnf25j2x81XjkqOr429jyX0q9PS"],
+    "photos": ["/businesses/wood.png"],
     "services": ["Tiles", "Furniture"],
     "yearExperience": 12,
     "socialLinks": {
@@ -294,7 +293,7 @@
     "altContact": "+91 9042967472",
     "location": "Kugalur, Tamil Nadu",
     "startDate": "2024-12-11",
-    "photos": ["https://drive.google.com/open?id=1gZYJ1U_vBpYdXAn9B49ec6AUTtlpYUVm"],
+    "photos": ["/businesses/gvbuildtech.png"],
     "services": [
       "UPVC Windows",
       "Doors",
@@ -318,7 +317,7 @@
     "altContact": "+91 9842646699",
     "location": "Gobichettipalayam, Tamil Nadu",
     "startDate": "2010-01-11",
-    "photos": ["https://drive.google.com/open?id=1IwM3LENVu43A5RF3aGxThU17RFKOfgq3"],
+    "photos": ["/businesses/techsolutions.png"],
     "services": [
       "Computer Service",
       "Printer Service",

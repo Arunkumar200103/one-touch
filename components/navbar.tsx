@@ -8,7 +8,6 @@ import { useLocation } from "@/lib/location-context"
 import { useSearch } from "@/lib/search-context";
 
 
-
 const primaryLinks = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "Services", href: "/service-inquiry" },

@@ -77,7 +77,7 @@ const serviceCategories = [
   { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: "👔", image: "/businesses/construction-1.jpg" ,Category:"Construction"},
   { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: "🔧", image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
   { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: "🏢", image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
-  { name: "Doctors", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "⚕️", image: "/businesses/doctor-1.png" ,Category:"Health & Wellness"}
+  { name: "Doctors", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "⚕️", image: "/businesses/doctor-1.jpg" ,Category:"Health & Wellness"}
 ];
 
 const testimonials = [
