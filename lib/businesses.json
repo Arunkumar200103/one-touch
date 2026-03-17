@@ -20,27 +20,7 @@
       "whatsapp": "+91 98765 43210"
     }
   },
-  {
-    "id": 2,
-    "ownerName": "Meena Electronics",
-    "businessName": "TechHub Electronics",
-    "category": "Electronics",
-    "description": "Complete electronics repair and sales. Authorized service center for major brands including laptops, phones, and home appliances. Same-day service available.",
-    "rating": 4.6,
-    "reviews": 98,
-    "contactNumber": "+91 87654 32109",
-    "altContact": "+91 87654 32108",
-    "location": "Bangalore, Karnataka",
-    "startDate": "2015-06-20",
-    "photos": ["/businesses/electronics-1.jpg"],
-    "services": ["Phone Repair", "Laptop Service", "Appliance Repair", "Electronics Sales"],
-    "yearExperience": 9,
-    "socialLinks": {
-      "facebook": "https://facebook.com/techhub",
-      "instagram": "https://instagram.com/techhub",
-      "website": "https://techhub.com"
-    }
-  },
+
   {
     "id": 3,
     "ownerName": "Priya Sharma",
@@ -104,7 +84,7 @@
   },
   {
     "id": 6,
-    "ownerName": "Deepak Verma",
+    "ownerName": "Manickavasagar",
     "businessName": "Thiran360AI",
     "category": "Technology",
     "description": "Custom software development, web design, and IT consulting. Expert team in AI, web development, mobile apps, and cloud infrastructure for businesses.",
@@ -112,7 +92,7 @@
     "reviews": 203,
     "contactNumber": "+91 43210 98765",
     "altContact": "+91 43210 98766",
-    "location": "Chennai, Tamil Nadu",
+    "location": "Gobichettipalayam, Tamil Nadu",
     "startDate": "2017-04-18",
     "photos": ["/businesses/tech-1.jpg"],
     "services": ["Web Development", "Mobile Apps", "Software Development", "IT Consulting"],

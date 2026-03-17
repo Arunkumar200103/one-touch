@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "@/lib/location-context"
+import { useSearch } from "@/lib/search-context";
 
  interface Slide {
   title: string
@@ -119,6 +120,8 @@ const CITIES = [
   { name:"Pune",      biz:"3.2L", img: IMG.city6 },
 ];
 
+
+
 interface Slide {
   image: string;
   title: string;
@@ -140,6 +143,7 @@ function useReveal(threshold = 0.1) {
 export default function LandingPageV2({ slides = featuredServices }: { slides?: Slide[] }) {
 const { location } = useLocation()
   const { t } = useLanguage();
+  const { search } = useSearch();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -151,6 +155,10 @@ const { location } = useLocation()
   const r4 = useReveal(), r7 = useReveal();
   const hoverIn  = (e: any) => { e.currentTarget.style.color = "#1A56DB"; };
   const hoverOut = (e: any) => { e.currentTarget.style.color = "#6B7280"; };
+
+  const filteredCategories = allCategories.filter((cat: any) =>
+  cat.name.toLowerCase().includes(search.toLowerCase())
+);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -354,7 +362,7 @@ const { location } = useLocation()
           >
             <div className="grid grid-rows-2 grid-flow-col gap-3 w-max pr-10">
 
-              {allCategories.map((cat: any) => (
+              {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
                 <Link
                   key={cat.name}
                   href={`/category/${encodeURIComponent(cat.name)}`}
@@ -379,7 +387,7 @@ const { location } = useLocation()
 
         {/* DESKTOP GRID */}
         <div className="hidden md:grid grid-cols-6 lg:grid-cols-9 gap-3">
-          {allCategories.map((cat: any) => (
+          {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
             <Link
               key={cat.name}
               href={`/category/${encodeURIComponent(cat.name)}`}

@@ -5,6 +5,7 @@ import { Language } from "@/lib/translations";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "@/lib/location-context"
+import { useSearch } from "@/lib/search-context";
 
 
 
@@ -51,7 +52,6 @@ export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [search, setSearch] = useState("");
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const [listening, setListening] = useState(false);
@@ -59,6 +59,7 @@ export function Navbar() {
   const moreRef = useRef<HTMLDivElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
     const { location, setLocation } = useLocation()
+    const { search, setSearch } = useSearch();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -156,7 +157,12 @@ export function Navbar() {
             placeholder="Search for services, businesses..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && search.trim() && console.log("search:", search)}
+            onKeyDown={(e) => {
+  if (e.key === "Enter" && search.trim()) {
+    // Optional: redirect to homepage
+    window.location.href = "/";
+  }
+}}
             className="flex-1 px-3 py-2.5 text-sm outline-none text-gray-800 placeholder-gray-400 min-w-0"
           />
 
@@ -308,7 +314,12 @@ export function Navbar() {
               placeholder="Search services..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              onKeyDown={e => e.key === "Enter" && search.trim() && console.log("search:", search)}
+              onKeyDown={(e) => {
+  if (e.key === "Enter" && search.trim()) {
+    // Optional: redirect to homepage
+    window.location.href = "/";
+  }
+}}
               className="flex-1 px-2.5 py-2.5 text-sm outline-none text-gray-800 placeholder-gray-400 min-w-0"
             />
 

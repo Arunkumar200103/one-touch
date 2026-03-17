@@ -24,6 +24,7 @@ export const translations = {
     language: "Language",
     english: "English",
     tamil: "Tamil",
+    
   },
   ta: {
    title:"One Touch",
