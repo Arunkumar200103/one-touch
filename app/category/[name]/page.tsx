@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { Navbar } from "@/components/navbar";
-import { SearchBar } from "@/components/search-bar";
 import { BusinessCard } from "@/components/business-card";
 import { ServiceTypeCard } from "@/components/service-type-card";
 import { useLanguage } from "@/lib/language-context";
@@ -92,9 +91,6 @@ export default function CategoryPage({ params }: PageProps) {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <SearchBar onSearch={setSearchQuery} />
-        </div>
 
         {/* Service Types Section */}
         <div className="mb-16 animate-fade-in-up">

@@ -68,12 +68,12 @@ export default function About() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-16 mt-[-90px]">
 
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
-            { label: "Home", href: "/" },
+            { label: "Back", href: "/" },
             { label: "About Us" },
           ]}
           accentColor={colors.primary}

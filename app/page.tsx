@@ -8,7 +8,8 @@ import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "@/lib/location-context"
-import { useSearch } from "@/lib/search-context";
+import { useSearch, SearchResults } from "@/lib/search-context";
+import{Footer} from "@/components/footer";
 
  interface Slide {
   title: string
@@ -21,28 +22,28 @@ import { useSearch } from "@/lib/search-context";
 
 const featuredServices: Slide[] = [
   { 
-    title: "PACKERS & MOVERS",
-    subtitle: "Professional moving service",
+    title: "CONSTRUCTION & RENOVATION",
+    subtitle: "Professional construction and renovation services",
     image: "/banners/construction-banner.jpg",
-    cta: "GET BEST DEAL",
+    cta: "GET QUOTE",
     accent: "#f97316",
     category: "Construction"
   },
   { 
-    title: "RESTAURANTS",
-    subtitle: "Delicious Food at Your Doorstep",
-    image: "/banners/restaurants-banner.jpg",
-    cta: "ORDER NOW",
+    title: "CCTV & NETWORKING",
+    subtitle: "CCTV service and networking solution",
+    image: "/banners/cctv-banner.jpg",
+    cta: "CONTACT NOW",
     accent: "#ef4444",
-    category: "Food"
+    category: "CCTV & Networking"
   },
   { 
-    title: "HOME SERVICES",
-    subtitle: "Trusted Professionals",
-    image: "/banners/home-services-banner.jpg",
-    cta: "GET QUOTE",
+    title: "FURNITURE & INTERIORS",
+    subtitle: "Stylish furniture and interior design services",
+    image: "/banners/furniture-banner.jpg",
+    cta: "EXPLORE",
     accent: "#eab308",
-    category: "Home Decor"
+    category: "Furniture"
   }
 ];
 
@@ -55,20 +56,20 @@ const allCategories = [
    { name: "Furniture", icon: "🛋️" },
    { name: "Construction", icon: "🏗️" },
      { name: "Fabrication", icon: "⚙️" },
-       { name: "Hotels", icon: "🏨" },
+     { name: "Technology", icon: "💻" },
+     { name: "Education", icon: "🎓" },
+       { name: "Finance", icon: "💰" },
        {name: "Real Estate", icon: "🏢"},
   { name: "Restaurants", icon: "🍽️" },
-   { name: "Technology", icon: "💻" },
-    { name: "Education", icon: "🎓" },
   { name: "Beauty Spa", icon: "💅" },
   { name: "Home Decor", icon: "🏠" },
   { name: "Wedding", icon: "💍" },
   { name: "Rent & Hire", icon: "🚗" },
+    { name: "Hotels", icon: "🏨" },
   {name: "Packers & Movers", icon: "📦" },
   { name: "Automotive", icon: "🚘" },
   { name: "Health & Wellness", icon: "🏥" },
   { name: "Events", icon: "🎉" },
-  { name: "Finance", icon: "💰" },
   { name: "Entertainment", icon: "🎭" },
   { name: "Legal", icon: "⚖️" },
 ];
@@ -77,7 +78,7 @@ const serviceCategories = [
   { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: "👔", image: "/businesses/construction-1.jpg" ,Category:"Construction"},
   { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: "🔧", image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
   { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: "🏢", image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
-  { name: "Doctors", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "⚕️", image: "/businesses/doctor-1.jpg" ,Category:"Health & Wellness"}
+  { name: "Education", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "🎓", image: "/businesses/education-1.jpg" ,Category:"Education"}
 ];
 
 const testimonials = [
@@ -143,7 +144,7 @@ function useReveal(threshold = 0.1) {
 export default function LandingPageV2({ slides = featuredServices }: { slides?: Slide[] }) {
 const { location } = useLocation()
   const { t } = useLanguage();
-  const { search } = useSearch();
+  const { search, results } = useSearch();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -156,9 +157,11 @@ const { location } = useLocation()
   const hoverIn  = (e: any) => { e.currentTarget.style.color = "#1A56DB"; };
   const hoverOut = (e: any) => { e.currentTarget.style.color = "#6B7280"; };
 
-  const filteredCategories = allCategories.filter((cat: any) =>
-  cat.name.toLowerCase().includes(search.toLowerCase())
-);
+const filteredCategories = allCategories.filter((cat) => {
+  const q = search.toLowerCase();
+  if (!q) return true;
+  return cat.name.toLowerCase().includes(q);
+});
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -639,39 +642,7 @@ const { location } = useLocation()
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-gray-950 text-gray-400 px-4 md:px-8 py-10 md:py-14">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-10 md:mb-12">
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-3 md:mb-4">
-              <div className="bg-blue-600 rounded-xl p-2">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <span className="text-white font-bold text-base md:text-lg">LocalBiz</span>
-            </div>
-            <p className="text-xs md:text-sm leading-relaxed">India's largest business discovery platform. Find trusted services, connect with businesses, and grow faster.</p>
-          </div>
-
-          {[
-            { title: "Navigation", links: ["Home","Categories","Reviews","How It Works","Contact"] },
-            { title: "For Businesses", links: ["List Your Business","Advertising","Business Dashboard","Partnerships"] },
-            { title: "Support", links: ["Help Center","Privacy Policy","Terms of Use","Safety"] },
-          ].map(({ title, links }) => (
-            <div key={title}>
-              <p className="text-white font-bold text-xs md:text-sm mb-3 md:mb-4">{title}</p>
-              <ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
-                {links.map(l => <li key={l} className="hover:text-blue-400 cursor-pointer transition">{l}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="border-t border-gray-800 pt-5 md:pt-6 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 text-[10px] md:text-xs text-gray-500">
-          <p>© 2025 LocalBiz India. All rights reserved.</p>
-          <p>Made with ❤️ for India</p>
-        </div>
-      </footer>
+      <Footer />
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }

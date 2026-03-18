@@ -1,89 +1,7 @@
 [
+  
   {
     "id": 1,
-    "ownerName": "Rajesh Kumar",
-    "businessName": "BuildRight Constructions",
-    "category": "Construction",
-    "description": "Professional construction and renovation services with 15 years of experience in residential and commercial projects. We specialize in modern architecture, sustainable building practices, and timely project delivery.",
-    "rating": 4.8,
-    "reviews": 145,
-    "contactNumber": "+91 98765 43210",
-    "altContact": "+91 98765 43211",
-    "location": "Chennai, Tamil Nadu",
-    "startDate": "2009-03-15",
-    "photos": ["/businesses/construction-1.jpg"],
-    "services": ["Residential Construction", "Commercial Projects", "Renovations", "Architectural Design"],
-    "yearExperience": 15,
-    "socialLinks": {
-      "facebook": "https://facebook.com/buildright",
-      "instagram": "https://instagram.com/buildright",
-      "whatsapp": "+91 98765 43210"
-    }
-  },
-
-  {
-    "id": 3,
-    "ownerName": "Priya Sharma",
-    "businessName": "Bright Learning Academy",
-    "category": "Education",
-    "description": "Online and offline tutoring for all grades. Expert teachers in Mathematics, Science, Languages, and competitive exam preparation. Personalized learning plans for each student.",
-    "rating": 4.9,
-    "reviews": 234,
-    "contactNumber": "+91 76543 21098",
-    "altContact": "+91 76543 21099",
-    "location": "Hyderabad, Telangana",
-    "startDate": "2018-01-10",
-    "photos": ["/businesses/education-1.jpg"],
-    "services": ["Mathematics Tutoring", "Science Coaching", "Language Classes", "Competitive Exam Prep"],
-    "yearExperience": 6,
-    "socialLinks": {
-      "facebook": "https://facebook.com/brightlearning",
-      "instagram": "https://instagram.com/brightlearning"
-    }
-  },
-  {
-    "id": 4,
-    "ownerName": "Vikram Singh",
-    "businessName": "SecureNet CCTV Solutions",
-    "category": "CCTV & Networking",
-    "description": "Advanced CCTV installation and networking solutions for homes and offices. 24/7 monitoring support, cloud storage, and mobile app access included.",
-    "rating": 4.7,
-    "reviews": 156,
-    "contactNumber": "+91 65432 10987",
-    "altContact": "+91 65432 10988",
-    "location": "Delhi, India",
-    "startDate": "2016-08-05",
-    "photos": ["/businesses/cctv-1.jpg"],
-    "services": ["CCTV Installation", "Network Setup", "Security Monitoring", "Maintenance"],
-    "yearExperience": 8,
-    "socialLinks": {
-      "facebook": "https://facebook.com/securenet",
-      "whatsapp": "+91 65432 10987"
-    }
-  },
-  {
-    "id": 5,
-    "ownerName": "Arun Kumar",
-    "businessName": "Premium Furniture Store",
-    "category": "Furniture",
-    "description": "Customized and ready-made furniture for all room types. Modern designs, sustainable materials, free design consultation, and installation services available.",
-    "rating": 4.5,
-    "reviews": 89,
-    "contactNumber": "+91 54321 09876",
-    "altContact": "+91 54321 09877",
-    "location": "Mumbai, Maharashtra",
-    "startDate": "2012-11-22",
-    "photos": ["/businesses/furniture-1.jpg"],
-    "services": ["Custom Furniture", "Interior Design", "Home Delivery", "Installation Service"],
-    "yearExperience": 12,
-    "socialLinks": {
-      "facebook": "https://facebook.com/premiumfurniture",
-      "instagram": "https://instagram.com/premiumfurniture",
-      "website": "https://premiumfurniture.com"
-    }
-  },
-  {
-    "id": 6,
     "ownerName": "Manickavasagar",
     "businessName": "Thiran360AI",
     "category": "Technology",
@@ -95,54 +13,16 @@
     "location": "Gobichettipalayam, Tamil Nadu",
     "startDate": "2017-04-18",
     "photos": ["/businesses/tech-1.jpg"],
-    "services": ["Web Development", "Mobile Apps", "Software Development", "IT Consulting"],
+    "services": ["Web Development", "Mobile App Development", "Software Development", "IT Consulting"],
     "yearExperience": 7,
     "socialLinks": {
       "facebook": "https://facebook.com/innovatetech",
       "linkedin": "https://linkedin.com/company/innovatetech"
     }
   },
+ 
   {
-    "id": 7,
-    "ownerName": "Suresh Kumar",
-    "businessName": "Expert Fabrication Works",
-    "category": "Fabrication",
-    "description": "Metal and aluminum fabrication services including gates, railings, and custom designs. High-quality craftsmanship with modern equipment and skilled workers.",
-    "rating": 4.6,
-    "reviews": 76,
-    "contactNumber": "+91 32109 87654",
-    "altContact": "+91 32109 87655",
-    "location": "Jaipur, Rajasthan",
-    "startDate": "2014-07-30",
-    "photos": ["/businesses/fabrication-1.jpg"],
-    "services": ["Metal Fabrication", "Welding Work", "Custom Designs", "Installation"],
-    "yearExperience": 10,
-    "socialLinks": {
-      "facebook": "https://facebook.com/expertfab",
-      "whatsapp": "+91 32109 87654"
-    }
-  },
-  {
-    "id": 8,
-    "ownerName": "Anita Desai",
-    "businessName": "BuildRight Constructions Branch 2",
-    "category": "Construction",
-    "description": "Specializing in modern architectural designs and eco-friendly construction methods. LEED certified sustainable building practices.",
-    "rating": 4.7,
-    "reviews": 112,
-    "contactNumber": "+91 21098 76543",
-    "altContact": "+91 21098 76544",
-    "location": "Ahmedabad, Gujarat",
-    "startDate": "2019-02-14",
-    "photos": ["/businesses/construction-1.jpg"],
-    "services": ["Green Building", "Architectural Design", "Project Management", "Sustainable Construction"],
-    "yearExperience": 5,
-    "socialLinks": {
-      "instagram": "https://instagram.com/buildright2"
-    }
-  },
-  {
-    "id": 9,
+    "id": 2,
     "ownerName": "Sujan",
     "businessName": "BGMI",
     "category": "Gaming",
@@ -161,7 +41,7 @@
     }
   },
   {
-    "id": 10,
+    "id": 4,
     "ownerName": "Saravanakumar",
     "businessName": "Skyline Builders and Interiors",
     "category": "Construction",
@@ -174,17 +54,18 @@
     "startDate": "2021-07-09",
     "photos": ["/businesses/construction-3.png"],
     "services": [
+      "Building Construction",
       "Interior Renovation",
       "Roof Sheet Work",
-      "Painting",
-      "UPVC Works",
-      "Modular Kitchen"
+      "Painting Services",
+      "UPVC Windows & Doors",
+      "Modular Kitchen & Wardrobes"
     ],
     "yearExperience": 3,
     "socialLinks": {}
   },
   {
-    "id": 11,
+    "id": 5,
     "ownerName": "R Balraj",
     "businessName": "BAAS Technologies",
     "category": "Electronics",
@@ -206,7 +87,7 @@
     "socialLinks": {}
   },
   {
-    "id": 12,
+    "id": 6,
     "ownerName": "C.H. Dinesh",
     "businessName": "Harichandra Projects and Electronics",
     "category": "Electronics",
@@ -218,14 +99,14 @@
     "location": "Gobi, Tamil Nadu",
     "startDate": "2022-06-23",
     "photos": ["/businesses/harichandra.png"],
-    "services": ["Electronics", "Robotics"],
+    "services": ["Electronics", "Robotics","Automation Projects"],
     "yearExperience": 2,
     "socialLinks": {
       "instagram": "https://www.instagram.com/dinesh_electronics_lover"
     }
   },
   {
-    "id": 13,
+    "id": 7,
     "ownerName": "Surendar J",
     "businessName": "Spoken Hindi Academy",
     "category": "Education",
@@ -237,12 +118,12 @@
     "location": "Gobichettipalayam, Tamil Nadu",
     "startDate": "2022-09-01",
     "photos": ["/businesses/raanuvan.png"],
-    "services": ["Spoken Hindi Training"],
+    "services": ["Spoken Hindi Training", "Basic Hindi Learning", "Advanced Hindi Speaking", "Hindi Writing & Grammar"],
     "yearExperience": 2,
     "socialLinks": {}
   },
   {
-    "id": 14,
+    "id": 8,
     "ownerName": "K S Praveen Kumar",
     "businessName": "Kaykar Enterprises",
     "category": "CCTV & Networking",
@@ -256,14 +137,14 @@
     "photos": [
 "/businesses/cctv-1.jpg"
     ],
-    "services": ["CCTV Installation", "Network Setup"],
+    "services": ["CCTV Installation", "Network Setup","Security Monitoring","Maintenance Service"],
     "yearExperience": 11,
     "socialLinks": {
       "instagram": "https://www.instagram.com/kaykarenterprises"
     }
   },
   {
-    "id": 15,
+    "id": 9,
     "ownerName": "Govindaraju",
     "businessName": "Wood Zone Tiles & Furniture",
     "category": "Furniture",
@@ -275,14 +156,14 @@
     "location": "Kavindapadi, Akkarai Kodiveri",
     "startDate": "2012-04-11",
     "photos": ["/businesses/wood.png"],
-    "services": ["Tiles", "Furniture"],
+    "services": ["Interior Design", "Custom Furniture","Installation Service","Tile Installation", "Home Delivery"],
     "yearExperience": 12,
     "socialLinks": {
       "facebook": "https://www.facebook.com/share/1FHqdFWgHd/"
     }
   },
   {
-    "id": 16,
+    "id": 10,
     "ownerName": "JFM R. Gopalakrishnan",
     "businessName": "GV Buildtech Solutions",
     "category": "Fabrication",
@@ -295,10 +176,9 @@
     "startDate": "2024-12-11",
     "photos": ["/businesses/gvbuildtech.png"],
     "services": [
-      "UPVC Windows",
-      "Doors",
-      "Mosquito Nets",
-      "Fabrication"
+      "UPVC Windows & Doors",
+      "Mosquito Nets Windows",
+      "Fabrication Works"
     ],
     "yearExperience": 1,
     "socialLinks": {
@@ -306,7 +186,7 @@
     }
   },
   {
-    "id": 17,
+    "id": 11,
     "ownerName": "Vijai",
     "businessName": "SHINE",
     "category": "Electronics",
@@ -322,7 +202,11 @@
       "Computer Service",
       "Printer Service",
       "CCTV Support",
-      "Electronics Sales"
+      "Electronics Sales",
+      "Computer & Laptop Sales/Service",
+      "Printer Sales/Service",
+      "CCTV Installation/Support",
+      "CCTV Installation & Support"
     ],
     "yearExperience": 14,
     "socialLinks": {
