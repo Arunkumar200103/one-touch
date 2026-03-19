@@ -4,7 +4,8 @@ import { useMemo } from "react";
 import { Navbar } from "@/components/navbar";
 import { useLanguage } from "@/lib/language-context";
 import { getCategoryColor } from "@/lib/category-colors";
-import businesses from "@/lib/businesses.json";
+import businessesEn from "@/lib/businesses.json";
+import businessesTa from "@/lib/businesses-ta.json";
 import Link from "next/link";
 import Image from "next/image";
 import { use } from "react";
@@ -16,13 +17,14 @@ interface PageProps {
 }
 
 export default function BusinessProfilePage({ params }: PageProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { id } = use(params);
   const businessId = parseInt(id);
 
   const business = useMemo(() => {
+    const businesses = language === "ta" ? businessesTa : businessesEn;
     return (businesses as any[]).find((biz) => biz.id === businessId);
-  }, [businessId]);
+  }, [businessId, language]);
 
   if (!business) {
     return (
@@ -95,7 +97,7 @@ export default function BusinessProfilePage({ params }: PageProps) {
 
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
               <h1 className="text-5xl font-bold mb-2">{business.businessName}</h1>
-              <p className="text-lg opacity-90">{business.category}</p>
+              <p className="text-lg opacity-90">{t(business.category)}</p>
             </div>
           </div>
 
@@ -120,7 +122,7 @@ export default function BusinessProfilePage({ params }: PageProps) {
 
             <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
               <h3 className="text-xs font-semibold mb-2 opacity-75">
-                Experience
+                {t("experience")}
               </h3>
               <p className="text-lg font-bold" style={{ color: colors.primary }}>
                 {business.yearExperience}+ years
@@ -129,7 +131,7 @@ export default function BusinessProfilePage({ params }: PageProps) {
 
             <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
               <h3 className="text-xs font-semibold mb-2 opacity-75">
-                Since
+                {t("since")}
               </h3>
               <p className="text-lg font-bold" style={{ color: colors.primary }}>
                 {new Date(business.startDate).getFullYear()}

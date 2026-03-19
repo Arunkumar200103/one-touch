@@ -3,9 +3,11 @@
 import { useLanguage } from "@/lib/language-context";
 import { Language } from "@/lib/translations";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import { useLocation } from "@/lib/location-context"
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useLocation } from "@/lib/location-context";
 import { useSearch } from "@/lib/search-context";
+import { SearchAutocomplete, Suggestion } from "@/components/search-autocomplete";
+import { useRouter } from "next/navigation";
 
 
 const primaryLinks = [
@@ -54,11 +56,46 @@ export function Navbar() {
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const [listening, setListening] = useState(false);
+  
+  // Search state
+  const [isDesktopFocused, setIsDesktopFocused] = useState(false);
+  const [isMobileFocused, setIsMobileFocused] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   const locationRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
+  const desktopSearchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchContainerRef = useRef<HTMLDivElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
-    const { location, setLocation } = useLocation()
-    const { search, setSearch } = useSearch();
+  const desktopInputRef = useRef<HTMLInputElement>(null);
+  
+  const { location, setLocation } = useLocation();
+  const { search, setSearch, results } = useSearch();
+  const router = useRouter();
+
+  const suggestions = useMemo(() => {
+    if (!search.trim()) return [];
+    
+    const items: Suggestion[] = [];
+    const categories = new Set<string>();
+    
+    results.services.forEach((s: any) => categories.add(s.category));
+    results.businesses.forEach((b: any) => categories.add(b.category));
+    
+    categories.forEach(cat => {
+      items.push({ type: "category", label: t(cat) || cat, id: `cat-${cat}` });
+    });
+    
+    results.services.forEach((s: any) => {
+      items.push({ type: "service", label: t(s.name) || s.name, id: `srv-${s.id}` });
+    });
+
+    return items.slice(0, 10);
+  }, [results, search, t]);
+
+  useEffect(() => {
+    setSelectedIndex(-1);
+  }, [search]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -66,6 +103,10 @@ export function Navbar() {
         setShowLocationDropdown(false);
       if (moreRef.current && !moreRef.current.contains(e.target as Node))
         setShowMoreDropdown(false);
+      if (desktopSearchRef.current && !desktopSearchRef.current.contains(e.target as Node))
+        setIsDesktopFocused(false);
+      if (mobileSearchContainerRef.current && !mobileSearchContainerRef.current.contains(e.target as Node))
+        setIsMobileFocused(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -90,9 +131,56 @@ export function Navbar() {
     recognition.interimResults = false;
     recognition.onstart = () => setListening(true);
     recognition.onend = () => setListening(false);
-    recognition.onresult = (e: any) => setSearch(e.results[0][0].transcript);
+    recognition.onresult = (e: any) => {
+      setSearch(e.results[0][0].transcript);
+      if (window.innerWidth >= 768) setIsDesktopFocused(true);
+      else setIsMobileFocused(true);
+    };
     recognition.start();
   }
+
+  const handleSelectSuggestion = (val: string) => {
+    setSearch(val);
+    setIsDesktopFocused(false);
+    setIsMobileFocused(false);
+    setMobileSearchOpen(false);
+    router.push(`/search?q=${encodeURIComponent(val)}`);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, isMobile: boolean) => {
+    const isShowing = (isMobile ? isMobileFocused : isDesktopFocused) && suggestions.length > 0;
+    
+    if (!isShowing) {
+      if (e.key === "Enter" && search.trim()) {
+        router.push(`/search?q=${encodeURIComponent(search.trim())}`);
+        setMobileSearchOpen(false);
+        if (isMobile) setIsMobileFocused(false);
+        else setIsDesktopFocused(false);
+      }
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (selectedIndex >= 0) {
+        handleSelectSuggestion(suggestions[selectedIndex].label);
+      } else if (search.trim()) {
+        router.push(`/search?q=${encodeURIComponent(search.trim())}`);
+        setMobileSearchOpen(false);
+        setIsDesktopFocused(false);
+        setIsMobileFocused(false);
+      }
+    } else if (e.key === "Escape") {
+      setIsDesktopFocused(false);
+      setIsMobileFocused(false);
+    }
+  };
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -113,7 +201,10 @@ export function Navbar() {
         </Link>
 
         {/* ── Desktop Search Bar (hidden on mobile) ── */}
-        <div className="hidden md:flex flex-1 items-center border-2 border-blue-500 rounded-xl bg-white max-w-2xl relative overflow-visible">
+        <div 
+          ref={desktopSearchRef}
+          className="hidden md:flex flex-1 items-center border-2 border-blue-500 rounded-xl bg-white max-w-2xl relative overflow-visible"
+        >
 
           {/* Location picker */}
           <div className="relative shrink-0" ref={locationRef}>
@@ -152,16 +243,14 @@ export function Navbar() {
 
           {/* Text input */}
           <input
+            ref={desktopInputRef}
             type="text"
             placeholder="Search for services, businesses..."
             value={search}
-            onChange={e => setSearch(e.target.value)}
-            onKeyDown={(e) => {
-  if (e.key === "Enter" && search.trim()) {
-    // Optional: redirect to homepage
-    window.location.href = "/";
-  }
-}}
+            onChange={e => { setSearch(e.target.value); setIsDesktopFocused(true); }}
+            onFocus={() => setIsDesktopFocused(true)}
+            onClick={() => setIsDesktopFocused(true)}
+            onKeyDown={(e) => handleKeyDown(e, false)}
             className="flex-1 px-3 py-2.5 text-sm outline-none text-gray-800 placeholder-gray-400 min-w-0"
           />
 
@@ -177,12 +266,28 @@ export function Navbar() {
           </button>
 
           {/* Search button */}
-          <button className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-5 py-2.5 font-bold text-sm transition-colors flex items-center gap-2 shrink-0 rounded-r-[10px]">
+          <button 
+             onClick={() => {
+               if (search.trim()) {
+                 router.push(`/search?q=${encodeURIComponent(search.trim())}`);
+                 setIsDesktopFocused(false);
+               }
+             }}
+             className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-5 py-2.5 font-bold text-sm transition-colors flex items-center gap-2 shrink-0 rounded-r-[10px]"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <span className="hidden lg:inline">Search</span>
           </button>
+          
+          <SearchAutocomplete
+            suggestions={suggestions}
+            isOpen={isDesktopFocused}
+            selectedIndex={selectedIndex}
+            onSelect={handleSelectSuggestion}
+            searchQuery={search}
+          />
         </div>
 
         {/* ── Mobile: Search icon button (opens expandable bar below) ── */}
@@ -268,7 +373,10 @@ export function Navbar() {
       {mobileSearchOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white px-3 py-3">
           {/* Location + input row */}
-          <div className="flex items-center border-2 border-blue-500 rounded-xl overflow-visible bg-white mb-2">
+          <div 
+            ref={mobileSearchContainerRef}
+            className="flex items-center border-2 border-blue-500 rounded-xl overflow-visible bg-white mb-2 relative"
+          >
 
             {/* Location picker (compact) */}
             <div className="relative shrink-0" ref={locationRef}>
@@ -312,13 +420,10 @@ export function Navbar() {
               type="text"
               placeholder="Search services..."
               value={search}
-              onChange={e => setSearch(e.target.value)}
-              onKeyDown={(e) => {
-  if (e.key === "Enter" && search.trim()) {
-    // Optional: redirect to homepage
-    window.location.href = "/";
-  }
-}}
+              onChange={e => { setSearch(e.target.value); setIsMobileFocused(true); }}
+              onFocus={() => setIsMobileFocused(true)}
+              onClick={() => setIsMobileFocused(true)}
+              onKeyDown={(e) => handleKeyDown(e, true)}
               className="flex-1 px-2.5 py-2.5 text-sm outline-none text-gray-800 placeholder-gray-400 min-w-0"
             />
 
@@ -333,11 +438,28 @@ export function Navbar() {
             </button>
 
             {/* Search button */}
-            <button className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-3 py-2.5 font-bold text-sm transition-colors shrink-0 rounded-r-[10px]">
+            <button 
+              onClick={() => {
+                 if (search.trim()) {
+                   router.push(`/search?q=${encodeURIComponent(search.trim())}`);
+                   setMobileSearchOpen(false);
+                   setIsMobileFocused(false);
+                 }
+              }}
+              className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-3 py-2.5 font-bold text-sm transition-colors shrink-0 rounded-r-[10px]"
+            >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
+            <SearchAutocomplete
+              suggestions={suggestions}
+              isOpen={isMobileFocused}
+              selectedIndex={selectedIndex}
+              onSelect={handleSelectSuggestion}
+              searchQuery={search}
+              isMobile={true}
+            />
           </div>
         </div>
       )}

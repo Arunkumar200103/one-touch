@@ -1,7 +1,10 @@
 "use client";
 import { createContext, useContext, useState, useMemo } from "react";
-import businessesData from "@/lib/businesses.json";
-import { serviceTypes } from "@/lib/service-types";
+import businessesEn from "@/lib/businesses.json";
+import businessesTa from "@/lib/businesses-ta.json";
+import { serviceTypes as serviceTypesEn } from "@/lib/service-types";
+import { serviceTypesTa } from "@/lib/service-types-ta";
+import { useLanguage } from "@/lib/language-context";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -56,10 +59,10 @@ function matchesAny(needle: string, ...haystack: (string | string[])[]) {
   });
 }
 
-function filterBusinesses(query: string): Business[] {
+function filterBusinesses(query: string, data: Business[]): Business[] {
   const q = normalize(query);
   if (!q) return [];
-  return (businessesData as Business[]).filter((b) =>
+  return data.filter((b) =>
     matchesAny(
       q,
       b.businessName,
@@ -72,10 +75,10 @@ function filterBusinesses(query: string): Business[] {
   );
 }
 
-function filterServices(query: string): ServiceResult[] {
+function filterServices(query: string, data: ServiceResult[]): ServiceResult[] {
   const q = normalize(query);
   if (!q) return [];
-  return serviceTypes.filter((s) =>
+  return data.filter((s) =>
     matchesAny(
       q,
       s.name,
@@ -92,13 +95,17 @@ const SearchContext = createContext<any>(null);
 
 export function SearchProvider({ children }: { children: React.ReactNode }) {
   const [search, setSearch] = useState("");
+  const { language } = useLanguage();
 
   const results: SearchResults = useMemo(() => {
     const q = normalize(search);
     if (!q) return { businesses: [], services: [], hasResults: false };
 
-    const businesses = filterBusinesses(q);
-    const services = filterServices(q);
+    const currentBusinesses = language === "ta" ? businessesTa : businessesEn;
+    const currentServices = language === "ta" ? serviceTypesTa : serviceTypesEn;
+
+    const businesses = filterBusinesses(q, currentBusinesses as Business[]);
+    const services = filterServices(q, currentServices as ServiceResult[]);
 
     return {
       businesses,

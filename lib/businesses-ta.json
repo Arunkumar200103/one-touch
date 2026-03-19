@@ -1,0 +1,213 @@
+[
+  {
+    "id": 1,
+    "ownerName": "மாணிக்கவாசகர்",
+    "businessName": "திறன்360AI",
+    "category": "Technology",
+    "description": "தனிப்பயன் மென்பொருள் மேம்பாடு, வலை வடிவமைப்பு மற்றும் தகவல் தொழில்நுட்ப ஆலோசனை. AI, வலை மேம்பாடு, மொபைல் செயலிகள் மற்றும் கிளவுட் உள்கட்டமைப்பில் நிபுணத்துவம் பெற்ற குழு.",
+    "rating": 4.9,
+    "reviews": 203,
+    "contactNumber": "+91 43210 98765",
+    "altContact": "+91 43210 98766",
+    "location": "கோபிசெட்டிபாளையம், தமிழ்நாடு",
+    "startDate": "2017-04-18",
+    "photos": ["/businesses/tech-1.jpg"],
+    "services": ["வலை மேம்பாடு", "மொபைல் ஆப் மேம்பாடு", "மென்பொருள் மேம்பாடு", "ஐடி ஆலோசனை"],
+    "yearExperience": 7,
+    "socialLinks": {
+      "facebook": "https://facebook.com/innovatetech",
+      "linkedin": "https://linkedin.com/company/innovatetech"
+    }
+  },
+  {
+    "id": 2,
+    "ownerName": "சுஜன்",
+    "businessName": "BGMI",
+    "category": "Gaming",
+    "description": "BGMI தொடர்பான சேவைகள் மற்றும் கேமிங் ஆதரவு.",
+    "rating": 4.3,
+    "reviews": 10,
+    "contactNumber": "+91 9585716229",
+    "altContact": "+91 8056823309",
+    "location": "கோபி, தமிழ்நாடு",
+    "startDate": "2020-12-03",
+    "photos": ["https://drive.google.com/open?id=1pyHd0BhbAORDHUzZwrSI4f52Kp61agzR"],
+    "services": ["கேமிங் ஆதரவு"],
+    "yearExperience": 4,
+    "socialLinks": {
+      "facebook": "Limk"
+    }
+  },
+  {
+    "id": 4,
+    "ownerName": "சரவணக்குமார்",
+    "businessName": "ஸ்கைலைன் பில்டர்ஸ் மற்றும் இன்டீரியர்ஸ்",
+    "category": "Construction",
+    "description": "கட்டுமானம், உட்புறப் புதுப்பித்தல், கூரைத் தகடு வேலை, பெயிண்டிங் சேவைகள், UPVC மற்றும் பிளைவுட் மாடுலர் கிச்சன் அலமாரிகள்.",
+    "rating": 4.6,
+    "reviews": 25,
+    "contactNumber": "+91 9443822122",
+    "altContact": "+91 8754944026",
+    "location": "கோபி, தமிழ்நாடு",
+    "startDate": "2021-07-09",
+    "photos": ["/businesses/construction-3.png"],
+    "services": [
+      "கட்டிடக் கட்டுமானம்",
+      "உட்புறப் புதுப்பித்தல்",
+      "கூரைத் தகடு வேலை",
+      "பெயிண்டிங் சேவைகள்",
+      "UPVC ஜன்னல்கள் & கதவுகள்",
+      "மாடுலர் கிச்சன் & அலமாரிகள்"
+    ],
+    "yearExperience": 3,
+    "socialLinks": {}
+  },
+  {
+    "id": 5,
+    "ownerName": "ஆர். பால்ராஜ்",
+    "businessName": "BAAS டெக்னாலஜிஸ்",
+    "category": "Electronics",
+    "description": "தனிப்பயனாக்கப்பட்ட டச் சுவிட்ச் போர்டுகள், நீர் மட்டக் கட்டுப்பாட்டாளர்கள், கேட் ஆட்டோமேஷன் மற்றும் மோட்டார் கட்டுப்பாட்டாளர்கள்.",
+    "rating": 4.7,
+    "reviews": 18,
+    "contactNumber": "+91 9488071144",
+    "altContact": "+91 9488214001",
+    "location": "டி.ஆர்.ஆர் நகர், கோபி",
+    "startDate": "2023-09-09",
+    "photos": ["/businesses/baas.png"],
+    "services": [
+      "டச் சுவிட்ச் போர்டுகள்",
+      "நீர் மட்டக் கட்டுப்பாட்டாளர்கள்",
+      "கேட் ஆட்டோமேஷன்",
+      "மோட்டார் கட்டுப்பாட்டாளர்கள்"
+    ],
+    "yearExperience": 1,
+    "socialLinks": {}
+  },
+  {
+    "id": 6,
+    "ownerName": "சி.எச். தினேஷ்",
+    "businessName": "ஹரிச்சந்திரா ப்ராஜெக்ட்ஸ் மற்றும் எலக்ட்ரானிக்ஸ்",
+    "category": "Electronics",
+    "description": "எலக்ட்ரானிக்ஸ் மற்றும் ரோபாட்டிக்ஸ் தொடர்பான சேவைகள் மற்றும் திட்டங்கள்.",
+    "rating": 4.8,
+    "reviews": 20,
+    "contactNumber": "+91 9489364369",
+    "altContact": "",
+    "location": "கோபி, தமிழ்நாடு",
+    "startDate": "2022-06-23",
+    "photos": ["/businesses/harichandra.png"],
+    "services": ["எலக்ட்ரானிக்ஸ்", "ரோபாட்டிக்ஸ்", "ஆட்டோமேஷன் திட்டங்கள்"],
+    "yearExperience": 2,
+    "socialLinks": {
+      "instagram": "https://www.instagram.com/dinesh_electronics_lover"
+    }
+  },
+  {
+    "id": 7,
+    "ownerName": "சுரேந்தர் ஜெ",
+    "businessName": "ஸ்போக்கன் ஹிந்தி அகாடமி",
+    "category": "Education",
+    "description": "ராணுவ வீரன் ஸ்போக்கன் ஹிந்தி அகாடமி, பேசும் ஹிந்திப் பயிற்சியை வழங்குகிறது.",
+    "rating": 4.9,
+    "reviews": 35,
+    "contactNumber": "+91 6397255377",
+    "altContact": "+91 7010817113",
+    "location": "கோபிசெட்டிபாளையம், தமிழ்நாடு",
+    "startDate": "2022-09-01",
+    "photos": ["/businesses/raanuvan.png"],
+    "services": ["பேசும் ஹிந்திப் பயிற்சி", "அடிப்படை ஹிந்தி கற்றல்", "உயர்தர ஹிந்திப் பேச்சு", "ஹிந்தி எழுதுதல் & இலக்கணம்"],
+    "yearExperience": 2,
+    "socialLinks": {}
+  },
+  {
+    "id": 8,
+    "ownerName": "கே.எஸ். பிரவீன் குமார்",
+    "businessName": "கேக்கர் எண்டர்பிரைசஸ்",
+    "category": "CCTV & Networking",
+    "description": "சிசிடிவி சேவை மற்றும் நெட்வொர்க்கிங் தீர்வுகள்.",
+    "rating": 4.7,
+    "reviews": 28,
+    "contactNumber": "+91 9751184747",
+    "altContact": "+91 9751094747",
+    "location": "எல். கள்ளிப்பட்டி, கோபி",
+    "startDate": "2013-03-03",
+    "photos": [
+      "/businesses/cctv-1.jpg"
+    ],
+    "services": ["சிசிடிவி பொருத்துதல்", "நெட்வொர்க் அமைத்தல்", "பாதுகாப்புக் கண்காணிப்பு", "பராமரிப்பு சேவை"],
+    "yearExperience": 11,
+    "socialLinks": {
+      "instagram": "https://www.instagram.com/kaykarenterprises"
+    }
+  },
+  {
+    "id": 9,
+    "ownerName": "கோவிந்தராஜு",
+    "businessName": "வுட் ஜோன் டைல்ஸ் & பர்னிச்சர்",
+    "category": "Furniture",
+    "description": "நவீன வடிவமைப்புகளுடன் கூடிய டைல்ஸ் மற்றும் பர்னிச்சர் ஷோரூம்.",
+    "rating": 4.6,
+    "reviews": 32,
+    "contactNumber": "+91 9092743053",
+    "altContact": "+91 9842943053",
+    "location": "கவுந்தப்பாடி, அக்கரை கொடிவேரி",
+    "startDate": "2012-04-11",
+    "photos": ["/businesses/wood.png"],
+    "services": ["உட்புற வடிவமைப்பு", "தனிப்பயன் பர்னிச்சர்", "பொருத்துதல் சேவை", "டைல்ஸ் பொருத்துதல்", "ஹோம் டெலிவரி"],
+    "yearExperience": 12,
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/share/1FHqdFWgHd/"
+    }
+  },
+  {
+    "id": 10,
+    "ownerName": "ஜேஎஃப்எம் ஆர். கோபாலகிருஷ்ணன்",
+    "businessName": "ஜிவி பில்டெக் சொல்யூஷன்ஸ்",
+    "category": "Fabrication",
+    "description": "UPVC ஜன்னல்கள் மற்றும் கதவுகள், கொசு வலை ஜன்னல்கள் மற்றும் ஃபேப்ரிகேஷன் வேலைகள்.",
+    "rating": 4.8,
+    "reviews": 15,
+    "contactNumber": "+91 7200496264",
+    "altContact": "+91 9042967472",
+    "location": "கூகலூர், தமிழ்நாடு",
+    "startDate": "2024-12-11",
+    "photos": ["/businesses/gvbuildtech.png"],
+    "services": [
+      "UPVC ஜன்னல்கள் & கதவுகள்",
+      "கொசு வலை ஜன்னல்கள்",
+      "ஃபேப்ரிகேஷன் வேலைகள்"
+    ],
+    "yearExperience": 1,
+    "socialLinks": {
+      "website": "https://gvbuildtechsolutions.com"
+    }
+  },
+  {
+    "id": 11,
+    "ownerName": "விஜய்",
+    "businessName": "ஷைன்",
+    "category": "Electronics",
+    "description": "கணினி, பிரிண்டர் மற்றும் சிசிடிவி ஆதரவு மற்றும் விற்பனை.",
+    "rating": 4.5,
+    "reviews": 22,
+    "contactNumber": "+91 9842657658",
+    "altContact": "+91 9842646699",
+    "location": "கோபிசெட்டிபாளையம், தமிழ்நாடு",
+    "startDate": "2010-01-11",
+    "photos": ["/businesses/techsolutions.png"],
+    "services": [
+      "கணினி சேவை",
+      "பிரிண்டர் சேவை",
+      "சிசிடிவி ஆதரவு",
+      "எலக்ட்ரானிக்ஸ் விற்பனை",
+      "கணினி & லேப்டாப் விற்பனை/சேவை",
+      "பிரிண்டர் விற்பனை/சேவை",
+      "சிசிடிவி பொருத்துதல்/ஆதரவு"
+    ],
+    "yearExperience": 14,
+    "socialLinks": {
+      "facebook": "Facebook"
+    }
+  }
+]

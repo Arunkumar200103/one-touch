@@ -9,7 +9,16 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "@/lib/location-context"
 import { useSearch, SearchResults } from "@/lib/search-context";
-import{Footer} from "@/components/footer";
+import { Footer } from "@/components/footer";
+import { 
+  FiSmartphone, FiVideo, FiHome, FiTool, FiMonitor,
+  FiBookOpen, FiDollarSign, FiBriefcase, FiAperture,
+  FiWind, FiGift, FiTruck, FiCoffee,
+  FiSettings, FiActivity, FiStar, FiMusic, FiShield,
+  FiHeart
+} from "react-icons/fi";
+import { MdOutlineCleaningServices, MdOutlineRealEstateAgent } from "react-icons/md";
+import { FaRegBuilding, FaRegHospital } from "react-icons/fa";
 
  interface Slide {
   title: string
@@ -50,35 +59,34 @@ const featuredServices: Slide[] = [
 
 
 const allCategories = [
- 
-  { name: "Electronics", icon: "📱" },
-  { name: "CCTV & Networking", icon: "📹" },
-   { name: "Furniture", icon: "🛋️" },
-   { name: "Construction", icon: "🏗️" },
-     { name: "Fabrication", icon: "⚙️" },
-     { name: "Technology", icon: "💻" },
-     { name: "Education", icon: "🎓" },
-       { name: "Finance", icon: "💰" },
-       {name: "Real Estate", icon: "🏢"},
-  { name: "Restaurants", icon: "🍽️" },
-  { name: "Beauty Spa", icon: "💅" },
-  { name: "Home Decor", icon: "🏠" },
-  { name: "Wedding", icon: "💍" },
-  { name: "Rent & Hire", icon: "🚗" },
-    { name: "Hotels", icon: "🏨" },
-  {name: "Packers & Movers", icon: "📦" },
-  { name: "Automotive", icon: "🚘" },
-  { name: "Health & Wellness", icon: "🏥" },
-  { name: "Events", icon: "🎉" },
-  { name: "Entertainment", icon: "🎭" },
-  { name: "Legal", icon: "⚖️" },
+  { name: "Electronics", icon: "📱", bg: "bg-blue-50 group-hover:bg-blue-100" },
+  { name: "CCTV & Networking", icon: "📹", bg: "bg-red-50 group-hover:bg-red-100" },
+  { name: "Furniture", icon: "🛋️", bg: "bg-amber-50 group-hover:bg-amber-100" },
+  { name: "Construction", icon: "🏗️", bg: "bg-orange-50 group-hover:bg-orange-100" },
+  { name: "Fabrication", icon: "⚙️", bg: "bg-zinc-100 group-hover:bg-zinc-200" },
+  { name: "Technology", icon: "💻", bg: "bg-indigo-50 group-hover:bg-indigo-100" },
+  { name: "Education", icon: "🎓", bg: "bg-emerald-50 group-hover:bg-emerald-100" },
+  { name: "Finance", icon: "💰", bg: "bg-green-50 group-hover:bg-green-100" },
+  { name: "Real Estate", icon: "🏢", bg: "bg-teal-50 group-hover:bg-teal-100" },
+  { name: "Restaurants", icon: "🍽️", bg: "bg-orange-50 group-hover:bg-orange-100" },
+  { name: "Beauty Spa", icon: "💆‍♀️", bg: "bg-pink-50 group-hover:bg-pink-100" },
+  { name: "Home Decor", icon: "🏠", bg: "bg-purple-50 group-hover:bg-purple-100" },
+  { name: "Wedding", icon: "💍", bg: "bg-rose-50 group-hover:bg-rose-100" },
+  { name: "Rent & Hire", icon: "🚗", bg: "bg-sky-50 group-hover:bg-sky-100" },
+  { name: "Hotels", icon: "🏨", bg: "bg-blue-50 group-hover:bg-blue-100" },
+  { name: "Packers & Movers", icon: "📦", bg: "bg-indigo-50 group-hover:bg-indigo-100" },
+  { name: "Automotive", icon: "🚘", bg: "bg-slate-100 group-hover:bg-slate-200" },
+  { name: "Health & Wellness", icon: "🏥", bg: "bg-red-50 group-hover:bg-red-100" },
+  { name: "Events", icon: "🎉", bg: "bg-violet-50 group-hover:bg-violet-100" },
+  { name: "Entertainment", icon: "🎭", bg: "bg-fuchsia-50 group-hover:bg-fuchsia-100" },
+  { name: "Legal", icon: "⚖️", bg: "bg-slate-100 group-hover:bg-slate-200" },
 ];
 
 const serviceCategories = [
-  { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: "👔", image: "/businesses/construction-1.jpg" ,Category:"Construction"},
-  { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: "🔧", image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
-  { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: "🏢", image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
-  { name: "Education", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: "🎓", image: "/businesses/education-1.jpg" ,Category:"Education"}
+  { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/businesses/construction-1.jpg" ,Category:"Construction"},
+  { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
+  { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
+  { name: "Education", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg" ,Category:"Education"}
 ];
 
 const testimonials = [
@@ -314,7 +322,53 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
       </section>
 
-   
+      {/* ── EXCLUSIVE OFFERS & ADS ── */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-16 mt-4 md:-mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-indigo-500 to-purple-600 p-6 flex items-center justify-between">
+            <div className="z-10 text-white w-2/3">
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Limited Time</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">20% OFF</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">On all Home Cleaning Services</p>
+              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-indigo-200 transition-colors">
+                Book Now <ChevronRight size={14} />
+              </button>
+            </div>
+            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
+              <MdOutlineCleaningServices />
+            </div>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-rose-500 to-pink-600 p-6 flex items-center justify-between">
+            <div className="z-10 text-white w-2/3">
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Mega Deal</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">AC Repair</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">Starting at just ₹299/-</p>
+              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-rose-200 transition-colors">
+                Claim Offer <ChevronRight size={14} />
+              </button>
+            </div>
+            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
+              <FiTool />
+            </div>
+          </div>
+          
+          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-amber-500 to-orange-500 p-6 flex items-center justify-between lg:col-span-1 md:col-span-2">
+            <div className="z-10 text-white w-2/3">
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Festive Special</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">Free Inspection</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">For complete home pest control</p>
+              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-amber-200 transition-colors">
+                Get Deal <ChevronRight size={14} />
+              </button>
+            </div>
+            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
+               <FiActivity />
+            </div>
+          </div>
+        </div>
+      </section>
+
        <section className="bg-white py-10 md:py-16 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
@@ -361,26 +415,24 @@ const filteredCategories = allCategories.filter((cat) => {
           {/* SCROLL AREA */}
           <div
             ref={scrollRef}
-            className="overflow-x-auto scrollbar-hide"
+            className="overflow-x-auto scrollbar-hide py-2"
           >
-            <div className="grid grid-rows-2 grid-flow-col gap-3 w-max pr-10">
+            <div className="flex gap-4 w-max pr-10">
 
               {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
                 <Link
                   key={cat.name}
                   href={`/category/${encodeURIComponent(cat.name)}`}
+                  className="flex flex-col items-center gap-2 group cursor-pointer min-w-[76px] md:min-w-[84px]"
                 >
-                  <div className="flex flex-col items-center gap-1 p-3 w-[80px] bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-400 rounded-xl transition-all duration-300 group cursor-pointer active:scale-95">
-
-                    <span className="text-xl group-hover:scale-110 transition-transform">
+                  <div className={`w-[60px] h-[60px] md:w-[72px] md:h-[72px] flex items-center justify-center rounded-2xl md:rounded-[20px] transition-all duration-300 group-hover:scale-105 group-hover:shadow-md border border-gray-100 group-hover:border-blue-200 ${cat.bg || 'bg-gray-100'}`}>
+                    <span className="text-2xl md:text-3xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
                       {cat.icon}
                     </span>
-
-                    <p className="text-[10px] font-semibold text-gray-600 group-hover:text-blue-600 text-center leading-tight">
-                      {cat.name}
-                    </p>
-
                   </div>
+                  <p className="text-[10px] md:text-[11px] font-semibold text-gray-700 group-hover:text-gray-900 text-center leading-tight">
+                    {cat.name}
+                  </p>
                 </Link>
               ))}
 
@@ -389,23 +441,21 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
 
         {/* DESKTOP GRID */}
-        <div className="hidden md:grid grid-cols-6 lg:grid-cols-9 gap-3">
+        <div className="hidden md:grid grid-cols-5 lg:grid-cols-9 gap-x-6 gap-y-10 mt-6 justify-items-center">
           {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
             <Link
               key={cat.name}
               href={`/category/${encodeURIComponent(cat.name)}`}
+              className="flex flex-col items-center gap-3 group cursor-pointer w-[96px]"
             >
-              <div className="flex flex-col items-center gap-2 p-3 bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-400 rounded-2xl transition-all duration-300 group cursor-pointer">
-
-                <span className="text-2xl group-hover:scale-110 transition-transform">
+              <div className={`w-[80px] h-[80px] lg:w-[94px] lg:h-[94px] flex items-center justify-center rounded-2xl md:rounded-[24px] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg border border-gray-100 group-hover:border-blue-200 ${cat.bg || 'bg-gray-100'}`}>
+                <span className="text-3xl lg:text-4xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
                   {cat.icon}
                 </span>
-
-                <p className="text-[11px] font-semibold text-gray-600 group-hover:text-blue-600 text-center">
-                  {cat.name}
-                </p>
-
               </div>
+              <p className="text-sm font-bold text-gray-700 group-hover:text-gray-900 text-center leading-snug px-1 mt-1">
+                {cat.name}
+              </p>
             </Link>
           ))}
         </div>

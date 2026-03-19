@@ -3,17 +3,19 @@
 import { useRouter } from "next/navigation";
 import { ServiceType } from "@/lib/service-types";
 import { getCategoryColor } from "@/lib/category-colors";
-import businesses from "@/lib/businesses.json";
+import { useLanguage } from "@/lib/language-context";
+import businessesEn from "@/lib/businesses.json";
+import businessesTa from "@/lib/businesses-ta.json";
 
 interface ServiceTypeCardProps {
   service: ServiceType;
 }
 
-function findMatchingBusinesses(service: ServiceType) {
-  return businesses.filter(
+function findMatchingBusinesses(service: ServiceType, bizList: any[]) {
+  return bizList.filter(
     (b) =>
       b.category === service.category &&
-      b.services.some((s) =>
+      b.services.some((s: string) =>
         s.toLowerCase().includes(service.name.toLowerCase()) ||
         service.name.toLowerCase().includes(s.toLowerCase())
       )
@@ -21,9 +23,12 @@ function findMatchingBusinesses(service: ServiceType) {
 }
 
 export function ServiceTypeCard({ service }: ServiceTypeCardProps) {
+  const { t, language } = useLanguage();
   const colors = getCategoryColor(service.category);
   const router = useRouter();
-  const matches = findMatchingBusinesses(service);
+  
+  const currentBusinesses = language === "ta" ? businessesTa : businessesEn;
+  const matches = findMatchingBusinesses(service, currentBusinesses);
 
   const handleGetService = () => {
     if (matches.length === 1) {
@@ -79,14 +84,14 @@ export function ServiceTypeCard({ service }: ServiceTypeCardProps) {
               <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75`} style={{ backgroundColor: colors.primary }}></span>
               <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: colors.primary }}></span>
             </span>
-            {matches.length > 0 ? `${matches.length} Providers` : "New Service"}
+            {matches.length > 0 ? `${matches.length} ${t("Providers")}` : t("New Service")}
           </div>
         </div>
 
         {/* Text Content */}
         <div className="flex-grow">
           <h3 className="text-xl font-extrabold text-slate-900 mb-2 tracking-tight group-hover:text-black transition-colors">
-            {service.name}
+            {t(service.name)}
           </h3>
           <p className="text-sm text-slate-500 leading-relaxed line-clamp-2 mb-6 font-medium">
             {service.description}
@@ -119,7 +124,7 @@ export function ServiceTypeCard({ service }: ServiceTypeCardProps) {
             boxShadow: `0 8px 20px -6px ${colors.primary}80`,
           }}
         >
-          {matches.length === 1 ? "Book Session" : "Explore More"}
+          {matches.length === 1 ? t("Book Session") : t("Explore More")}
           <svg 
             className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1.5" 
             fill="none" 

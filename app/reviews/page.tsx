@@ -7,6 +7,7 @@ import { BackToHome } from "@/components/back-to-home";
 import { getPageColor } from "@/lib/page-colors";
 import businesses from "@/lib/businesses.json";
 import Image from "next/image";
+import { useLanguage } from "@/lib/language-context";
 
 const colors = getPageColor("reviews");
 
@@ -20,7 +21,7 @@ type Review = {
   category: string;
 };
 
-const sampleReviews: Review[] = [
+const sampleReviewsEn: Review[] = [
   {
     id: 1,
     businessName: "BuildRight Constructions",
@@ -68,7 +69,57 @@ const sampleReviews: Review[] = [
   },
 ];
 
+const sampleReviewsTa: Review[] = [
+  {
+    id: 1,
+    businessName: "பில்ட்ரைட் கன்ஸ்ட்ரக்சன்ஸ்",
+    author: "ரமேஷ் கே.",
+    rating: 5,
+    date: "2 வாரங்களுக்கு முன்பு",
+    text: "சிறப்பான வேலை! அவர்கள் என் வீட்டைப் புதுப்பிக்கும் பணியை குறித்த நேரத்திலும் பட்ஜெட்டிற்குள்ளும் முடித்தனர்.",
+    category: "Construction",
+  },
+  {
+    id: 2,
+    businessName: "டெக்ஹப் எலக்ட்ரானிக்ஸ்",
+    author: "பிரியா எஸ்.",
+    rating: 4,
+    date: "1 மாதத்திற்கு முன்பு",
+    text: "என் மடிக்கணினியை விரைவாக சரிசெய்தனர். நல்ல சேவை, ஆனால் கொஞ்சம் விலை அதிகம்.",
+    category: "Electronics",
+  },
+  {
+    id: 3,
+    businessName: "பிரைட் லேர்னிங் அகாடமி",
+    author: "அனு எம்.",
+    rating: 5,
+    date: "3 வாரங்களுக்கு முன்பு",
+    text: "என் மகனின் மதிப்பெண்கள் நிறைய மேம்பட்டுள்ளன. சிறந்த ஆசிரியர்கள்!",
+    category: "Education",
+  },
+  {
+    id: 4,
+    businessName: "செக்யூர்நெட் சிசிடிவி சொல்யூஷன்ஸ்",
+    author: "விக்ரம் டி.",
+    rating: 4,
+    date: "1 மாதத்திற்கு முன்பு",
+    text: "தொழில்முறையான நிறுவல் மற்றும் ஆதரவு.",
+    category: "CCTV & Networking",
+  },
+  {
+    id: 5,
+    businessName: "பிரிமியம் பர்னிச்சர் ஸ்டோர்",
+    author: "திவ்யா ஆர்.",
+    rating: 5,
+    date: "2 வாரங்களுக்கு முன்பு",
+    text: "அழகான தளவாடங்கள் மற்றும் மென்மையான விநியோக சேவை.",
+    category: "Furniture",
+  },
+];
+
 export default function Reviews() {
+  const { t, language } = useLanguage();
+  const sampleReviews = language === "ta" ? sampleReviewsTa : sampleReviewsEn;
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("recent");
@@ -129,11 +180,11 @@ export default function Reviews() {
             className="text-5xl md:text-6xl font-bold text-white mb-4"
             style={{ color: colors.light }}
           >
-            Customer Reviews
+            {t("customerReviews")}
           </h1>
 
           <p className="text-xl text-gray-200">
-            See what customers say about our trusted businesses.
+            {t("reviewsDesc")}
           </p>
         </div>
       </div>
@@ -157,7 +208,7 @@ export default function Reviews() {
             style={{ backgroundColor: colors.primary }}
           >
             <div className="text-4xl font-bold">{sampleReviews.length}</div>
-            <p className="text-white/80">Total Reviews</p>
+            <p className="text-white/80">{t("totalReviews")}</p>
           </div>
 
           <div className="p-6 rounded-2xl border-2 text-center"
@@ -168,7 +219,7 @@ export default function Reviews() {
               {avgRating}
             </div>
 
-            <p className="text-gray-600">Average Rating</p>
+            <p className="text-gray-600">{t("avgRating")}</p>
           </div>
 
           <div
@@ -178,7 +229,7 @@ export default function Reviews() {
             <div className="text-4xl font-bold">
               {(businesses as any[]).length}
             </div>
-            <p className="text-white/80">Businesses Rated</p>
+            <p className="text-white/80">{t("businessesRated")}</p>
           </div>
 
         </div>
@@ -190,7 +241,7 @@ export default function Reviews() {
             className="text-lg font-bold mb-6"
             style={{ color: colors.primary }}
           >
-            Filter Reviews
+            {t("filterReviews")}
           </h3>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -198,7 +249,7 @@ export default function Reviews() {
             {/* Category */}
             <div>
               <label className="block font-semibold mb-3">
-                Service Category
+                {t("serviceCategory")}
               </label>
 
               <select
@@ -207,7 +258,7 @@ export default function Reviews() {
                 className="w-full p-3 border-2 border-gray-200 rounded-lg"
               >
                 {categories.map((cat) => (
-                  <option key={cat}>{cat}</option>
+                  <option key={cat} value={cat}>{t(cat)}</option>
                 ))}
               </select>
             </div>
@@ -215,7 +266,7 @@ export default function Reviews() {
             {/* Rating */}
             <div>
               <label className="block font-semibold mb-3">
-                Minimum Rating
+                {t("minimumRating")}
               </label>
 
               <select
@@ -223,25 +274,25 @@ export default function Reviews() {
                 onChange={(e) => setSelectedRating(Number(e.target.value))}
                 className="w-full p-3 border-2 border-gray-200 rounded-lg"
               >
-                <option value={0}>All Ratings</option>
-                <option value={5}>5 Stars</option>
-                <option value={4}>4+ Stars</option>
-                <option value={3}>3+ Stars</option>
+                <option value={0}>{t("allRatings")}</option>
+                <option value={5}>{t("fiveStars")}</option>
+                <option value={4}>{t("fourPlusStars")}</option>
+                <option value={3}>{t("threePlusStars")}</option>
               </select>
             </div>
 
             {/* Sort */}
             <div>
-              <label className="block font-semibold mb-3">Sort By</label>
+              <label className="block font-semibold mb-3">{t("sortBy")}</label>
 
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 className="w-full p-3 border-2 border-gray-200 rounded-lg"
               >
-                <option value="recent">Most Recent</option>
-                <option value="highest">Highest Rating</option>
-                <option value="lowest">Lowest Rating</option>
+                <option value="recent">{t("mostRecent")}</option>
+                <option value="highest">{t("highestRating")}</option>
+                <option value="lowest">{t("lowestRating")}</option>
               </select>
             </div>
 
@@ -292,7 +343,7 @@ export default function Reviews() {
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-600">
-                No reviews match your filters.
+                {t("noReviewsMatch")}
               </p>
             </div>
           )}

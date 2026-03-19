@@ -6,8 +6,10 @@ import { BusinessCard } from "@/components/business-card";
 import { ServiceTypeCard } from "@/components/service-type-card";
 import { useLanguage } from "@/lib/language-context";
 import { getCategoryColor } from "@/lib/category-colors";
-import { getServicesByCategory } from "@/lib/service-types";
-import businesses from "@/lib/businesses.json";
+import { serviceTypes as serviceTypesEn } from "@/lib/service-types";
+import { serviceTypesTa } from "@/lib/service-types-ta";
+import businessesEn from "@/lib/businesses.json";
+import businessesTa from "@/lib/businesses-ta.json";
 import Link from "next/link";
 import Image from "next/image";
 import { use } from "react";
@@ -19,13 +21,14 @@ interface PageProps {
 }
 
 export default function CategoryPage({ params }: PageProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { name } = use(params);
   const categoryName = decodeURIComponent(name);
   const [searchQuery, setSearchQuery] = useState("");
   const colors = getCategoryColor(categoryName);
 
   const filteredBusinesses = useMemo(() => {
+    const businesses = language === "ta" ? businessesTa : businessesEn;
     let results = (businesses as any[]).filter(
       (biz) => biz.category === categoryName
     );
@@ -42,7 +45,10 @@ export default function CategoryPage({ params }: PageProps) {
     }
 
     return results;
-  }, [categoryName, searchQuery]);
+  }, [categoryName, searchQuery, language]);
+
+  const currentServices = language === "ta" ? serviceTypesTa : serviceTypesEn;
+  const categoryServices = currentServices.filter((s) => s.category === categoryName);
 
   return (
     <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
@@ -80,7 +86,7 @@ export default function CategoryPage({ params }: PageProps) {
           </Link>
 
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-            {categoryName}
+            {t(categoryName)}
           </h1>
           <p className="text-gray-200">
             {filteredBusinesses.length}{" "}
@@ -100,7 +106,7 @@ export default function CategoryPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {getServicesByCategory(categoryName).map((service, index) => (
+            {categoryServices.map((service, index) => (
               <div
                 key={service.id}
                 style={{
