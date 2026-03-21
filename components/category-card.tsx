@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getCategoryColor } from "@/lib/category-colors";
+import { useLanguage } from "@/lib/language-context";
 
 interface CategoryCardProps {
   name: string;
@@ -49,6 +50,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
 };
 
 export function CategoryCard({ name, count }: CategoryCardProps) {
+  const { t } = useLanguage();
   const colors = getCategoryColor(name);
 
   return (
@@ -92,10 +94,10 @@ export function CategoryCard({ name, count }: CategoryCardProps) {
               className="font-bold text-xl group-hover:scale-105 transition-transform duration-300"
               style={{ color: colors.primary }}
             >
-              {name}
+              {t(name)}
             </h3>
             <p className="text-sm text-gray-500 mt-1">
-              {count} {count === 1 ? "business" : "businesses"}
+              {count} {count === 1 ? t("business") : t("businesses")}
             </p>
           </div>
 

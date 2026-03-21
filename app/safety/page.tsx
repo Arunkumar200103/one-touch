@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
+import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { InfoCard } from "@/components/info-card";
 import { BackToHome } from "@/components/back-to-home";
@@ -10,75 +11,76 @@ import Image from "next/image";
 const colors = getPageColor("safety");
 
 export default function Safety() {
+  const { t } = useLanguage();
   const verificationSteps = [
     {
       number: "1",
-      title: "License Verification",
-      description: "We verify business licenses and registrations with government authorities.",
+      title: t("licenseVerification"),
+      description: t("licenseVerificationDesc"),
     },
     {
       number: "2",
-      title: "Identity Check",
-      description: "All owners provide valid ID documents for verification.",
+      title: t("identityCheck"),
+      description: t("identityCheckDesc"),
     },
     {
       number: "3",
-      title: "Contact Validation",
-      description: "We confirm phone numbers and verify business locations.",
+      title: t("contactValidation"),
+      description: t("contactValidationDesc"),
     },
     {
       number: "4",
-      title: "Background Review",
-      description: "We check for any complaints or red flags in their history.",
+      title: t("backgroundReview"),
+      description: t("backgroundReviewDesc"),
     },
   ];
 
   const safetyTips = [
     {
-      title: "Verify Before Booking",
-      description: "Always check the business details, reviews, and ratings before contacting them. Read recent customer feedback.",
+      title: t("verifyBeforeBooking"),
+      description: t("verifyBeforeBookingDesc"),
       icon: "✓",
     },
     {
-      title: "Communicate Clearly",
-      description: "Discuss prices, timeline, and work details clearly before the service starts. Get everything in writing if possible.",
+      title: t("communicateClearly"),
+      description: t("communicateClearlyDesc"),
       icon: "💬",
     },
     {
-      title: "Use Secure Payment",
-      description: "For larger projects, request detailed quotes and use secure payment methods. Never pay the full amount upfront.",
+      title: t("useSecurePayment"),
+      description: t("useSecurePaymentDesc"),
       icon: "💰",
     },
     {
-      title: "Trust Your Gut",
-      description: "If something doesn't feel right, trust your instinct. There are plenty of other businesses to choose from.",
+      title: t("trustYourGut"),
+      description: t("trustYourGutDesc"),
       icon: "🎯",
     },
     {
-      title: "Save Important Details",
-      description: "Keep records of conversations, agreements, and receipts. These help if you need to follow up or file a complaint.",
+      title: t("saveImportantDetails"),
+      description: t("saveImportantDetailsDesc"),
       icon: "📝",
     },
     {
-      title: "Leave Honest Reviews",
-      description: "Share your experience after the service. Your feedback helps other customers and holds businesses accountable.",
+      title: t("leaveHonestReviewsTip"),
+      description: t("leaveHonestReviewsTipDesc"),
       icon: "⭐",
     },
   ];
 
   const redFlags = [
-    "Asking for payment through untraceable methods",
-    "Unwilling to provide business license or credentials",
-    "Extremely low prices compared to other businesses",
-    "Refusing to sign agreements or discuss terms",
-    "No phone contact, only messaging",
-    "Pressure to decide or pay immediately",
-    "No reviews or only very new accounts",
-    "Asking for upfront cash for large jobs",
+    t("redFlag1"),
+    t("redFlag2"),
+    t("redFlag3"),
+    t("redFlag4"),
+    t("redFlag5"),
+    t("redFlag6"),
+    t("redFlag7"),
+    t("redFlag8"),
   ];
 
   return (
-    <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+    <main className={`min-h-screen bg-gradient-to-b ${colors.gradient}`}>
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-4 mt-[-5rem]">
@@ -87,10 +89,10 @@ export default function Safety() {
 
       {/* Content */}
       <div className="max-w-6xl mx-auto px-4 py-16">
-      <Breadcrumb
+        <Breadcrumb
           items={[
-            { label: "Home", href: "/" },
-            { label: "Safety" },
+            { label: t("back"), href: "/" },
+            { label: t("safety") },
           ]}
           accentColor={colors.primary}
         />
@@ -101,10 +103,10 @@ export default function Safety() {
             className="text-4xl font-bold mb-6"
             style={{ color: colors.primary }}
           >
-            Your Safety is Our Priority
+            {t("safetyPriority")}
           </h2>
           <p className="text-xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
-            One Touch is committed to connecting you with safe, verified, and trustworthy service providers. We've put systems in place to protect you from fraud and poor quality service.
+            {t("safetyCommitment")}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -112,27 +114,27 @@ export default function Safety() {
               className="p-8 rounded-2xl text-white"
               style={{ backgroundColor: colors.primary }}
             >
-              <h3 className="text-2xl font-bold mb-4">What We Do</h3>
+              <h3 className="text-2xl font-bold mb-4">{t("whatWeDo")}</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">✓</span>
-                  <span>Verify all business licenses and credentials</span>
+                  <span>{t("verifyLicenses")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">✓</span>
-                  <span>Check business owner identity with government ID</span>
+                  <span>{t("checkOwnerId")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">✓</span>
-                  <span>Validate contact information and business location</span>
+                  <span>{t("validateContact")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">✓</span>
-                  <span>Remove businesses with fraud complaints</span>
+                  <span>{t("removeFraud")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">✓</span>
-                  <span>Monitor reviews for genuine customer feedback</span>
+                  <span>{t("monitorReviews")}</span>
                 </li>
               </ul>
             </div>
@@ -142,28 +144,28 @@ export default function Safety() {
               style={{ borderColor: colors.primary }}
             >
               <h3 className="text-2xl font-bold mb-4" style={{ color: colors.primary }}>
-                Your Role
+                {t("yourRole")}
               </h3>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">👤</span>
-                  <span>Read reviews and check business details carefully</span>
+                  <span>{t("readReviewsCarefully")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">👤</span>
-                  <span>Communicate clearly about prices and timeline</span>
+                  <span>{t("communicateClearlyAboutPrices")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">👤</span>
-                  <span>Report suspicious activity or fraud</span>
+                  <span>{t("reportSuspicious")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">👤</span>
-                  <span>Leave honest reviews after service</span>
+                  <span>{t("leaveHonestReviewsSafety")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">👤</span>
-                  <span>Keep payment records and agreements</span>
+                  <span>{t("keepPaymentRecords")}</span>
                 </li>
               </ul>
             </div>
@@ -176,7 +178,7 @@ export default function Safety() {
             className="text-4xl font-bold mb-12"
             style={{ color: colors.primary }}
           >
-            Our Verification Process
+            {t("ourVerificationProcess")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -206,7 +208,7 @@ export default function Safety() {
             className="text-4xl font-bold mb-12"
             style={{ color: colors.primary }}
           >
-            Safety Tips for Customers
+            {t("safetyTipsForCustomers")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -232,10 +234,10 @@ export default function Safety() {
         {/* Red Flags */}
         <div className="mb-20 bg-red-50 p-12 rounded-3xl border-2 border-red-200">
           <h2 className="text-3xl font-bold mb-6 text-red-900">
-            Warning Signs - Watch Out For
+            {t("redFlagsTitle")}
           </h2>
           <p className="text-gray-700 mb-8">
-            Be careful if you notice any of these red flags:
+            {t("redFlagsDescText")}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {redFlags.map((flag, index) => (
@@ -252,14 +254,14 @@ export default function Safety() {
           className="rounded-3xl p-12 text-center text-white"
           style={{ backgroundColor: colors.primary }}
         >
-          <h3 className="text-3xl font-bold mb-4">Found a Problem?</h3>
+          <h3 className="text-3xl font-bold mb-4">{t("foundAProblem")}</h3>
           <p className="text-lg mb-8 opacity-90">
-            Report suspicious activity or fraud to our support team.
+            {t("reportProblemDesc")}
           </p>
           <a href="/contact">
             <button className="bg-white text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg">
-              Report an Issue
-            </button>
+                {t("reportAnIssue")}
+              </button>
           </a>
         </div>
       </div>

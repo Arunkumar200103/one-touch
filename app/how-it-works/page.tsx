@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
+import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { StepCard } from "@/components/step-card";
 import { InfoCard } from "@/components/info-card";
@@ -12,80 +13,70 @@ import Image from "next/image";
 const colors = getPageColor("howItWorks");
 
 export default function HowItWorks() {
+  const { t } = useLanguage();
 
   const steps = [
     {
       number: 1,
-      title: "Search for Services",
-      description:
-        "Browse service categories or use our smart search to find businesses based on service type, location, or business name.",
+      title: t("step1Title"),
+      description: t("step1Desc"),
       icon: "🔍",
     },
     {
       number: 2,
-      title: "Explore Business Profiles",
-      description:
-        "Open any business profile to view complete details including services offered, address, ratings, contact information, and photos.",
+      title: t("step2Title"),
+      description: t("step2Desc"),
       icon: "👁️",
     },
     {
       number: 3,
-      title: "Read Reviews & Ratings",
-      description:
-        "Check genuine customer reviews and ratings to understand service quality before choosing a provider.",
+      title: t("step3Title"),
+      description: t("step3Desc"),
       icon: "⭐",
     },
     {
       number: 4,
-      title: "Contact the Business",
-      description:
-        "Reach out directly using phone, WhatsApp, email, or the business website to discuss services and availability.",
+      title: t("step4Title"),
+      description: t("step4Desc"),
       icon: "📞",
     },
     {
       number: 5,
-      title: "Share Your Experience",
-      description:
-        "After receiving the service, leave a review and rating to help others find reliable businesses.",
+      title: t("step5Title"),
+      description: t("step5Desc"),
       icon: "💬",
     },
   ];
 
   const benefits = [
     {
-      title: "Verified Businesses",
-      description:
-        "Every business listed on our platform is reviewed and verified for authenticity.",
+      title: t("benefit1Title"),
+      description: t("benefit1Desc"),
       icon: "✓",
     },
     {
-      title: "Authentic Customer Reviews",
-      description:
-        "Read real feedback from customers to confidently choose the right service.",
+      title: t("benefit2Title"),
+      description: t("benefit2Desc"),
       icon: "👥",
     },
     {
-      title: "Simple & Easy to Use",
-      description:
-        "Our platform is designed for everyone with a simple and user-friendly interface.",
+      title: t("benefit3Title"),
+      description: t("benefit3Desc"),
       icon: "🎯",
     },
     {
-      title: "Multiple Contact Options",
-      description:
-        "Connect through phone calls, WhatsApp, email, or the business website.",
+      title: t("benefit4Title"),
+      description: t("benefit4Desc"),
       icon: "📱",
     },
     {
-      title: "Fast & Powerful Search",
-      description:
-        "Find the services you need quickly with our optimized search experience.",
+      title: t("benefit5Title"),
+      description: t("benefit5Desc"),
       icon: "⚡",
     },
     {
-      title: "Completely Free",
-      description:
-        "Searching and connecting with businesses is completely free for users.",
+      title: t("benefit6Title"),
+      description: t("benefit6Desc"),
       icon: "💰",
     },
   ];
@@ -110,12 +101,11 @@ export default function HowItWorks() {
             className="text-5xl md:text-6xl font-bold text-white mb-6"
             style={{ color: colors.light }}
           >
-            How It Works
+            {t("howItWorksHero")}
           </h1>
 
           <p className="text-xl text-gray-200 max-w-2xl leading-relaxed">
-            Discover, compare, and connect with trusted local service providers
-            in just a few simple steps.
+            {t("howItWorksHeroDesc")}
           </p>
         </div>
       </div>
@@ -131,8 +121,8 @@ export default function HowItWorks() {
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
-            { label: "Home", href: "/" },
-            { label: "How It Works", href: "/how-it-works" },
+            { label: t("back"), href: "/" },
+            { label: t("howItWorks"), href: "/how-it-works" },
           ]}
         />
 
@@ -144,12 +134,11 @@ export default function HowItWorks() {
               className="text-4xl font-bold mb-4"
               style={{ color: colors.primary }}
             >
-              5 Simple Steps
+              {t("fiveSimpleSteps")}
             </h2>
 
             <p className="text-xl text-gray-600 max-w-2xl">
-              Finding and connecting with local businesses has never been
-              easier. Just follow these simple steps.
+              {t("fiveStepsDesc")}
             </p>
           </div>
 
@@ -177,12 +166,11 @@ export default function HowItWorks() {
               className="text-4xl font-bold mb-4"
               style={{ color: colors.primary }}
             >
-              Why Choose Our Platform?
+              {t("whyChoosePlatform")}
             </h2>
 
             <p className="text-xl text-gray-600 max-w-2xl">
-              We simplify the process of finding reliable local services with a
-              secure and easy-to-use platform.
+              {t("simplifyProcessDesc")}
             </p>
           </div>
 
@@ -215,18 +203,17 @@ export default function HowItWorks() {
           style={{ backgroundColor: colors.primary }}
         >
           <h3 className="text-3xl font-bold mb-4">
-            Start Discovering Trusted Local Services Today
+            {t("startDiscoveringTitle")}
           </h3>
 
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Browse thousands of local businesses and connect with the right
-            service provider in seconds.
+            {t("browseThousandsDesc")}
           </p>
 
           <Link href="/">
             <button className="bg-white text-gray-900 font-bold py-4 px-10 rounded-full transition-all hover:shadow-2xl hover:scale-105">
-              Start Exploring Services
-            </button>
+                {t("startExploringBtn")}
+              </button>
           </Link>
         </section>
 

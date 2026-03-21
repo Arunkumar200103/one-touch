@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Navbar } from "@/components/navbar";
+import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { InfoCard } from "@/components/info-card";
 import { BackToHome } from "@/components/back-to-home";
@@ -20,6 +21,7 @@ type FormDataType = {
 };
 
 export default function ServiceInquiry() {
+  const { t } = useLanguage();
   const [step, setStep] = useState<number>(1);
 
   const [formData, setFormData] = useState<FormDataType>({
@@ -60,19 +62,19 @@ export default function ServiceInquiry() {
   };
 
   const services = [
-    "Construction",
-    "Electronics",
-    "Education",
-    "CCTV & Networking",
-    "Furniture",
-    "Technology",
-    "Fabrication",
-    "Other",
+    t("Construction"),
+    t("Electronics"),
+    t("Education"),
+    t("CCTV & Networking"),
+    t("Furniture"),
+    t("Technology"),
+    t("Fabrication"),
+    t("otherReason"),
   ];
 
   if (submitted) {
     return (
-      <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+      <main className={`min-h-screen bg-gradient-to-b ${colors.gradient}`}>
         <Navbar />
 
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -97,23 +99,22 @@ export default function ServiceInquiry() {
             </div>
 
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Request Submitted Successfully
+              {t("requestSubmitted")}
             </h1>
 
             <p className="text-lg text-gray-600 mb-8">
-              Thank you for submitting your service request. We will review your
-              details and connect you with verified service providers shortly.
+              {t("thankYouInquiry")}
             </p>
 
             <div className="bg-gray-50 p-6 rounded-xl space-y-3 mb-8 text-left">
               <p>
-                <strong>Service Type:</strong> {formData.serviceType}
+                <strong>{t("serviceLabel")}:</strong> {formData.serviceType}
               </p>
               <p>
-                <strong>Location:</strong> {formData.location}
+                <strong>{t("locationLabel")}:</strong> {formData.location}
               </p>
               <p>
-                <strong>Contact:</strong> {formData.fullName} ({formData.phone})
+                <strong>{t("contactLabel")}:</strong> {formData.fullName} ({formData.phone})
               </p>
             </div>
 
@@ -122,7 +123,7 @@ export default function ServiceInquiry() {
                 className="px-8 py-3 font-semibold text-white rounded-xl hover:shadow-lg transition-all"
                 style={{ backgroundColor: colors.primary }}
               >
-                Back to Home
+                {t("back")}
               </button>
             </Link>
           </div>
@@ -132,7 +133,7 @@ export default function ServiceInquiry() {
   }
 
   return (
-    <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+    <main className={`min-h-screen bg-gradient-to-b ${colors.gradient}`}>
       <Navbar />
 
       <div className="max-w-4xl mx-auto px-4 py-4 mt-[-5rem]">
@@ -163,12 +164,12 @@ export default function ServiceInquiry() {
           </div>
 
           <p className="text-sm text-gray-600">
-            Step {step} of 3 —{" "}
+            {t("stepLabel")} {step} {t("of")} 3 —{" "}
             {step === 1
-              ? "Choose Service"
+              ? t("chooseService")
               : step === 2
-              ? "Your Details"
-              : "Confirm Request"}
+              ? t("yourDetails")
+              : t("confirmRequest")}
           </p>
         </div>
 
@@ -184,11 +185,11 @@ export default function ServiceInquiry() {
                 className="text-3xl font-bold mb-2"
                 style={{ color: colors.primary }}
               >
-                What service do you need?
+                {t("whatServiceNeed")}
               </h2>
 
               <p className="text-gray-600 mb-8">
-                Select a service category that best describes your requirement.
+                {t("selectCategoryDesc")}
               </p>
 
               <div className="space-y-3">
@@ -229,13 +230,13 @@ export default function ServiceInquiry() {
                 className="text-3xl font-bold"
                 style={{ color: colors.primary }}
               >
-                Your Contact Details
+                {t("yourDetails")}
               </h2>
 
               <input
                 type="text"
                 name="fullName"
-                placeholder="Full Name"
+                placeholder={t("fullNameLabel")}
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
@@ -246,7 +247,7 @@ export default function ServiceInquiry() {
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Phone Number"
+                  placeholder={t("phoneNumberLabel")}
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
@@ -256,7 +257,7 @@ export default function ServiceInquiry() {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email Address"
+                  placeholder={t("emailAddress")}
                   value={formData.email}
                   onChange={handleInputChange}
                   required
@@ -267,7 +268,7 @@ export default function ServiceInquiry() {
               <input
                 type="text"
                 name="location"
-                placeholder="City or Area"
+                placeholder={t("cityAreaLabel")}
                 value={formData.location}
                 onChange={handleInputChange}
                 required
@@ -276,7 +277,7 @@ export default function ServiceInquiry() {
 
               <textarea
                 name="description"
-                placeholder="Describe your service requirement"
+                placeholder={t("describeRequirement")}
                 value={formData.description}
                 onChange={handleInputChange}
                 required
@@ -292,33 +293,33 @@ export default function ServiceInquiry() {
                 className="text-3xl font-bold"
                 style={{ color: colors.primary }}
               >
-                Review Your Request
+                {t("reviewRequest")}
               </h2>
 
               <div className="bg-gray-50 p-6 rounded-xl space-y-3">
                 <p>
-                  <strong>Service:</strong> {formData.serviceType}
+                  <strong>{t("serviceLabel")}:</strong> {formData.serviceType}
                 </p>
                 <p>
-                  <strong>Name:</strong> {formData.fullName}
+                  <strong>{t("nameLabel")}:</strong> {formData.fullName}
                 </p>
                 <p>
-                  <strong>Phone:</strong> {formData.phone}
+                  <strong>{t("phone")}:</strong> {formData.phone}
                 </p>
                 <p>
-                  <strong>Email:</strong> {formData.email}
+                  <strong>{t("email")}:</strong> {formData.email}
                 </p>
                 <p>
-                  <strong>Location:</strong> {formData.location}
+                  <strong>{t("locationLabel")}:</strong> {formData.location}
                 </p>
                 <p>
-                  <strong>Description:</strong> {formData.description}
+                  <strong>{t("descriptionLabel")}:</strong> {formData.description}
                 </p>
               </div>
 
               <InfoCard
-                title="Next Step"
-                description="After submission, we will connect you with verified service providers who match your request."
+                title={t("nextStepLabel")}
+                description={t("nextStepDesc")}
                 icon="📋"
                 backgroundColor={colors.light}
                 borderColor={colors.primary}
@@ -335,7 +336,7 @@ export default function ServiceInquiry() {
                 onClick={handleBack}
                 className="flex-1 py-4 font-semibold border-2 border-gray-300 rounded-xl"
               >
-                Back
+                {t("backLabel")}
               </button>
             )}
 
@@ -344,7 +345,7 @@ export default function ServiceInquiry() {
               className="flex-1 py-4 font-semibold text-white rounded-xl hover:shadow-lg"
               style={{ backgroundColor: colors.primary }}
             >
-              {step === 3 ? "Submit Request" : "Continue"}
+              {step === 3 ? t("submitRequest") : t("continueLabel")}
             </button>
           </div>
         </form>

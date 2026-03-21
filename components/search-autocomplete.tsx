@@ -97,7 +97,7 @@ export function SearchAutocomplete({
               {highlightMatch(item.label, searchQuery)}
             </span>
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-              {item.type === "category" ? t("Category") || "Category" : t("Service") || "Service"}
+              {item.type === "category" ? t("Category") : t("Service")}
             </span>
           </div>
         </div>

@@ -50,7 +50,7 @@ export function BusinessCard({
           className="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-xs font-bold backdrop-blur-sm"
           style={{ backgroundColor: colors.primary + "dd" }}
         >
-          {category}
+          {t(category)}
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export function BusinessCard({
                   </svg>
                 ))}
               </div>
-              <span className="text-xs text-gray-600">({reviews} reviews)</span>
+              <span className="text-xs text-gray-600">({reviews} {t("reviews_count")})</span>
             </div>
           )}
         </div>

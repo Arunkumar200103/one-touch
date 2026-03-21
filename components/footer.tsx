@@ -4,15 +4,15 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 import { Language } from "@/lib/translations";
 
-const primaryLinks = [
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Services", href: "/service-inquiry" },
-  { label: "Reviews", href: "/reviews" },
+const primaryLinks = (t: any) => [
+  { label: t("howItWorks"), href: "/how-it-works" },
+  { label: t("services"), href: "/service-inquiry" },
+  { label: t("reviews"), href: "/reviews" },
 ];
 
-const moreLinks = [
+const moreLinks = (t: any) => [
   {
-    label: "About",
+    label: t("about"),
     href: "/about",
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +21,7 @@ const moreLinks = [
     ),
   },
   {
-    label: "Safety",
+    label: t("safety"),
     href: "/safety",
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,7 +30,7 @@ const moreLinks = [
     ),
   },
   {
-    label: "FAQs",
+    label: t("faqs"),
     href: "/faqs",
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ const moreLinks = [
     ),
   },
   {
-    label: "Contact",
+    label: t("contact"),
     href: "/contact",
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,18 +49,18 @@ const moreLinks = [
   },
 ];
 
-const businessLinks = [
-  { label: "List Your Business", href: "/list-business" },
-  { label: "Advertising", href: "/advertising" },
-  { label: "Business Dashboard", href: "/dashboard" },
-  { label: "Partnerships", href: "/partnerships" },
+const businessLinks = (t: any) => [
+  { label: t("listBiz"), href: "/list-business" },
+  { label: t("advertising"), href: "/advertising" },
+  { label: t("bizDashboard"), href: "/dashboard" },
+  { label: t("partnerships"), href: "/partnerships" },
 ];
 
-const supportLinks = [
-  { label: "Help Center", href: "/help" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Use", href: "/terms" },
-  { label: "Safety", href: "/safety" },
+const supportLinks = (t: any) => [
+  { label: t("helpCenter"), href: "/help" },
+  { label: t("privacyPolicy"), href: "/privacy" },
+  { label: t("termsOfUse"), href: "/terms" },
+  { label: t("safety"), href: "/safety" },
 ];
 
 export function Footer() {
@@ -86,7 +86,7 @@ export function Footer() {
             </Link>
 
             <p className="text-xs md:text-sm leading-relaxed mb-5">
-              India's largest business discovery platform. Find trusted services, connect with businesses, and grow faster.
+              {t("footerBrandDesc")}
             </p>
 
             {/* Language toggle — mirrors Navbar pill */}
@@ -110,11 +110,11 @@ export function Footer() {
           {/* ── Navigation Column ── */}
           <div>
             <p className="text-white font-bold text-xs md:text-sm mb-3 md:mb-4 uppercase tracking-widest">
-              Navigation
+              {t("navigation")}
             </p>
             <ul className="space-y-2 text-xs md:text-sm">
               {/* Primary nav links */}
-              {primaryLinks.map(({ label, href }) => (
+              {primaryLinks(t).map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -125,7 +125,7 @@ export function Footer() {
                 </li>
               ))}
               {/* More links (About, Safety, FAQs, Contact) */}
-              {moreLinks.map(({ label, href }) => (
+              {moreLinks(t).map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -141,10 +141,10 @@ export function Footer() {
           {/* ── For Businesses Column ── */}
           <div>
             <p className="text-white font-bold text-xs md:text-sm mb-3 md:mb-4 uppercase tracking-widest">
-              For Businesses
+              {t("forBusinesses")}
             </p>
             <ul className="space-y-2 text-xs md:text-sm">
-              {businessLinks.map(({ label, href }) => (
+              {businessLinks(t).map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -160,10 +160,10 @@ export function Footer() {
           {/* ── Support Column ── */}
           <div>
             <p className="text-white font-bold text-xs md:text-sm mb-3 md:mb-4 uppercase tracking-widest">
-              Support
+              {t("support")}
             </p>
             <ul className="space-y-2 text-xs md:text-sm">
-              {supportLinks.map(({ label, href }) => (
+              {supportLinks(t).map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -181,8 +181,8 @@ export function Footer() {
       {/* ── Bottom Bar ── */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 md:py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] md:text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} LocalBiz India. All rights reserved.</p>
-          <p>Made with ❤️ for India</p>
+          <p>© {new Date().getFullYear()} {t("title")}. {t("rightsReserved")}</p>
+          <p className="whitespace-nowrap">{t("madeWith")}</p>
         </div>
       </div>
     </footer>

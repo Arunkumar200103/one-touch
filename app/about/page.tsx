@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
+import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { InfoCard } from "@/components/info-card";
 import { BackToHome } from "@/components/back-to-home";
@@ -11,55 +12,50 @@ import Link from "next/link";
 const colors = getPageColor("about");
 
 export default function About() {
+  const { t } = useLanguage();
 
   const features = [
     {
-      title: "Verified Businesses",
-      description:
-        "All businesses listed on our platform go through a verification process to ensure authenticity and reliability.",
+      title: t("verifiedBiz"),
+      description: t("verifiedBizDesc"),
       icon: "🛡️",
     },
     {
-      title: "Authentic Customer Reviews",
-      description:
-        "Real customer feedback helps you evaluate services and make confident decisions.",
+      title: t("authenticReviews"),
+      description: t("authenticReviewsDesc"),
       icon: "⭐",
     },
     {
-      title: "User-Friendly Platform",
-      description:
-        "Our simple and intuitive interface allows anyone to find services easily.",
+      title: t("userFriendly"),
+      description: t("userFriendlyDesc"),
       icon: "✨",
     },
     {
-      title: "Support for Local Businesses",
-      description:
-        "We empower local service providers by giving them a platform to reach more customers.",
+      title: t("supportLocal"),
+      description: t("supportLocalDesc"),
       icon: "🤝",
     },
     {
-      title: "Customer-First Approach",
-      description:
-        "Your satisfaction and safety are at the center of everything we build.",
+      title: t("customerFirst"),
+      description: t("customerFirstDesc"),
       icon: "❤️",
     },
     {
-      title: "Completely Free",
-      description:
-        "Search, compare, and contact businesses without any subscription or hidden charges.",
+      title: t("completelyFree"),
+      description: t("completelyFreeDesc"),
       icon: "💚",
     },
   ];
 
   const stats = [
-    { number: "500+", label: "Verified Businesses" },
-    { number: "10K+", label: "Happy Customers" },
-    { number: "7+", label: "Service Categories" },
-    { number: "24/7", label: "Platform Availability" },
+    { number: "500+", label: t("verifiedBizCount") },
+    { number: "10K+", label: t("happyCustomers") },
+    { number: "7+", label: t("serviceCategoriesCount") },
+    { number: "24/7", label: t("availability") },
   ];
 
   return (
-    <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+    <main className={`min-h-screen bg-gradient-to-b ${colors.gradient}`}>
       <Navbar />
 
       {/* Back Button */}
@@ -73,8 +69,8 @@ export default function About() {
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
-            { label: "Back", href: "/" },
-            { label: "About Us" },
+            { label: t("back"), href: "/" },
+            { label: t("aboutUs") },
           ]}
           accentColor={colors.primary}
         />
@@ -86,7 +82,7 @@ export default function About() {
             className="text-4xl font-bold mb-8"
             style={{ color: colors.primary }}
           >
-            Our Mission
+            {t("ourMission")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -94,23 +90,15 @@ export default function About() {
             <div>
 
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                At <strong>One Touch</strong>, our mission is to make finding local
-                services simple, safe, and trustworthy. We connect customers
-                with verified businesses so they can easily discover reliable
-                services within their community.
+                {t("missionP1")}
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Whether you need construction services, electrical repairs,
-                education support, home maintenance, or professional services,
-                our platform helps you compare options and contact the right
-                provider quickly.
+                {t("missionP2")}
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                We aim to create a platform that works for everyone — from
-                tech-savvy users to people who simply want a quick and easy way
-                to find trusted local businesses.
+                {t("missionP3")}
               </p>
 
             </div>
@@ -138,7 +126,7 @@ export default function About() {
             className="text-4xl font-bold mb-12"
             style={{ color: colors.primary }}
           >
-            Why Choose One Touch?
+            {t("whyChooseUs")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -171,7 +159,7 @@ export default function About() {
         >
 
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
-            Our Impact
+            {t("ourImpact")}
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
@@ -201,7 +189,7 @@ export default function About() {
             className="text-4xl font-bold mb-12"
             style={{ color: colors.primary }}
           >
-            Our Core Values
+            {t("ourCoreValues")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -214,12 +202,10 @@ export default function About() {
                 className="text-2xl font-bold mb-4"
                 style={{ color: colors.primary }}
               >
-                Transparency
+                {t("transparency")}
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                We believe in honest communication and transparent information.
-                Business listings, ratings, and reviews are genuine and clearly
-                displayed to help users make informed decisions.
+                {t("transparencyDesc")}
               </p>
             </div>
 
@@ -231,12 +217,10 @@ export default function About() {
                 className="text-2xl font-bold mb-4"
                 style={{ color: colors.primary }}
               >
-                Accessibility
+                {t("accessibility")}
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Our platform is designed for everyone regardless of technical
-                experience. Clear navigation and simple language ensure a smooth
-                experience for all users.
+                {t("accessibilityDesc")}
               </p>
             </div>
 
@@ -248,11 +232,10 @@ export default function About() {
                 className="text-2xl font-bold mb-4"
                 style={{ color: colors.primary }}
               >
-                Community Growth
+                {t("communityGrowth")}
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                We help local businesses grow by connecting them with customers
-                in their region, strengthening the local economy.
+                {t("communityGrowthDesc")}
               </p>
             </div>
 
@@ -264,12 +247,10 @@ export default function About() {
                 className="text-2xl font-bold mb-4"
                 style={{ color: colors.primary }}
               >
-                Safety & Trust
+                {t("safetyTrust")}
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Protecting user data and ensuring reliable business listings
-                are our top priorities. We maintain strict quality standards
-                across the platform.
+                {t("safetyTrustDesc")}
               </p>
             </div>
 
@@ -284,12 +265,11 @@ export default function About() {
             className="text-4xl font-bold mb-6"
             style={{ color: colors.primary }}
           >
-            Ready to find the service you need?
+            {t("readyToFind")}
           </h2>
 
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            Explore verified local businesses and connect with trusted service
-            providers near you.
+            {t("readyDesc")}
           </p>
 
           <Link href="/">
@@ -297,7 +277,7 @@ export default function About() {
               className="text-white font-bold py-4 px-10 rounded-full text-lg transition-all hover:shadow-xl hover:scale-105"
               style={{ backgroundColor: colors.primary }}
             >
-              Explore Services
+              {t("exploreServices")}
             </button>
           </Link>
 

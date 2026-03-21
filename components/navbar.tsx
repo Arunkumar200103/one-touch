@@ -10,36 +10,36 @@ import { SearchAutocomplete, Suggestion } from "@/components/search-autocomplete
 import { useRouter } from "next/navigation";
 
 
-const primaryLinks = [
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Services", href: "/service-inquiry" },
-  { label: "Reviews", href: "/reviews" },
+const primaryLinks = (t: any) => [
+  { label: t("howItWorks"), href: "/how-it-works" },
+  { label: t("services"), href: "/service-inquiry" },
+  { label: t("reviews"), href: "/reviews" },
 ];
 
-const moreLinks = [
+const moreLinks = (t: any) => [
   {
-    label: "About", href: "/about", icon: (
+    label: t("about"), href: "/about", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )
   },
   {
-    label: "Safety", href: "/safety", icon: (
+    label: t("safety"), href: "/safety", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     )
   },
   {
-    label: "FAQs", href: "/faqs", icon: (
+    label: t("faqs"), href: "/faqs", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )
   },
   {
-    label: "Contact", href: "/contact", icon: (
+    label: t("contact"), href: "/contact", icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
@@ -189,14 +189,14 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-3 md:px-4 py-2.5 md:py-3 flex items-center gap-2 md:gap-4">
 
         {/* Logo */}
-        <Link href="/" className="shrink-0 flex items-center gap-1.5 md:gap-2 group">
-          <div className="bg-blue-600 group-hover:bg-blue-700 transition-colors text-white font-black text-sm md:text-base px-2 md:px-3 py-1 md:py-1.5 rounded-xl leading-none">
+        <Link href="/" className="shrink-0 flex items-center gap-1 md:gap-2 group">
+          <div className="bg-blue-600 group-hover:bg-blue-700 transition-colors text-white font-black text-[10px] sm:text-sm md:text-base px-1.5 sm:px-2 md:px-3 py-1 md:py-1.5 rounded-lg md:rounded-xl leading-none">
             {t("title").slice(0, 2).toUpperCase()}
           </div>
-          {/* Hide full logo text on very small screens, show on sm+ */}
-          <div className="hidden sm:block">
-            <p className="font-black text-gray-900 text-sm leading-none tracking-tight">{t("title")}</p>
-            <p className="text-[9px] text-gray-400 font-semibold tracking-widest uppercase">{t("tagline")}</p>
+          {/* Hide full logo text on very small screens, show on min-width 420px */}
+          <div className="hidden [@media(min-width:420px)]:block">
+            <p className="font-black text-gray-900 text-[10px] sm:text-sm leading-none tracking-tight">{t("title")}</p>
+            <p className="text-[7px] sm:text-[9px] text-gray-400 font-semibold tracking-widest uppercase mt-0.5">{t("tagline")}</p>
           </div>
         </Link>
 
@@ -215,21 +215,21 @@ export function Navbar() {
               <svg className="w-3.5 h-3.5 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              <span>{location}</span>
+              <span>{t(location.toLowerCase())}</span>
               <svg className={`w-3 h-3 text-gray-400 transition-transform ${showLocationDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             {showLocationDropdown && (
               <div className="absolute top-full left-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 w-48 overflow-hidden">
-                <p className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Select City</p>
+                <p className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">{t("selectCity")}</p>
                 {locations.map(loc => (
                   <button
                     key={loc}
                     onClick={() => { setLocation(loc); setShowLocationDropdown(false); }}
                     className={`flex items-center justify-between w-full text-left px-4 py-2.5 text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-colors ${loc === location ? "bg-blue-50 text-blue-600" : "text-gray-700"}`}
                   >
-                    {loc}
+                    {t(loc.toLowerCase())}
                     {loc === location && (
                       <svg className="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -245,7 +245,7 @@ export function Navbar() {
           <input
             ref={desktopInputRef}
             type="text"
-            placeholder="Search for services, businesses..."
+            placeholder={t("searchPlaceholder")}
             value={search}
             onChange={e => { setSearch(e.target.value); setIsDesktopFocused(true); }}
             onFocus={() => setIsDesktopFocused(true)}
@@ -278,7 +278,7 @@ export function Navbar() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span className="hidden lg:inline">Search</span>
+            <span className="hidden lg:inline">{t("searchBtn")}</span>
           </button>
           
           <SearchAutocomplete
@@ -303,7 +303,7 @@ export function Navbar() {
 
         {/* ── Desktop Nav Links ── */}
         <div className="hidden lg:flex items-center gap-0.5 shrink-0">
-          {primaryLinks.map(({ label, href }) => (
+          {primaryLinks(t).map(({ label, href }) => (
             <Link
               key={href}
               href={href}
@@ -319,15 +319,15 @@ export function Navbar() {
               onClick={() => setShowMoreDropdown(!showMoreDropdown)}
               className={`flex items-center gap-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all whitespace-nowrap ${showMoreDropdown ? "text-blue-600 bg-blue-50" : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"}`}
             >
-              More
+              {t("more")}
               <svg className={`w-3.5 h-3.5 transition-transform ${showMoreDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             {showMoreDropdown && (
               <div className="absolute right-0 top-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 w-48 overflow-hidden">
-                <p className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">More Pages</p>
-                {moreLinks.map(({ label, href, icon }) => (
+                <p className="px-4 pt-3 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">{t("morePages")}</p>
+                {moreLinks(t).map(({ label, href, icon }) => (
                   <Link
                     key={href}
                     href={href}
@@ -351,7 +351,7 @@ export function Navbar() {
               onClick={() => setLanguage(lang)}
               className={`px-2 md:px-2.5 py-1 md:py-1.5 rounded-md text-xs font-bold transition-all ${language === lang ? "bg-white text-blue-600 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
             >
-              {lang === "en" ? "EN" : "TN"}
+              {lang === "en" ? "EN" : "TA"}
             </button>
           ))}
         </div>
@@ -387,7 +387,7 @@ export function Navbar() {
                 <svg className="w-3 h-3 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
-                <span>{location}</span>
+                <span>{t(location.toLowerCase())}</span>
                 <svg className={`w-2.5 h-2.5 text-gray-400 transition-transform ${showLocationDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -395,14 +395,14 @@ export function Navbar() {
 
               {showLocationDropdown && (
                 <div className="absolute top-full left-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 w-44 overflow-hidden">
-                  <p className="px-3 pt-2.5 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Select City</p>
+                  <p className="px-3 pt-2.5 pb-1 text-[10px] uppercase tracking-widest text-gray-400 font-semibold">{t("selectCity")}</p>
                   {locations.map(loc => (
                     <button
                       key={loc}
                       onClick={() => { setLocation(loc); setShowLocationDropdown(false); }}
                       className={`flex items-center justify-between w-full text-left px-3 py-2 text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-colors ${loc === location ? "bg-blue-50 text-blue-600" : "text-gray-700"}`}
                     >
-                      {loc}
+                      {t(loc.toLowerCase())}
                       {loc === location && (
                         <svg className="w-3 h-3 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -418,7 +418,7 @@ export function Navbar() {
             <input
               ref={mobileSearchRef}
               type="text"
-              placeholder="Search services..."
+              placeholder={t("searchServicesMobile")}
               value={search}
               onChange={e => { setSearch(e.target.value); setIsMobileFocused(true); }}
               onFocus={() => setIsMobileFocused(true)}
@@ -467,9 +467,9 @@ export function Navbar() {
       {/* ── Mobile Menu ── */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white px-3 md:px-4 py-3">
-          <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold px-3 mb-2">Navigation</p>
+          <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold px-3 mb-2">{t("navigation")}</p>
           <div className="flex flex-col gap-0.5">
-            {[...primaryLinks, ...moreLinks].map(({ label, href, icon }: any) => (
+            {[...primaryLinks(t), ...moreLinks(t)].map(({ label, href, icon }: any) => (
               <Link
                 key={href}
                 href={href}
@@ -485,7 +485,7 @@ export function Navbar() {
           {/* Language + close row */}
           <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <p className="text-xs text-gray-400 font-medium">Language:</p>
+              <p className="text-xs text-gray-400 font-medium">{t("languageLabel")}</p>
               <div className="flex gap-1">
                 {(["en", "ta"] as Language[]).map((lang) => (
                   <button

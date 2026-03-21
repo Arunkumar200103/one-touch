@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Navbar } from "@/components/navbar";
+import { useLanguage } from "@/lib/language-context";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { InfoCard } from "@/components/info-card";
 import { BackToHome } from "@/components/back-to-home";
@@ -11,6 +12,7 @@ import Image from "next/image";
 const colors = getPageColor("contact");
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,37 +46,37 @@ export default function Contact() {
 
   const contactMethods = [
     {
-      title: "Call Us",
-      description: "Speak directly with our support team",
+      title: t("callUs"),
+      description: t("callUsDesc"),
       icon: "📞",
       details: "+91 1234-567-890",
-      availability: "24/7 Support",
+      availability: t("support247"),
     },
     {
-      title: "Email Us",
-      description: "Send us your questions anytime",
+      title: t("emailUs"),
+      description: t("emailUsDesc"),
       icon: "📧",
       details: "support@onetouch.com",
-      availability: "Response within 2 hours",
+      availability: t("response2hours"),
     },
     {
-      title: "WhatsApp",
-      description: "Quick messaging support",
+      title: t("whatsApp"),
+      description: t("whatsAppDesc"),
       icon: "💬",
       details: "+91 9876-543-210",
-      availability: "Chat now",
+      availability: t("chatNow"),
     },
     {
-      title: "Office Location",
-      description: "Visit us in person",
+      title: t("officeLocation"),
+      description: t("officeLocationDesc"),
       icon: "📍",
       details: "123 Service Street, Chennai, India",
-      availability: "Mon-Fri, 9AM-6PM",
+      availability: t("officeHours"),
     },
   ];
 
   return (
-    <main className={`min-h-screen bg-gradient-to-b ${colors.bgGradient}`}>
+    <main className={`min-h-screen bg-gradient-to-b ${colors.gradient}`}>
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-4 mt-[-5rem]">
@@ -85,8 +87,8 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 py-16">
       <Breadcrumb
           items={[
-            { label: "Home", href: "/" },
-            { label: "Contact Us" },
+            { label: t("back"), href: "/" },
+            { label: t("contactUs") },
           ]}
           accentColor={colors.primary}
         />
@@ -98,7 +100,7 @@ export default function Contact() {
               className="text-3xl font-bold mb-8"
               style={{ color: colors.primary }}
             >
-              Get in Touch
+              {t("getInTouch")}
             </h2>
             <div className="space-y-4">
               {contactMethods.map((method, index) => (
@@ -130,14 +132,14 @@ export default function Contact() {
               className="text-3xl font-bold mb-8"
               style={{ color: colors.primary }}
             >
-              Send us a Message
+              {t("sendAMessage")}
             </h2>
 
             {submitted && (
               <div className="mb-8 p-6 rounded-2xl text-white animate-fade-in-up" style={{ backgroundColor: colors.primary }}>
                 <div className="text-3xl mb-2">✓</div>
-                <h3 className="text-xl font-bold">Thank you!</h3>
-                <p className="opacity-90">We've received your message and will get back to you soon.</p>
+                <h3 className="text-xl font-bold">{t("thankYou")}</h3>
+                <p className="opacity-90">{t("messageReceived")}</p>
               </div>
             )}
 
@@ -145,14 +147,14 @@ export default function Contact() {
               {/* Name */}
               <div>
                 <label className="block text-lg font-bold text-gray-700 mb-2">
-                  Your Name
+                  {t("yourName")}
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Enter your full name"
+                  placeholder={t("enterFullName")}
                   className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none"
                   required
                 />
@@ -161,14 +163,14 @@ export default function Contact() {
               {/* Email */}
               <div>
                 <label className="block text-lg font-bold text-gray-700 mb-2">
-                  Email Address
+                  {t("emailAddress")}
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="your@email.com"
+                  placeholder={t("emailPlaceholder")}
                   className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none"
                   required
                 />
@@ -177,7 +179,7 @@ export default function Contact() {
               {/* Subject */}
               <div>
                 <label className="block text-lg font-bold text-gray-700 mb-2">
-                  Subject
+                  {t("subject")}
                 </label>
                 <select
                   name="subject"
@@ -186,25 +188,25 @@ export default function Contact() {
                   className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none"
                   required
                 >
-                  <option value="">Choose a reason for contacting us</option>
-                  <option value="support">Technical Support</option>
-                  <option value="complaint">Report a Problem</option>
-                  <option value="feedback">General Feedback</option>
-                  <option value="business">Business Inquiry</option>
-                  <option value="other">Other</option>
+                  <option value="">{t("reasonPlaceholder")}</option>
+                  <option value="support">{t("techSupport")}</option>
+                  <option value="complaint">{t("reportProblem")}</option>
+                  <option value="feedback">{t("generalFeedback")}</option>
+                  <option value="business">{t("bizInquiry")}</option>
+                  <option value="other">{t("otherReason")}</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
                 <label className="block text-lg font-bold text-gray-700 mb-2">
-                  Message
+                  {t("messageLabel")}
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Tell us how we can help..."
+                  placeholder={t("tellUsHow")}
                   className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none h-40 resize-none"
                   required
                 />
@@ -216,11 +218,11 @@ export default function Contact() {
                 className="w-full text-white font-bold py-4 rounded-xl transition-all hover:shadow-lg"
                 style={{ backgroundColor: colors.primary }}
               >
-                Send Message
+                {t("sendMessage")}
               </button>
 
               <p className="text-sm text-gray-500 text-center">
-                We'll get back to you as soon as possible. Thank you for your patience!
+                {t("patienceNote")}
               </p>
             </form>
           </div>
@@ -229,17 +231,17 @@ export default function Contact() {
         {/* FAQ CTA */}
         <div className="bg-white p-12 rounded-3xl shadow-lg border-2" style={{ borderColor: colors.primary }}>
           <h3 className="text-3xl font-bold mb-4 text-gray-900">
-            Common Questions?
+            {t("commonQuestions")}
           </h3>
           <p className="text-gray-700 mb-6">
-            Check our FAQs for answers to frequently asked questions about One Touch.
+            {t("faqsDesc")}
           </p>
           <a href="/faqs">
             <button
               className="text-white font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg"
               style={{ backgroundColor: colors.primary }}
             >
-              View FAQs
+              {t("viewFaqs")}
             </button>
           </a>
         </div>

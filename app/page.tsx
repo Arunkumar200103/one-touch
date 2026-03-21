@@ -201,17 +201,17 @@ const filteredCategories = allCategories.filter((cat) => {
         <div className="flex items-center justify-between mb-6 md:mb-10">
           <div>
             <h2 className="font-serif text-[clamp(22px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
-              Featured{" "}
+              {t("featured")}{" "}
               <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                Services
+                {t("services")}
               </span>
             </h2>
             <p className="text-gray-500 text-xs md:text-sm mt-1">
-              Discover top rated services near you
+              {t("featuredDesc")}
             </p>
           </div>
           <Link href="/service-inquiry" className="text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-            View all →
+            {t("viewAll")} →
           </Link>
         </div>
 
@@ -243,18 +243,18 @@ const filteredCategories = allCategories.filter((cat) => {
           
           <div>
             <p className="text-xs font-bold text-white uppercase tracking-wider">
-              Featured
+              {t("featured")}
             </p>
 
             <h3 className="text-xl md:text-2xl font-extrabold text-white mt-1">
-              {slide.title}
+              {t(slide.title)}
             </h3>
           </div>
 
           <button
             className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95"
           >
-            {slide.cta}
+            {t(slide.cta)}
           </button>
 
         </div>
@@ -304,11 +304,11 @@ const filteredCategories = allCategories.filter((cat) => {
 
           <div>
             <h3 className="font-bold text-sm md:text-lg leading-tight">
-              {service.name}
+              {t(service.name)}
             </h3>
 
             <p className="text-xs opacity-90 mt-0.5 md:mt-1">
-              {service.subtitle}
+              {t(service.subtitle)}
             </p>
           </div>
 
@@ -327,11 +327,11 @@ const filteredCategories = allCategories.filter((cat) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-indigo-500 to-purple-600 p-6 flex items-center justify-between">
             <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Limited Time</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">20% OFF</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">On all Home Cleaning Services</p>
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("limitedTime")}</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("off20")}</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">{t("cleaningServiceDesc")}</p>
               <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-indigo-200 transition-colors">
-                Book Now <ChevronRight size={14} />
+                {t("bookNow")} <ChevronRight size={14} />
               </button>
             </div>
             <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
@@ -341,11 +341,11 @@ const filteredCategories = allCategories.filter((cat) => {
 
           <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-rose-500 to-pink-600 p-6 flex items-center justify-between">
             <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Mega Deal</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">AC Repair</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">Starting at just ₹299/-</p>
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("megaDeal")}</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("acRepair")}</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">{t("startingAt")}</p>
               <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-rose-200 transition-colors">
-                Claim Offer <ChevronRight size={14} />
+                {t("claimOffer")} <ChevronRight size={14} />
               </button>
             </div>
             <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
@@ -355,11 +355,11 @@ const filteredCategories = allCategories.filter((cat) => {
           
           <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-amber-500 to-orange-500 p-6 flex items-center justify-between lg:col-span-1 md:col-span-2">
             <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">Festive Special</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">Free Inspection</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">For complete home pest control</p>
+              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("festiveSpecial")}</span>
+              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("freeInspection")}</h3>
+              <p className="text-xs md:text-sm font-medium opacity-90">{t("pestControlDesc")}</p>
               <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-amber-200 transition-colors">
-                Get Deal <ChevronRight size={14} />
+                {t("getDeal")} <ChevronRight size={14} />
               </button>
             </div>
             <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
@@ -373,16 +373,16 @@ const filteredCategories = allCategories.filter((cat) => {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
         {/* HEADER */}
-        <div className="flex items-center justify-between mb-6 md:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 gap-4">
           <div>
             <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-500 uppercase mb-1">
-              All Services
+              {t("services")}
             </p>
 
-            <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-3 md:mb-5">
-              Popular Near{" "}
+            <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-1 md:mb-5">
+              {t("popularNear")}{" "}
               <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                {location}
+                {t(location)}
               </span>
             </h2>
           </div>
@@ -391,7 +391,7 @@ const filteredCategories = allCategories.filter((cat) => {
             href="/category/Construction"
             className="text-xs md:text-sm font-semibold text-blue-600 hover:underline whitespace-nowrap"
           >
-            Browse all →
+            {t("browseAll")} →
           </Link>
         </div>
 
@@ -431,7 +431,7 @@ const filteredCategories = allCategories.filter((cat) => {
                     </span>
                   </div>
                   <p className="text-[10px] md:text-[11px] font-semibold text-gray-700 group-hover:text-gray-900 text-center leading-tight">
-                    {cat.name}
+                    {t(cat.name)}
                   </p>
                 </Link>
               ))}
@@ -454,7 +454,7 @@ const filteredCategories = allCategories.filter((cat) => {
                 </span>
               </div>
               <p className="text-sm font-bold text-gray-700 group-hover:text-gray-900 text-center leading-snug px-1 mt-1">
-                {cat.name}
+                {t(cat.name)}
               </p>
             </Link>
           ))}
@@ -467,9 +467,9 @@ const filteredCategories = allCategories.filter((cat) => {
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
         <div className="flex justify-between items-end mb-8 md:mb-12">
           <div>
-            <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-amber-500 mb-2">Editor's Pick</p>
+            <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-amber-500 mb-2">{t("editorsPick")}</p>
             <h2 className="font-serif text-[clamp(22px,4vw,50px)] leading-tight tracking-[-1px] text-gray-900">
-              Top picks<br /><span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">this week</span>
+              {t("topPicks")}<br /><span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">{t("thisWeek")}</span>
             </h2>
           </div>
           <a href="#" className="text-xs md:text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors flex gap-1 items-center" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
@@ -484,15 +484,15 @@ const filteredCategories = allCategories.filter((cat) => {
             <img src={IMG.interior} alt="" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,13,20,.72)] via-[rgba(13,13,20,.06)] to-transparent rounded-[20px]" />
             <div className="absolute top-4 left-4">
-              <span className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/90 text-gray-900">✦ Editor's Choice</span>
+              <span className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/90 text-gray-900">✦ {t("editorsPick")}</span>
             </div>
             <div className="absolute bottom-5 left-5 right-5 flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">INTERIOR DESIGN · MUMBAI</div>
-                <div className="text-white font-extrabold text-xl">EliteSpace Studio</div>
-                <div className="text-white/50 text-sm mt-1">4.9 ★ · 2,340 reviews</div>
+                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">{t("Home Decor")} · {t("Mumbai")}</div>
+                <div className="text-white font-extrabold text-xl">{t("EliteSpace Studio")}</div>
+                <div className="text-white/50 text-sm mt-1">4.9 ★ · 2,340 {t("reviews_count")}</div>
               </div>
-              <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">Book Now</button>
+              <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">{t("bookNow")}</button>
             </div>
           </div>
           <BentoCard img={IMG.restaurant} title="The Grand Kitchen" sub="Restaurant · 4.8 ★" badge="Top Rated" badgeColor="bg-amber-100/90 text-amber-700" />
@@ -504,12 +504,12 @@ const filteredCategories = allCategories.filter((cat) => {
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,13,20,.78)] to-[rgba(13,13,20,.1)]" />
             <div className="absolute bottom-4 left-5 right-5 flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-bold text-white/45 mb-1.5 tracking-[1.5px] uppercase">AUTOMOTIVE · HYDERABAD</div>
-                <div className="text-white font-bold text-lg">AutoCare 360</div>
+                <div className="text-[10px] font-bold text-white/45 mb-1.5 tracking-[1.5px] uppercase">{t("Automotive")} · {t("Hyderabad")}</div>
+                <div className="text-white font-bold text-lg">{t("AutoCare 360")}</div>
               </div>
               <div className="text-right">
                 <div className="font-serif text-2xl text-amber-400">4.7★</div>
-                <div className="text-[11px] text-white/45">1,540 reviews</div>
+                <div className="text-[11px] text-white/45">1,540 {t("reviews_count")}</div>
               </div>
             </div>
           </div>
@@ -527,16 +527,16 @@ const filteredCategories = allCategories.filter((cat) => {
             { img: IMG.wedding, title: "Wedding Bliss", sub: "Event Planning · 4.8 ★" },
           ].map((item, i) => (
             <div key={i} className="snap-start shrink-0 w-56 h-64 rounded-2xl relative overflow-hidden shadow-md cursor-pointer">
-              <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+              <img src={item.img} alt={t(item.title)} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
               {item.badge && (
                 <div className="absolute top-3 left-3">
-                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/90 text-gray-900">{item.badge}</span>
+                  <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/90 text-gray-900">{t(item.badge)}</span>
                 </div>
               )}
               <div className="absolute bottom-4 left-4">
-                <div className="text-white font-bold text-sm">{item.title}</div>
-                <div className="text-white/60 text-xs mt-1">{item.sub}</div>
+                <div className="text-white font-bold text-sm">{t(item.title)}</div>
+                <div className="text-white/60 text-xs mt-1">{t(item.sub)}</div>
               </div>
             </div>
           ))}
@@ -567,8 +567,8 @@ const filteredCategories = allCategories.filter((cat) => {
                 </div>
               )}
               <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4">
-                <div className="font-extrabold text-base md:text-xl text-white tracking-tight">{c.name}</div>
-                <div className="text-[10px] md:text-xs text-white/70 font-medium mt-0.5">{c.biz} Businesses</div>
+                <div className="font-extrabold text-base md:text-xl text-white tracking-tight">{t(c.name)}</div>
+                <div className="text-[10px] md:text-xs text-white/70 font-medium mt-0.5">{c.biz} {t("businesses")}</div>
               </div>
             </div>
           ))}
@@ -610,13 +610,13 @@ const filteredCategories = allCategories.filter((cat) => {
           <div className="absolute bottom-0 left-20 w-40 h-40 bg-blue-500/30 rounded-full blur-xl" />
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0">
             <div className="p-7 md:p-10 lg:p-14 flex flex-col justify-center">
-              <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-200 uppercase mb-2 md:mb-3">For Business Owners</p>
+              <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-200 uppercase mb-2 md:mb-3">{t("forBusinessOwners")}</p>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight mb-3 md:mb-4">
-                Connect with <span className="text-yellow-300">18.4 Crore+</span> Buyers
+                {t("connectWith")} <span className="text-yellow-300">{t("buyersCount")}</span> {t("buyersLabel")}
               </h2>
-              <p className="text-blue-100 mb-5 md:mb-8 text-sm md:text-base">Grow your business in 3 easy steps. Join India's largest local search platform.</p>
+              <p className="text-blue-100 mb-5 md:mb-8 text-sm md:text-base">{t("growBizDesc")}</p>
               <div className="flex flex-wrap gap-3 md:gap-4 mb-5 md:mb-8">
-                {["Free Listing", "Instant Leads", "Verified Badge"].map((f) => (
+                {[t("freeListing"), t("instantLeads"), t("verifiedBadge")].map((f) => (
                   <div key={f} className="flex items-center gap-1.5 text-xs md:text-sm text-blue-100">
                     <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
@@ -625,8 +625,8 @@ const filteredCategories = allCategories.filter((cat) => {
                   </div>
                 ))}
               </div>
-              <button className="self-start bg-yellow-400 hover:bg-yellow-300 active:scale-95 text-blue-900 font-black px-6 md:px-8 py-3 md:py-3.5 rounded-xl text-sm md:text-base transition-all shadow-lg shadow-yellow-400/30">
-                List your Business — FREE
+              <button className="self-start bg-yellow-400 hover:bg-yellow-300 active:scale-95 text-blue-900 font-black px-4 md:px-8 py-2.5 md:py-3.5 rounded-xl text-xs md:text-base transition-all shadow-lg shadow-yellow-400/30">
+                {t("listYourBiz")}
               </button>
             </div>
             <div className="relative hidden md:block min-h-64">
@@ -656,7 +656,7 @@ const filteredCategories = allCategories.filter((cat) => {
               Real-time quotes, instant bookings, and app-only deals. 50M+ downloads across India.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3 mb-6 md:mb-9">
-              {[["50M+","Downloads"],["4.8★","App Store"],["4.7★","Play Store"],["24/7","Support"]].map(([value,label]) => (
+              {[[t("downloads"),t("downloads")],[t("appStore"),t("appStore")],[t("playStore"),t("playStore")],[t("support"),t("support")]].map(([value,label]) => (
                 <div key={label} className="bg-gray-50 rounded-xl p-3 md:p-4 border border-gray-200">
                   <div className="font-serif text-xl md:text-2xl text-gray-900">{value}</div>
                   <div className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1">{label}</div>
@@ -664,12 +664,12 @@ const filteredCategories = allCategories.filter((cat) => {
               ))}
             </div>
             <div className="flex gap-3 flex-wrap">
-              {[["🍎","App Store","Download on the"],["▶","Google Play","Get it on"]].map(([icon,label,sub]) => (
+              {[["🍎","App Store",t("Download on the")],["▶","Google Play",t("Get it on")]].map(([icon,label,sub]) => (
                 <button key={label as string} className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3 border border-gray-200 rounded-lg hover:shadow-md transition">
                   <span className="text-lg md:text-xl">{icon}</span>
                   <div className="text-left">
                     <div className="text-[9px] md:text-[10px] text-gray-500 font-medium">{sub}</div>
-                    <div className="text-xs md:text-sm font-bold text-gray-900">{label}</div>
+                    <div className="text-xs md:text-sm font-bold text-gray-900">{t(label as string)}</div>
                   </div>
                 </button>
               ))}
@@ -710,18 +710,19 @@ const filteredCategories = allCategories.filter((cat) => {
 function BentoCard({ img, title, sub, badge, badgeColor }: {
   img: string; title: string; sub: string; badge?: string; badgeColor?: string;
 }) {
+  const { t } = useLanguage();
   return (
     <div className="col-span-1 row-span-1 rounded-3xl relative cursor-pointer overflow-hidden hover:shadow-lg transition-shadow">
       <img src={img} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,13,20,.75)] to-transparent" />
       {badge && (
         <div className="absolute top-3 right-3">
-          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${badgeColor ?? "bg-white/90 text-gray-900"}`}>{badge}</span>
+          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${badgeColor ?? "bg-white/90 text-gray-900"}`}>{t(badge)}</span>
         </div>
       )}
       <div className="absolute bottom-4 left-4">
-        <div className="text-white font-bold text-sm md:text-base">{title}</div>
-        <div className="text-white/50 text-xs mt-1">{sub}</div>
+        <div className="text-white font-bold text-sm md:text-base">{t(title)}</div>
+        <div className="text-white/50 text-xs mt-1">{t(sub)}</div>
       </div>
     </div>
   );
