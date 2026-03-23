@@ -165,7 +165,7 @@ export default function Reviews() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-80 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+      <div className="relative h-48 sm:h-80 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
         <Image
           src={colors.banner}
           alt="Reviews"
@@ -177,20 +177,20 @@ export default function Reviews() {
 
         <div className="absolute inset-0 flex flex-col justify-center px-6">
           <h1
-            className="text-5xl md:text-6xl font-bold text-white mb-4"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 sm:mb-4"
             style={{ color: colors.light }}
           >
             {t("customerReviews")}
           </h1>
 
-          <p className="text-xl text-gray-200">
+          <p className="text-sm sm:text-base md:text-xl text-gray-200">
             {t("reviewsDesc")}
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
 
         <Breadcrumb
           items={[
@@ -201,35 +201,35 @@ export default function Reviews() {
         />
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
 
           <div
-            className="p-6 rounded-2xl text-white text-center"
+            className="p-4 sm:p-6 rounded-2xl text-white text-center"
             style={{ backgroundColor: colors.primary }}
           >
-            <div className="text-4xl font-bold">{sampleReviews.length}</div>
-            <p className="text-white/80">{t("totalReviews")}</p>
+            <div className="text-2xl sm:text-4xl font-bold">{sampleReviews.length}</div>
+            <p className="text-xs sm:text-sm text-white/80">{t("totalReviews")}</p>
           </div>
 
-          <div className="p-6 rounded-2xl border-2 text-center"
+          <div className="p-4 sm:p-6 rounded-2xl border-2 text-center"
                style={{ borderColor: colors.primary }}>
 
-            <div className="text-3xl font-bold mb-2"
+            <div className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2"
                  style={{ color: colors.primary }}>
               {avgRating}
             </div>
 
-            <p className="text-gray-600">{t("avgRating")}</p>
+            <p className="text-xs sm:text-sm text-gray-600">{t("avgRating")}</p>
           </div>
 
           <div
-            className="p-6 rounded-2xl text-white text-center"
+            className="p-4 sm:p-6 rounded-2xl text-white text-center"
             style={{ backgroundColor: colors.primary }}
           >
-            <div className="text-4xl font-bold">
+            <div className="text-2xl sm:text-4xl font-bold">
               {(businesses as any[]).length}
             </div>
-            <p className="text-white/80">{t("businessesRated")}</p>
+            <p className="text-xs sm:text-sm text-white/80">{t("businessesRated")}</p>
           </div>
 
         </div>
@@ -238,13 +238,13 @@ export default function Reviews() {
         <div className="bg-white rounded-2xl p-6 shadow-lg mb-12">
 
           <h3
-            className="text-lg font-bold mb-6"
+            className="text-base sm:text-lg font-bold mb-4 sm:mb-6"
             style={{ color: colors.primary }}
           >
             {t("filterReviews")}
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
 
             {/* Category */}
             <div>
@@ -307,23 +307,23 @@ export default function Reviews() {
 
               <div
                 key={review.id}
-                className="bg-white p-6 rounded-2xl shadow-md border-l-4"
+                className="bg-white p-4 sm:p-6 rounded-2xl shadow-md border-l-4"
                 style={{ borderColor: colors.primary }}
               >
 
-                <div className="flex justify-between mb-3">
+                <div className="flex flex-col sm:flex-row justify-between gap-2 mb-3">
 
                   <div>
-                    <h3 className="font-bold text-lg">
+                    <h3 className="font-bold text-base sm:text-lg">
                       {review.businessName}
                     </h3>
 
-                    <p className="text-sm text-gray-500">
+                    <p className="text-xs sm:text-sm text-gray-500">
                       {review.author} • {review.date}
                     </p>
                   </div>
 
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 text-sm sm:text-base">
                     {[...Array(5)].map((_, i) => (
                       <span key={i}>
                         {i < review.rating ? "⭐" : "☆"}
@@ -333,7 +333,7 @@ export default function Reviews() {
 
                 </div>
 
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                   {review.text}
                 </p>
 

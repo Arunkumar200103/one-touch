@@ -17,7 +17,7 @@ export function Breadcrumb({
   accentColor = "#0066CC",
 }: BreadcrumbProps) {
   return (
-    <nav className="flex items-center gap-2 text-sm mb-6">
+    <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm mb-4 sm:mb-6">
       {items.map((item, index) => (
         <div key={index} className="flex items-center gap-2">
           {index > 0 && <span className="text-gray-400">/</span>}

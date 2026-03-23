@@ -88,7 +88,7 @@ export default function Safety() {
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
         <Breadcrumb
           items={[
             { label: t("back"), href: "/" },
@@ -98,57 +98,57 @@ export default function Safety() {
         />
 
         {/* Our Commitment */}
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-20">
           <h2
-            className="text-4xl font-bold mb-6"
+            className="text-xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
             style={{ color: colors.primary }}
           >
             {t("safetyPriority")}
           </h2>
-          <p className="text-xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
+          <p className="text-base sm:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8 max-w-3xl">
             {t("safetyCommitment")}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div
-              className="p-8 rounded-2xl text-white"
+              className="p-6 sm:p-8 rounded-2xl text-white"
               style={{ backgroundColor: colors.primary }}
             >
-              <h3 className="text-2xl font-bold mb-4">{t("whatWeDo")}</h3>
-              <ul className="space-y-3">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t("whatWeDo")}</h3>
+              <ul className="space-y-3 text-sm sm:text-base">
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
+                  <span className="text-xl">✓</span>
                   <span>{t("verifyLicenses")}</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
+                  <span className="text-xl">✓</span>
                   <span>{t("checkOwnerId")}</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
+                  <span className="text-xl">✓</span>
                   <span>{t("validateContact")}</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
+                  <span className="text-xl">✓</span>
                   <span>{t("removeFraud")}</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">✓</span>
+                  <span className="text-xl">✓</span>
                   <span>{t("monitorReviews")}</span>
                 </li>
               </ul>
             </div>
 
             <div
-              className="p-8 rounded-2xl border-2"
+              className="p-6 sm:p-8 rounded-2xl border-2"
               style={{ borderColor: colors.primary }}
             >
-              <h3 className="text-2xl font-bold mb-4" style={{ color: colors.primary }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ color: colors.primary }}>
                 {t("yourRole")}
               </h3>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-3 text-sm sm:text-base text-gray-700">
                 <li className="flex items-start gap-3">
-                  <span className="text-2xl">👤</span>
+                  <span className="text-xl sm:text-2xl">👤</span>
                   <span>{t("readReviewsCarefully")}</span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -173,9 +173,9 @@ export default function Safety() {
         </div>
 
         {/* Verification Process */}
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-20">
           <h2
-            className="text-4xl font-bold mb-12"
+            className="text-xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12"
             style={{ color: colors.primary }}
           >
             {t("ourVerificationProcess")}
@@ -188,12 +188,12 @@ export default function Safety() {
                 className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
               >
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg mb-4"
                   style={{ backgroundColor: colors.primary }}
                 >
                   {step.number}
                 </div>
-                <h3 className="font-bold text-lg mb-2" style={{ color: colors.primary }}>
+                <h3 className="font-bold text-base sm:text-lg mb-2" style={{ color: colors.primary }}>
                   {step.title}
                 </h3>
                 <p className="text-gray-700 text-sm">{step.description}</p>
@@ -203,9 +203,9 @@ export default function Safety() {
         </div>
 
         {/* Safety Tips */}
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-20">
           <h2
-            className="text-4xl font-bold mb-12"
+            className="text-xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12"
             style={{ color: colors.primary }}
           >
             {t("safetyTipsForCustomers")}
@@ -232,17 +232,17 @@ export default function Safety() {
         </div>
 
         {/* Red Flags */}
-        <div className="mb-20 bg-red-50 p-12 rounded-3xl border-2 border-red-200">
-          <h2 className="text-3xl font-bold mb-6 text-red-900">
+        <div className="mb-12 sm:mb-20 bg-red-50 p-6 sm:p-12 rounded-3xl border-2 border-red-200">
+          <h2 className="text-xl sm:text-3xl font-bold mb-4 sm:mb-6 text-red-900">
             {t("redFlagsTitle")}
           </h2>
-          <p className="text-gray-700 mb-8">
+          <p className="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8">
             {t("redFlagsDescText")}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {redFlags.map((flag, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <span className="text-2xl mt-1">⚠️</span>
+              <div key={index} className="flex items-start gap-3 text-sm sm:text-base">
+                <span className="text-xl mt-0.5">⚠️</span>
                 <span className="text-gray-800">{flag}</span>
               </div>
             ))}
@@ -251,15 +251,15 @@ export default function Safety() {
 
         {/* Report Issues */}
         <div
-          className="rounded-3xl p-12 text-center text-white"
+          className="rounded-3xl p-6 sm:p-12 text-center text-white"
           style={{ backgroundColor: colors.primary }}
         >
-          <h3 className="text-3xl font-bold mb-4">{t("foundAProblem")}</h3>
-          <p className="text-lg mb-8 opacity-90">
+          <h3 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-4">{t("foundAProblem")}</h3>
+          <p className="text-sm sm:text-lg mb-6 sm:mb-8 opacity-90">
             {t("reportProblemDesc")}
           </p>
           <a href="/contact">
-            <button className="bg-white text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg">
+            <button className="bg-white text-gray-900 font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full transition-all hover:shadow-lg text-sm sm:text-base">
                 {t("reportAnIssue")}
               </button>
           </a>

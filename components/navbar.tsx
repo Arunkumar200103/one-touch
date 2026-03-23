@@ -186,7 +186,7 @@ export function Navbar() {
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
 
       {/* ── TOP BAR ── */}
-      <div className="max-w-7xl mx-auto px-3 md:px-4 py-2.5 md:py-3 flex items-center gap-2 md:gap-4">
+      <div className="max-w-7xl mx-auto px-2 md:px-4 py-2.5 md:py-3 flex items-center gap-1.5 md:gap-3">
 
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center gap-1 md:gap-2 group">
@@ -203,7 +203,7 @@ export function Navbar() {
         {/* ── Desktop Search Bar (hidden on mobile) ── */}
         <div 
           ref={desktopSearchRef}
-          className="hidden md:flex flex-1 items-center border-2 border-blue-500 rounded-xl bg-white max-w-2xl relative overflow-visible"
+          className="hidden md:flex flex-1 items-center border-2 border-blue-500 rounded-xl bg-white max-w-lg xl:max-w-2xl relative overflow-visible"
         >
 
           {/* Location picker */}
@@ -215,7 +215,7 @@ export function Navbar() {
               <svg className="w-3.5 h-3.5 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              <span>{t(location.toLowerCase())}</span>
+              <span className={language === 'ta' ? 'text-xs' : 'text-sm'}>{t(location.toLowerCase())}</span>
               <svg className={`w-3 h-3 text-gray-400 transition-transform ${showLocationDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -251,7 +251,7 @@ export function Navbar() {
             onFocus={() => setIsDesktopFocused(true)}
             onClick={() => setIsDesktopFocused(true)}
             onKeyDown={(e) => handleKeyDown(e, false)}
-            className="flex-1 px-3 py-2.5 text-sm outline-none text-gray-800 placeholder-gray-400 min-w-0"
+            className={`flex-1 ${language === 'ta' ? 'px-2' : 'px-3'} py-2.5 ${language === 'ta' ? 'text-xs' : 'text-sm'} outline-none text-gray-800 placeholder-gray-400 min-w-0`}
           />
 
           {/* Mic */}
@@ -273,7 +273,7 @@ export function Navbar() {
                  setIsDesktopFocused(false);
                }
              }}
-             className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-5 py-2.5 font-bold text-sm transition-colors flex items-center gap-2 shrink-0 rounded-r-[10px]"
+             className={`bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white ${language === 'ta' ? 'px-3' : 'px-5'} py-2.5 font-bold ${language === 'ta' ? 'text-xs' : 'text-sm'} transition-colors flex items-center gap-2 shrink-0 rounded-r-[10px]`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -307,7 +307,7 @@ export function Navbar() {
             <Link
               key={href}
               href={href}
-              className="text-sm font-semibold text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-blue-50 transition-all whitespace-nowrap"
+              className={`font-semibold text-gray-600 hover:text-blue-600 ${language === 'ta' ? 'px-1.5 text-xs' : 'px-3 text-sm'} py-2 rounded-lg hover:bg-blue-50 transition-all whitespace-nowrap`}
             >
               {label}
             </Link>
@@ -317,7 +317,7 @@ export function Navbar() {
           <div className="relative" ref={moreRef}>
             <button
               onClick={() => setShowMoreDropdown(!showMoreDropdown)}
-              className={`flex items-center gap-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all whitespace-nowrap ${showMoreDropdown ? "text-blue-600 bg-blue-50" : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"}`}
+              className={`flex items-center gap-1 font-semibold ${language === 'ta' ? 'px-1.5 text-xs' : 'px-3 text-sm'} rounded-lg transition-all whitespace-nowrap ${showMoreDropdown ? "text-blue-600 bg-blue-50" : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"}`}
             >
               {t("more")}
               <svg className={`w-3.5 h-3.5 transition-transform ${showMoreDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -351,7 +351,7 @@ export function Navbar() {
               onClick={() => setLanguage(lang)}
               className={`px-2 md:px-2.5 py-1 md:py-1.5 rounded-md text-xs font-bold transition-all ${language === lang ? "bg-white text-blue-600 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
             >
-              {lang === "en" ? "EN" : "TA"}
+              {lang === "en" ? "EN" : "த"}
             </button>
           ))}
         </div>
@@ -387,7 +387,7 @@ export function Navbar() {
                 <svg className="w-3 h-3 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
-                <span>{t(location.toLowerCase())}</span>
+                <span>{t(location)}</span>
                 <svg className={`w-2.5 h-2.5 text-gray-400 transition-transform ${showLocationDropdown ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -402,7 +402,7 @@ export function Navbar() {
                       onClick={() => { setLocation(loc); setShowLocationDropdown(false); }}
                       className={`flex items-center justify-between w-full text-left px-3 py-2 text-sm font-medium hover:bg-blue-50 hover:text-blue-600 transition-colors ${loc === location ? "bg-blue-50 text-blue-600" : "text-gray-700"}`}
                     >
-                      {t(loc.toLowerCase())}
+                      {t(loc)}
                       {loc === location && (
                         <svg className="w-3 h-3 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />

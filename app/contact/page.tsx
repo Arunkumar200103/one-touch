@@ -97,7 +97,7 @@ export default function Contact() {
           {/* Contact Methods */}
           <div className="lg:col-span-1">
             <h2
-              className="text-3xl font-bold mb-8"
+              className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8"
               style={{ color: colors.primary }}
             >
               {t("getInTouch")}
@@ -108,7 +108,7 @@ export default function Contact() {
                   key={index}
                   className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
                 >
-                  <div className="text-3xl mb-2">{method.icon}</div>
+                  <div className="text-2xl sm:text-3xl mb-2">{method.icon}</div>
                   <h3 className="font-bold text-gray-900 mb-1">
                     {method.title}
                   </h3>
@@ -129,7 +129,7 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <h2
-              className="text-3xl font-bold mb-8"
+              className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8"
               style={{ color: colors.primary }}
             >
               {t("sendAMessage")}
@@ -146,7 +146,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-3xl shadow-xl">
               {/* Name */}
               <div>
-                <label className="block text-lg font-bold text-gray-700 mb-2">
+                <label className="block text-base sm:text-lg font-bold text-gray-700 mb-2">
                   {t("yourName")}
                 </label>
                 <input
@@ -162,7 +162,7 @@ export default function Contact() {
 
               {/* Email */}
               <div>
-                <label className="block text-lg font-bold text-gray-700 mb-2">
+                <label className="block text-base sm:text-lg font-bold text-gray-700 mb-2">
                   {t("emailAddress")}
                 </label>
                 <input
@@ -178,7 +178,7 @@ export default function Contact() {
 
               {/* Subject */}
               <div>
-                <label className="block text-lg font-bold text-gray-700 mb-2">
+                <label className="block text-base sm:text-lg font-bold text-gray-700 mb-2">
                   {t("subject")}
                 </label>
                 <select
@@ -199,7 +199,7 @@ export default function Contact() {
 
               {/* Message */}
               <div>
-                <label className="block text-lg font-bold text-gray-700 mb-2">
+                <label className="block text-base sm:text-lg font-bold text-gray-700 mb-2">
                   {t("messageLabel")}
                 </label>
                 <textarea
@@ -207,7 +207,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder={t("tellUsHow")}
-                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none h-40 resize-none"
+                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none h-32 sm:h-40 resize-none text-sm sm:text-base"
                   required
                 />
               </div>
@@ -230,10 +230,10 @@ export default function Contact() {
 
         {/* FAQ CTA */}
         <div className="bg-white p-12 rounded-3xl shadow-lg border-2" style={{ borderColor: colors.primary }}>
-          <h3 className="text-3xl font-bold mb-4 text-gray-900">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-gray-900">
             {t("commonQuestions")}
           </h3>
-          <p className="text-gray-700 mb-6">
+          <p className="text-sm sm:text-base text-gray-700 mb-6">
             {t("faqsDesc")}
           </p>
           <a href="/faqs">

@@ -21,7 +21,7 @@ export function ChatMessage({ message, isBot }: ChatMessageProps) {
       `}</style>
       <div
         className={cn(
-          "max-w-[85%] rounded-[20px] px-4 py-2.5 text-sm shadow-sm leading-relaxed",
+          "max-w-[85%] rounded-[20px] px-3 py-2 sm:px-4 sm:py-2.5 sm:text-sm text-[13px] shadow-sm leading-relaxed",
           isBot
             ? "bg-white border border-gray-200/60 text-gray-800 rounded-bl-none shadow-sm"
             : "bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-br-none shadow-blue-200/50 shadow-md"

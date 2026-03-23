@@ -104,18 +104,18 @@ export function SuggestionsGrid({ suggestions, onSelect, query }: SuggestionsGri
             key={service.id}
             onClick={() => onSelect(service)}
             className={cn(
-              "flex flex-col text-left p-3 rounded-xl border border-gray-200 transition-all focus:outline-none focus:ring-2 focus:ring-black",
+              "flex flex-col text-left p-2.5 rounded-xl border border-gray-200 transition-all focus:outline-none focus:ring-2 focus:ring-black",
               selectedIndex === index ? "bg-black text-white border-black" : "bg-white text-gray-900 shadow-sm"
             )}
           >
             <div className="flex flex-col gap-1 w-full">
               <div className="flex items-center justify-between">
-                <span className="font-medium text-sm">
+                <span className="font-medium text-[13px] sm:text-sm">
                   {highlightText(service.name, query)}
                 </span>
                 <ArrowRight className={cn("w-4 h-4", selectedIndex === index ? "text-gray-300" : "text-gray-400")} />
               </div>
-              <span className={cn("text-xs line-clamp-1", selectedIndex === index ? "text-gray-300" : "text-gray-500")}>
+              <span className={cn("text-[11px] sm:text-xs line-clamp-1", selectedIndex === index ? "text-gray-300" : "text-gray-500")}>
                 {service.category}
               </span>
               {service.offer && (

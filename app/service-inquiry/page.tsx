@@ -98,7 +98,7 @@ export default function ServiceInquiry() {
               ✓
             </div>
 
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {t("requestSubmitted")}
             </h1>
 
@@ -163,7 +163,7 @@ export default function ServiceInquiry() {
             ))}
           </div>
 
-          <p className="text-sm text-gray-600">
+          <p className="text-xs sm:text-sm text-gray-600">
             {t("stepLabel")} {step} {t("of")} 3 —{" "}
             {step === 1
               ? t("chooseService")
@@ -176,19 +176,19 @@ export default function ServiceInquiry() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-3xl p-8 shadow-xl"
+          className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl"
         >
           {/* Step 1 */}
           {step === 1 && (
             <>
               <h2
-                className="text-3xl font-bold mb-2"
+                className="text-2xl sm:text-3xl font-bold mb-1.5 sm:mb-2"
                 style={{ color: colors.primary }}
               >
                 {t("whatServiceNeed")}
               </h2>
 
-              <p className="text-gray-600 mb-8">
+              <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
                 {t("selectCategoryDesc")}
               </p>
 
@@ -196,7 +196,7 @@ export default function ServiceInquiry() {
                 {services.map((service) => (
                   <label
                     key={service}
-                    className="flex items-center gap-4 p-4 border-2 rounded-xl cursor-pointer"
+                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 border-2 rounded-xl cursor-pointer text-sm sm:text-base"
                     style={{
                       borderColor:
                         formData.serviceType === service
@@ -227,7 +227,7 @@ export default function ServiceInquiry() {
           {step === 2 && (
             <div className="space-y-6">
               <h2
-                className="text-3xl font-bold"
+                className="text-2xl sm:text-3xl font-bold"
                 style={{ color: colors.primary }}
               >
                 {t("yourDetails")}
@@ -240,7 +240,7 @@ export default function ServiceInquiry() {
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
-                className="w-full p-4 border-2 border-gray-200 rounded-xl"
+                className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl text-sm sm:text-base"
               />
 
               <div className="grid md:grid-cols-2 gap-6">
@@ -251,7 +251,7 @@ export default function ServiceInquiry() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="p-4 border-2 border-gray-200 rounded-xl"
+                  className="p-3 sm:p-4 border-2 border-gray-200 rounded-xl text-sm sm:text-base"
                 />
 
                 <input
@@ -261,7 +261,7 @@ export default function ServiceInquiry() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="p-4 border-2 border-gray-200 rounded-xl"
+                  className="p-3 sm:p-4 border-2 border-gray-200 rounded-xl text-sm sm:text-base"
                 />
               </div>
 
@@ -272,7 +272,7 @@ export default function ServiceInquiry() {
                 value={formData.location}
                 onChange={handleInputChange}
                 required
-                className="w-full p-4 border-2 border-gray-200 rounded-xl"
+                className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl text-sm sm:text-base"
               />
 
               <textarea
@@ -281,7 +281,7 @@ export default function ServiceInquiry() {
                 value={formData.description}
                 onChange={handleInputChange}
                 required
-                className="w-full p-4 border-2 border-gray-200 rounded-xl h-32"
+                className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-xl h-24 sm:h-32 text-sm sm:text-base"
               />
             </div>
           )}
@@ -290,13 +290,13 @@ export default function ServiceInquiry() {
           {step === 3 && (
             <div className="space-y-6">
               <h2
-                className="text-3xl font-bold"
+                className="text-2xl sm:text-3xl font-bold"
                 style={{ color: colors.primary }}
               >
                 {t("reviewRequest")}
               </h2>
 
-              <div className="bg-gray-50 p-6 rounded-xl space-y-3">
+              <div className="bg-gray-50 p-4 sm:p-6 rounded-xl space-y-2 sm:space-y-3 text-sm sm:text-base">
                 <p>
                   <strong>{t("serviceLabel")}:</strong> {formData.serviceType}
                 </p>

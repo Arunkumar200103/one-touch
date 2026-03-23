@@ -55,7 +55,7 @@ export default function CategoryPage({ params }: PageProps) {
       <Navbar />
 
       {/* Header Banner */}
-      <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+      <div className="relative h-48 sm:h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
         <Image
           src={colors.banner}
           alt={categoryName}
@@ -67,7 +67,7 @@ export default function CategoryPage({ params }: PageProps) {
         <div className="absolute inset-0 flex flex-col justify-center items-start px-4 sm:px-8">
           <Link
             href="/"
-            className="text-white hover:text-gray-300 font-medium flex items-center gap-2 mb-4 transition-colors"
+            className="text-white hover:text-gray-300 font-medium flex items-center gap-1.5 mb-3 sm:mb-4 transition-colors text-sm sm:text-base"
           >
             <svg
               className="w-5 h-5"
@@ -85,10 +85,10 @@ export default function CategoryPage({ params }: PageProps) {
             {t("back")}
           </Link>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
             {t(categoryName)}
           </h1>
-          <p className="text-gray-200">
+          <p className="text-gray-200 text-sm sm:text-base">
             {filteredBusinesses.length}{" "}
             {filteredBusinesses.length === 1 ? "business" : "businesses"} available
           </p>
@@ -96,13 +96,13 @@ export default function CategoryPage({ params }: PageProps) {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
 
         {/* Service Types Section */}
         <div className="mb-16 animate-fade-in-up">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Available Services</h2>
-            <p className="text-gray-600">Choose the specific service you need</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2">Available Services</h2>
+            <p className="text-sm sm:text-base text-gray-600">Choose the specific service you need</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -119,8 +119,8 @@ export default function CategoryPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="my-12 border-t-2 border-gray-200 pt-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Verified Businesses</h2>
+        <div className="my-8 sm:my-12 border-t-2 border-gray-200 pt-8 sm:pt-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Verified Businesses</h2>
         </div>
 
         {/* Filter Stats */}

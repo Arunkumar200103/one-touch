@@ -104,7 +104,7 @@ export default function FAQs() {
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
       <Breadcrumb
           items={[
             { label: t("back"), href: "/" },
@@ -121,7 +121,7 @@ export default function FAQs() {
               placeholder={t("faqSearchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-4 border-2 border-gray-200 rounded-2xl focus:outline-none text-lg"
+              className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-2xl focus:outline-none text-base sm:text-lg"
             />
             <svg
               className="absolute right-4 top-4 w-6 h-6 text-gray-400"
@@ -145,26 +145,26 @@ export default function FAQs() {
         </div>
 
         {!searchQuery && (
-          <div className="mb-16">
+          <div className="mb-10 sm:mb-16">
             <h2
-              className="text-3xl font-bold mb-8"
+              className="text-xl sm:text-3xl font-bold mb-4 sm:mb-8"
               style={{ color: colors.primary }}
             >
               {t("browseByTopic")}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {categories.map((cat, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-2xl text-center border-2 cursor-pointer transition-all hover:shadow-lg"
+                  className="p-4 sm:p-6 rounded-2xl text-center border-2 cursor-pointer transition-all hover:shadow-lg"
                   style={{
                     borderColor: colors.primary,
                     backgroundColor: "white",
                   }}
                 >
-                  <div className="text-4xl mb-2">{cat.icon}</div>
-                  <h3 className="font-bold text-gray-900">{cat.name}</h3>
-                  <p className="text-sm text-gray-500">{cat.count} {t("questions")}</p>
+                  <div className="text-2xl sm:text-4xl mb-1 sm:mb-2">{cat.icon}</div>
+                  <h3 className="font-bold text-sm sm:text-base text-gray-900">{cat.name}</h3>
+                  <p className="text-[10px] sm:text-sm text-gray-500">{cat.count} {t("questions")}</p>
                 </div>
               ))}
             </div>
@@ -199,15 +199,15 @@ export default function FAQs() {
 
         {/* Still Need Help */}
         <div
-          className="rounded-3xl p-12 text-center text-white"
+          className="rounded-3xl p-6 sm:p-12 text-center text-white"
           style={{ backgroundColor: colors.primary }}
         >
-          <h3 className="text-3xl font-bold mb-4">{t("stillNeedHelp")}</h3>
-          <p className="text-lg mb-8 opacity-90">
+          <h3 className="text-xl sm:text-3xl font-bold mb-2 sm:mb-4">{t("stillNeedHelp")}</h3>
+          <p className="text-sm sm:text-lg mb-6 sm:mb-8 opacity-90">
             {t("supportTeamReady")}
           </p>
           <a href="/contact">
-            <button className="bg-white text-gray-900 font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg">
+            <button className="bg-white text-gray-900 font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full transition-all hover:shadow-lg text-sm sm:text-base">
               {t("contactSupport")}
             </button>
           </a>

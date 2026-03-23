@@ -31,26 +31,26 @@ import { FaRegBuilding, FaRegHospital } from "react-icons/fa";
 
 const featuredServices: Slide[] = [
   { 
-    title: "CONSTRUCTION & RENOVATION",
-    subtitle: "Professional construction and renovation services",
+    title: "constructionTitle",
+    subtitle: "constructionSub",
     image: "/banners/construction-banner.jpg",
-    cta: "GET QUOTE",
+    cta: "getQuote",
     accent: "#f97316",
     category: "Construction"
   },
   { 
-    title: "CCTV & NETWORKING",
-    subtitle: "CCTV service and networking solution",
+    title: "cctvTitle",
+    subtitle: "cctvSub",
     image: "/banners/cctv-banner.jpg",
-    cta: "CONTACT NOW",
+    cta: "contactNow",
     accent: "#ef4444",
     category: "CCTV & Networking"
   },
   { 
-    title: "FURNITURE & INTERIORS",
-    subtitle: "Stylish furniture and interior design services",
+    title: "furnitureTitle",
+    subtitle: "furnitureSub",
     image: "/banners/furniture-banner.jpg",
-    cta: "EXPLORE",
+    cta: "explore",
     accent: "#eab308",
     category: "Furniture"
   }
@@ -83,10 +83,10 @@ const allCategories = [
 ];
 
 const serviceCategories = [
-  { name: "B2B", subtitle: "Quick Quotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/businesses/construction-1.jpg" ,Category:"Construction"},
-  { name: "Repairs & Services", subtitle: "Get Nearest Vendor", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
-  { name: "Real Estate", subtitle: "Finest Agents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
-  { name: "Education", subtitle: "Book Now", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg" ,Category:"Education"}
+  { name: "b2b", subtitle: "quickQuotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/businesses/construction-1.jpg" ,Category:"Construction"},
+  { name: "repairs", subtitle: "getNearest", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
+  { name: "Real Estate", subtitle: "finestAgents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
+  { name: "Education", subtitle: "bookNow", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg" ,Category:"Education"}
 ];
 
 const testimonials = [
@@ -200,7 +200,7 @@ const filteredCategories = allCategories.filter((cat) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6 md:mb-10">
           <div>
-            <h2 className="font-serif text-[clamp(22px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
+            <h2 className="font-serif text-[clamp(18px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
               {t("featured")}{" "}
               <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
                 {t("services")}
@@ -246,7 +246,7 @@ const filteredCategories = allCategories.filter((cat) => {
               {t("featured")}
             </p>
 
-            <h3 className="text-xl md:text-2xl font-extrabold text-white mt-1">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white mt-1">
               {t(slide.title)}
             </h3>
           </div>
@@ -303,7 +303,7 @@ const filteredCategories = allCategories.filter((cat) => {
           </div>
 
           <div>
-            <h3 className="font-bold text-sm md:text-lg leading-tight">
+            <h3 className="font-bold text-xs sm:text-sm md:text-lg leading-tight">
               {t(service.name)}
             </h3>
 
@@ -379,7 +379,7 @@ const filteredCategories = allCategories.filter((cat) => {
               {t("services")}
             </p>
 
-            <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-1 md:mb-5">
+            <h2 className="font-serif text-[clamp(18px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-1 md:mb-5">
               {t("popularNear")}{" "}
               <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
                 {t(location)}
@@ -430,7 +430,7 @@ const filteredCategories = allCategories.filter((cat) => {
                       {cat.icon}
                     </span>
                   </div>
-                  <p className="text-[10px] md:text-[11px] font-semibold text-gray-700 group-hover:text-gray-900 text-center leading-tight">
+                  <p className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-700 group-hover:text-gray-900 text-center leading-tight">
                     {t(cat.name)}
                   </p>
                 </Link>
@@ -625,7 +625,7 @@ const filteredCategories = allCategories.filter((cat) => {
                   </div>
                 ))}
               </div>
-              <button className="self-start bg-yellow-400 hover:bg-yellow-300 active:scale-95 text-blue-900 font-black px-4 md:px-8 py-2.5 md:py-3.5 rounded-xl text-xs md:text-base transition-all shadow-lg shadow-yellow-400/30">
+              <button className="self-start bg-yellow-400 hover:bg-yellow-300 active:scale-95 text-blue-900 font-black px-4 md:px-8 py-2 md:py-3.5 rounded-xl text-[10px] sm:text-xs md:text-base transition-all shadow-lg shadow-yellow-400/30 whitespace-nowrap sm:whitespace-normal">
                 {t("listYourBiz")}
               </button>
             </div>

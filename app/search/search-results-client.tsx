@@ -21,11 +21,11 @@ export default function SearchResultsClient() {
   }, [q, setSearch, search]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1.5 sm:mb-2">
         {t("searchResultFor")} <span className="text-blue-600">"{q}"</span>
       </h1>
-      <p className="text-gray-500 mb-8">
+      <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8">
         {t("found")} {results.services.length} {t("services").toLowerCase()} and {results.businesses.length} {t("forBusinesses").toLowerCase()}.
       </p>
 
@@ -34,7 +34,7 @@ export default function SearchResultsClient() {
           {/* Services Matches */}
           {results.services.length > 0 && (
             <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">{t("matchingServices")}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">{t("matchingServices")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {results.services.map((service: any) => (
                   <ServiceTypeCard key={service.id} service={service} />
@@ -46,7 +46,7 @@ export default function SearchResultsClient() {
           {/* Businesses Matches */}
           {results.businesses.length > 0 && (
             <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">{t("matchingBusinesses")}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">{t("matchingBusinesses")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {results.businesses.map((business: any) => (
                   <BusinessCard

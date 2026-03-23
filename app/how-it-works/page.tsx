@@ -86,7 +86,7 @@ export default function HowItWorks() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative h-[420px] overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+      <div className="relative h-64 sm:h-80 md:h-[420px] overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
         <Image
           src={colors.banner}
           alt="How It Works"
@@ -94,82 +94,84 @@ export default function HowItWorks() {
           className="object-cover opacity-30"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-center items-start px-6 sm:px-12">
+        <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12">
+          <div className="mb-4">
+            <Breadcrumb
+              items={[
+                { label: t("back"), href: "/" },
+                { label: t("howItWorks"), href: "/how-it-works" },
+              ]}
+              accentColor={colors.light}
+            />
+          </div>
+
           <h1
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
+            className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-2 sm:mb-4"
             style={{ color: colors.light }}
           >
             {t("howItWorksHero")}
           </h1>
 
-          <p className="text-xl text-gray-200 max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-xl text-gray-200 max-w-2xl leading-relaxed">
             {t("howItWorksHeroDesc")}
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16 mt-[-90px]">
-
-        {/* Back Button */}
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <BackToHome />
-        </div>
-
-        {/* Breadcrumb */}
-        <Breadcrumb
-          items={[
-            { label: t("back"), href: "/" },
-            { label: t("howItWorks"), href: "/how-it-works" },
-          ]}
-        />
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
 
         {/* Steps Section */}
-        <section className="mb-24">
+        <section className="mb-16 sm:mb-24">
 
-          <div className="mb-16">
+          <div className="mb-8 sm:mb-16">
             <h2
-              className="text-4xl font-bold mb-4"
+              className="text-xl sm:text-4xl font-bold mb-3 sm:mb-4"
               style={{ color: colors.primary }}
             >
               {t("fiveSimpleSteps")}
             </h2>
 
-            <p className="text-xl text-gray-600 max-w-2xl">
+            <p className="text-sm sm:text-xl text-gray-600 max-w-2xl">
               {t("fiveStepsDesc")}
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8">
             {steps.map((step) => (
-              <StepCard
+              <div
                 key={step.number}
-                number={step.number}
-                title={step.title}
-                description={step.description}
-                icon={step.icon}
-                backgroundColor={colors.light}
-                textColor={colors.primary}
-              />
+                className="bg-white p-4 sm:p-8 rounded-2xl shadow-md border-l-4 transition-all hover:shadow-lg"
+                style={{ borderColor: colors.primary }}
+              >
+                <StepCard
+                    number={step.number}
+                    title={step.title}
+                    description={step.description}
+                    icon={step.icon}
+                    backgroundColor={colors.light}
+                    textColor={colors.primary}
+                />
+              </div>
             ))}
           </div>
 
         </section>
 
         {/* Benefits Section */}
-        <section className="mb-24">
+        <section className="mb-16 sm:mb-24">
 
-          <div className="mb-12">
+          <div className="mb-8 sm:mb-12">
             <h2
-              className="text-4xl font-bold mb-4"
+              className="text-xl sm:text-4xl font-bold mb-3 sm:mb-4"
               style={{ color: colors.primary }}
             >
               {t("whyChoosePlatform")}
             </h2>
 
-            <p className="text-xl text-gray-600 max-w-2xl">
+            <p className="text-sm sm:text-xl text-gray-600 max-w-2xl">
               {t("simplifyProcessDesc")}
             </p>
           </div>
@@ -199,19 +201,19 @@ export default function HowItWorks() {
 
         {/* CTA Section */}
         <section
-          className="rounded-3xl p-14 text-center text-white shadow-xl"
+          className="rounded-3xl p-6 sm:p-14 text-center text-white shadow-xl"
           style={{ backgroundColor: colors.primary }}
         >
-          <h3 className="text-3xl font-bold mb-4">
+          <h3 className="text-xl sm:text-3xl font-bold mb-3 sm:mb-4">
             {t("startDiscoveringTitle")}
           </h3>
 
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
             {t("browseThousandsDesc")}
           </p>
 
           <Link href="/">
-            <button className="bg-white text-gray-900 font-bold py-4 px-10 rounded-full transition-all hover:shadow-2xl hover:scale-105">
+            <button className="bg-white text-gray-900 font-bold py-3 px-8 sm:py-4 sm:px-10 rounded-full transition-all hover:shadow-2xl hover:scale-105 text-sm sm:text-base">
                 {t("startExploringBtn")}
               </button>
           </Link>

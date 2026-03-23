@@ -89,12 +89,12 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     if (storedName) {
       setUserName(storedName);
       setStep('REQUIREMENT');
-      addBotMessage(<span className="font-semibold text-sm">{botT.en.welcomeBack(storedName)}</span>, 400);
+      addBotMessage(<span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcomeBack(storedName)}</span>, 400);
       setTimeout(() => {
         addBotMessage(botT.en.askService, 600);
       }, 700);
     } else {
-      addBotMessage(<span className="font-semibold text-sm">{botT.en.welcome}</span>, 400);
+      addBotMessage(<span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>, 400);
       setTimeout(() => {
         addBotMessage(
           <div className="flex flex-col gap-2">
@@ -187,18 +187,18 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
   const placeholderText = step === 'NAME' ? "Type your name..." : "Type a service or use voice...";
 
   return (
-    <div className="chatbot-container flex flex-col h-full sm:h-[600px] w-full bg-white sm:rounded-3xl sm:shadow-2xl sm:border sm:border-gray-200/50 overflow-hidden text-sm sm:animate-in sm:zoom-in-95 sm:duration-300">
+    <div className="chatbot-container flex flex-col h-full sm:h-[600px] w-full bg-white sm:rounded-3xl sm:shadow-2xl sm:border sm:border-gray-200/50 overflow-hidden sm:text-sm text-[13px] sm:animate-in sm:zoom-in-95 sm:duration-300">
       {/* Professional AI Header */}
-      <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shrink-0 relative overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shrink-0 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-2 opacity-10">
           <Sparkles className="w-12 h-12" />
         </div>
         <div className="flex items-center gap-3 relative z-10">
-          <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-            <Bot className="w-6 h-6 text-white" />
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+            <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-base tracking-tight leading-tight">
+            <span className="font-bold sm:text-base text-sm tracking-tight leading-tight">
               One Touch AI
             </span>
             <div className="flex items-center gap-1.5">
@@ -216,7 +216,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 bg-[#f8fafc] flex flex-col gap-2 pr-2 pb-24 custom-scroll custom-chatbot-scrollbar" ref={scrollRef}>
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-[#f8fafc] flex flex-col gap-2 pr-2 pb-24 custom-scroll custom-chatbot-scrollbar" ref={scrollRef}>
         <style>{`
           .custom-chatbot-scrollbar::-webkit-scrollbar { width: 5px; }
           .custom-chatbot-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
@@ -226,7 +226,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
         ))}
         {isTyping && (
           <div className="flex justify-start mb-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <div className="bg-white border border-gray-200/60 rounded-[20px] rounded-bl-none px-4 py-3 flex gap-1 items-center shadow-sm">
+            <div className="bg-white border border-gray-200/60 rounded-[20px] rounded-bl-none px-3 py-2.5 sm:px-4 sm:py-3 flex gap-1 items-center shadow-sm">
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
@@ -239,7 +239,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
               <button
                 key={item}
                 onClick={() => handleQuickSuggest(item)}
-                className="px-3 py-1.5 rounded-xl border border-blue-200 bg-blue-50 text-blue-700 text-xs font-semibold hover:bg-blue-100 transition-all hover:scale-105 active:scale-95 shadow-sm"
+                className="px-3 py-1.5 rounded-xl border border-blue-200 bg-blue-50 text-blue-700 text-[11px] font-semibold hover:bg-blue-100 transition-all hover:scale-105 active:scale-95 shadow-sm"
               >
                 {t(item)}
               </button>

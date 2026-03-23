@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/lib/language-context";
 
 interface BackToHomeProps {
   className?: string;
@@ -8,12 +9,13 @@ interface BackToHomeProps {
 }
 
 export function BackToHome({ className = "", showLabel = true }: BackToHomeProps) {
+  const { t } = useLanguage();
   return (
     <Link href="/">
       <button
         className={`
-          group flex items-center gap-2 px-4 py-2 rounded-lg
-          text-white font-medium transition-all duration-300
+          group flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg
+          text-white text-sm sm:text-base font-medium transition-all duration-300
           hover:bg-white/20 active:scale-95
           ${className}
         `}
@@ -31,7 +33,7 @@ export function BackToHome({ className = "", showLabel = true }: BackToHomeProps
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
-        {showLabel && <span>Back to Home</span>}
+        {showLabel && <span>{t("back")}</span>}
       </button>
     </Link>
   );

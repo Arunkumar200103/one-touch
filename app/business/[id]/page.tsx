@@ -95,45 +95,45 @@ export default function BusinessProfilePage({ params }: PageProps) {
               }}
             />
 
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <h1 className="text-5xl font-bold mb-2">{business.businessName}</h1>
-              <p className="text-lg opacity-90">{t(business.category)}</p>
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">{business.businessName}</h1>
+              <p className="text-sm sm:text-base md:text-lg opacity-90">{t(business.category)}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-8 border-b border-gray-200">
-            <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
-              <h3 className="text-xs font-semibold mb-2 opacity-75">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-6 sm:p-8 border-b border-gray-200">
+            <div className="rounded-xl p-3 sm:p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
+              <h3 className="text-[10px] sm:text-xs font-semibold mb-1 sm:mb-2 opacity-75 uppercase tracking-wider">
                 {t("ownerName")}
               </h3>
-              <p className="text-lg font-bold" style={{ color: colors.primary }}>
+              <p className="text-sm sm:text-lg font-bold truncate" style={{ color: colors.primary }}>
                 {business.ownerName}
               </p>
             </div>
 
-            <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
-              <h3 className="text-xs font-semibold mb-2 opacity-75">
+            <div className="rounded-xl p-3 sm:p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
+              <h3 className="text-[10px] sm:text-xs font-semibold mb-1 sm:mb-2 opacity-75 uppercase tracking-wider">
                 {t("location")}
               </h3>
-              <p className="text-lg font-bold" style={{ color: colors.primary }}>
+              <p className="text-sm sm:text-lg font-bold truncate" style={{ color: colors.primary }}>
                 {business.location}
               </p>
             </div>
 
-            <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
-              <h3 className="text-xs font-semibold mb-2 opacity-75">
+            <div className="rounded-xl p-3 sm:p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
+              <h3 className="text-[10px] sm:text-xs font-semibold mb-1 sm:mb-2 opacity-75 uppercase tracking-wider">
                 {t("experience")}
               </h3>
-              <p className="text-lg font-bold" style={{ color: colors.primary }}>
-                {business.yearExperience}+ years
+              <p className="text-sm sm:text-lg font-bold" style={{ color: colors.primary }}>
+                {business.yearExperience}+ {t("years")}
               </p>
             </div>
 
-            <div className="rounded-xl p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
-              <h3 className="text-xs font-semibold mb-2 opacity-75">
+            <div className="rounded-xl p-3 sm:p-5 transition-all hover:shadow-md" style={{ backgroundColor: colors.light }}>
+              <h3 className="text-[10px] sm:text-xs font-semibold mb-1 sm:mb-2 opacity-75 uppercase tracking-wider">
                 {t("since")}
               </h3>
-              <p className="text-lg font-bold" style={{ color: colors.primary }}>
+              <p className="text-sm sm:text-lg font-bold" style={{ color: colors.primary }}>
                 {new Date(business.startDate).getFullYear()}
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function BusinessProfilePage({ params }: PageProps) {
 
           {/* Rating Section */}
           {business.rating && (
-            <div className="p-8 border-b border-gray-200">
+            <div className="p-6 sm:p-8 border-b border-gray-200">
               <div className="flex items-center gap-4">
                 <div>
                   <div className="flex gap-1 mb-2">
@@ -159,23 +159,23 @@ export default function BusinessProfilePage({ params }: PageProps) {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-600 text-sm">{business.rating} rating ({business.reviews} reviews)</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">{business.rating} rating ({business.reviews} reviews)</p>
                 </div>
               </div>
             </div>
           )}
 
-          <div className="p-8 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="p-6 sm:p-8 border-b border-gray-200">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
               {t("businessDescription")}
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
               {business.description}
             </p>
           </div>
 
-          <div className="p-8 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="p-6 sm:p-8 border-b border-gray-200">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
               Contact Information
             </h2>
             <div className="space-y-4">
@@ -224,8 +224,8 @@ export default function BusinessProfilePage({ params }: PageProps) {
           </div>
 
           {business.socialLinks && Object.keys(business.socialLinks).length > 0 && (
-            <div className="p-8 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div className="p-6 sm:p-8 border-b border-gray-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
                 {t("socialLinks")}
               </h2>
               <div className="flex flex-wrap gap-4">
@@ -307,7 +307,7 @@ export default function BusinessProfilePage({ params }: PageProps) {
             </div>
           )}
 
-          <div className="p-8">
+          <div className="p-6 sm:p-8">
             <a
               href={`tel:${business.contactNumber}`}
               className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all flex items-center justify-center gap-2"

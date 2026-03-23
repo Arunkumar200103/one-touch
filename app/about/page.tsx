@@ -79,7 +79,7 @@ export default function About() {
         <section className="mb-24">
 
           <h2
-            className="text-4xl font-bold mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8"
             style={{ color: colors.primary }}
           >
             {t("ourMission")}
@@ -89,15 +89,15 @@ export default function About() {
 
             <div>
 
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6">
                 {t("missionP1")}
               </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6">
                 {t("missionP2")}
               </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                 {t("missionP3")}
               </p>
 
@@ -123,7 +123,7 @@ export default function About() {
         <section className="mb-24">
 
           <h2
-            className="text-4xl font-bold mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12"
             style={{ color: colors.primary }}
           >
             {t("whyChooseUs")}
@@ -158,7 +158,7 @@ export default function About() {
           style={{ backgroundColor: colors.primary }}
         >
 
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 sm:mb-12 text-center">
             {t("ourImpact")}
           </h2>
 
@@ -167,7 +167,7 @@ export default function About() {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
 
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2">
                   {stat.number}
                 </div>
 
@@ -186,7 +186,7 @@ export default function About() {
         <section className="mb-24">
 
           <h2
-            className="text-4xl font-bold mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12"
             style={{ color: colors.primary }}
           >
             {t("ourCoreValues")}
@@ -199,7 +199,7 @@ export default function About() {
               style={{ borderColor: colors.primary }}
             >
               <h3
-                className="text-2xl font-bold mb-4"
+                className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"
                 style={{ color: colors.primary }}
               >
                 {t("transparency")}
@@ -214,7 +214,7 @@ export default function About() {
               style={{ borderColor: colors.primary }}
             >
               <h3
-                className="text-2xl font-bold mb-4"
+                className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"
                 style={{ color: colors.primary }}
               >
                 {t("accessibility")}
@@ -229,7 +229,7 @@ export default function About() {
               style={{ borderColor: colors.primary }}
             >
               <h3
-                className="text-2xl font-bold mb-4"
+                className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"
                 style={{ color: colors.primary }}
               >
                 {t("communityGrowth")}
@@ -244,7 +244,7 @@ export default function About() {
               style={{ borderColor: colors.primary }}
             >
               <h3
-                className="text-2xl font-bold mb-4"
+                className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"
                 style={{ color: colors.primary }}
               >
                 {t("safetyTrust")}
@@ -262,13 +262,13 @@ export default function About() {
         <section className="text-center">
 
           <h2
-            className="text-4xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
             style={{ color: colors.primary }}
           >
             {t("readyToFind")}
           </h2>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto">
             {t("readyDesc")}
           </p>
 
