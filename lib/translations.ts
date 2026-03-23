@@ -479,7 +479,7 @@ export const translations = {
   ta: {
     title: "One Touch",
     tagline: "ஒரு தொடுதலில் அனைத்து உள்ளூர் சேவைகள்",
-    searchPlaceholder: "சேவைகளுக்குத் தேடுக...",
+    searchPlaceholder: "தேடுக...",
     voiceSearch: "குரல் தேடல்",
     categories: "வகைகள்",
     viewDetails: "விவரங்களைக் காணுக",
