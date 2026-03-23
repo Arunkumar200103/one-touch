@@ -1,12 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { SuggestionsGrid } from './SuggestionsGrid';
+import { AvatarSpeaker } from './AvatarSpeaker';
 import { useLanguage } from '@/lib/language-context';
 import { Language } from '@/lib/translations';
 import { getMatchingServices, getTopSuggestions, ServiceInfo } from '@/lib/chatbot-data';
-import { X, Bot, Sparkles, SendHorizontal } from 'lucide-react';
+import { useSpeech } from '@/hooks/useSpeech';
+import { X, Sparkles } from 'lucide-react';
 
 interface ChatbotContainerProps {
   onClose: () => void;
@@ -21,8 +25,8 @@ const botT = {
     askName: "What is your name?",
     greetName: (name: string) => `Hi ${name}! What service are you looking for?`,
     foundResults: (count: number) => `I found ${count} matching service${count > 1 ? 's' : ''}. Please select one:`,
-    noResults: "I couldn't find any matching services. Please try another search term or broad category (e.g., Cleaning, Repair).",
-    redirecting: (name: string) => `Great choice! Redirecting you to ${name}... ✓`,
+    noResults: "I couldn't find any matching services. Please try another search term or broad category.",
+    redirecting: (name: string) => `Great choice! Redirecting you to ${name}...`,
     placeholderName: "Type your name...",
     placeholderService: "Type a service or use voice...",
   },
@@ -34,8 +38,8 @@ const botT = {
     askName: "உங்கள் பெயர் என்ன?",
     greetName: (name: string) => `வணக்கம் ${name}! நீங்கள் எந்த சேவையைத் தேடுகிறீர்கள்?`,
     foundResults: (count: number) => `${count} பொருத்தமான சேவைகளைக் கண்டறிந்தேன். ஒன்றைத் தேர்ந்தெடுக்கவும்:`,
-    noResults: "பொருத்தமான சேவைகள் எதுவும் கிடைக்கவில்லை. மற்றொரு தேடல் சொல் அல்லது வகையை (எ.கா., சுத்தம் செய்தல், பழுதுபார்த்தல்) முயலவும்.",
-    redirecting: (name: string) => `சிறந்த தேர்வு! ${name}-க்கு அழைத்துச் செல்கிறேன்... ✓`,
+    noResults: "பொருத்தமான சேவைகள் எதுவும் கிடைக்கவில்லை. மற்றொரு தேடல் சொல்லை முயலவும்.",
+    redirecting: (name: string) => `சிறந்த தேர்வு! ${name}-க்கு அழைத்துச் செல்கிறேன்...`,
     placeholderName: "உங்கள் பெயரை உள்ளிடவும்...",
     placeholderService: "சேவையை உள்ளிடவும் அல்லது குரல் மூலம் தேடவும்...",
   }
@@ -54,28 +58,34 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
   const { language, setLanguage, t } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
-  
+  const { speak, isSpeaking } = useSpeech();
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [step, setStep] = useState<Step>('GREETING');
-  // Removed local language state to sync with global context
   const [userName, setUserName] = useState<string>('');
   const [suggestions, setSuggestions] = useState<ServiceInfo[]>([]);
   const [query, setQuery] = useState('');
 
   const currentT = botT[language];
 
-  const addBotMessage = (text: string | React.ReactNode, delay = 0) => {
+  /** Add a bot message and optionally speak it */
+  const addBotMessage = useCallback((text: string | React.ReactNode, delay = 0, speakText?: string) => {
+    const doAdd = () => {
+      setIsTyping(false);
+      setMessages(prev => [...prev, { id: Date.now().toString() + Math.random(), text, isBot: true }]);
+      if (speakText || typeof text === 'string') {
+        speak(speakText ?? (typeof text === 'string' ? text : ''), language);
+      }
+    };
+
     if (delay > 0) {
       setIsTyping(true);
-      setTimeout(() => {
-        setIsTyping(false);
-        setMessages(prev => [...prev, { id: Date.now().toString() + Math.random(), text, isBot: true }]);
-      }, delay);
+      setTimeout(doAdd, delay);
     } else {
-      setMessages(prev => [...prev, { id: Date.now().toString() + Math.random(), text, isBot: true }]);
+      doAdd();
     }
-  };
+  }, [language, speak]);
 
   const addUserMessage = (text: string) => {
     setMessages(prev => [...prev, { id: Date.now().toString() + Math.random(), text, isBot: false }]);
@@ -89,36 +99,45 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     if (storedName) {
       setUserName(storedName);
       setStep('REQUIREMENT');
-      addBotMessage(<span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcomeBack(storedName)}</span>, 400);
+      addBotMessage(
+        <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcomeBack(storedName)}</span>,
+        400,
+        botT.en.welcomeBack(storedName)
+      );
       setTimeout(() => {
         addBotMessage(botT.en.askService, 600);
       }, 700);
     } else {
-      addBotMessage(<span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>, 400);
+      addBotMessage(
+        <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>,
+        400,
+        botT.en.welcome
+      );
       setTimeout(() => {
         addBotMessage(
           <div className="flex flex-col gap-2">
             <span>{botT.en.selectLanguage}</span>
             <div className="flex gap-2.5 mt-1">
-              <button 
-                onClick={() => handleLanguageSelect('en')} 
+              <button
+                onClick={() => handleLanguageSelect('en')}
                 className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
               >
                 English
               </button>
-              <button 
-                onClick={() => handleLanguageSelect('ta')} 
+              <button
+                onClick={() => handleLanguageSelect('ta')}
                 className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
               >
                 Tamil
               </button>
             </div>
           </div>,
-          800
+          800,
+          botT.en.selectLanguage
         );
       }, 900);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -128,7 +147,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
 
   const handleLanguageSelect = (lang: Language) => {
     if (step !== 'GREETING') return;
-    setLanguage(lang); // Update global app language
+    setLanguage(lang);
     addUserMessage(lang === 'ta' ? 'தமிழ்' : 'English');
     setStep('NAME');
     setTimeout(() => {
@@ -156,7 +175,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       setQuery(text);
       const results = getMatchingServices(text);
       setSuggestions(results);
-      
+
       if (results.length > 0) {
         addBotMessage(currentT.foundResults(results.length), 800);
       } else {
@@ -165,65 +184,75 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     }
   };
 
-  const handleQuickSuggest = (val: string) => {
-    handleSend(val);
-  };
+  const handleQuickSuggest = (val: string) => handleSend(val);
 
   const handleServiceSelect = (service: ServiceInfo) => {
     setSuggestions([]);
     addUserMessage(`Selected: ${service.name}`);
     setStep('CONFIRMATION');
+    const confirmText = currentT.redirecting(service.name);
     setTimeout(() => {
-      addBotMessage(<span className="text-green-600 font-medium w-full block">Great choice! Redirecting you to {service.name}... ✓</span>);
+      addBotMessage(
+        <span className="text-green-600 font-medium w-full block">{confirmText} ✓</span>,
+        0,
+        confirmText
+      );
       setTimeout(() => {
-        const query = encodeURIComponent(service.name);
-        router.push(`/search?q=${query}`);
-        onClose(); 
-      }, 1500);
+        router.push(`/search?q=${encodeURIComponent(service.name)}`);
+        onClose();
+      }, 1800);
     }, 400);
   };
 
   const isInputDisabled = step === 'GREETING' || step === 'CONFIRMATION';
-  const placeholderText = step === 'NAME' ? "Type your name..." : "Type a service or use voice...";
+  const placeholderText = step === 'NAME' ? currentT.placeholderName : currentT.placeholderService;
 
   return (
-    <div className="chatbot-container flex flex-col h-full sm:h-[600px] w-full bg-white sm:rounded-3xl sm:shadow-2xl sm:border sm:border-gray-200/50 overflow-hidden sm:text-sm text-[13px] sm:animate-in sm:zoom-in-95 sm:duration-300">
-      {/* Professional AI Header */}
-      <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shrink-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-2 opacity-10">
-          <Sparkles className="w-12 h-12" />
+    <div className="chatbot-container flex flex-col h-full sm:h-[640px] w-full bg-white sm:rounded-3xl sm:shadow-2xl sm:border sm:border-gray-200/50 overflow-hidden sm:text-sm text-[13px] sm:animate-in sm:zoom-in-95 sm:duration-300">
+
+      {/* === Header with Avatar === */}
+      <div className="flex flex-col items-center px-4 pt-4 pb-3 bg-gradient-to-b from-indigo-700 via-blue-700 to-blue-600 text-white shrink-0 relative overflow-hidden">
+        {/* Decorative sparkles */}
+        <div className="absolute top-2 right-3 opacity-15">
+          <Sparkles className="w-10 h-10" />
         </div>
-        <div className="flex items-center gap-3 relative z-10">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-            <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold sm:text-base text-sm tracking-tight leading-tight">
-              One Touch AI
-            </span>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.5)]"></span>
-              <span className="text-[11px] text-blue-100 font-medium">Always Active</span>
-            </div>
-          </div>
+        <div className="absolute top-2 left-3 opacity-10">
+          <Sparkles className="w-7 h-7" />
         </div>
-        <button 
-          onClick={onClose} 
-          className="p-2 hover:bg-white/10 rounded-xl transition-all sm:hidden" 
+
+        {/* Close button (mobile) */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 p-1.5 hover:bg-white/10 rounded-xl transition-all sm:hidden z-10"
           aria-label="Close Chat"
         >
           <X className="w-5 h-5 text-white" />
         </button>
+
+        {/* AI Avatar */}
+        <AvatarSpeaker isSpeaking={isSpeaking} language={language} />
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-[#f8fafc] flex flex-col gap-2 pr-2 pb-24 custom-scroll custom-chatbot-scrollbar" ref={scrollRef}>
+      {/* === Messages === */}
+      <div
+        className="flex-1 overflow-y-auto p-3 sm:p-4 bg-[#f8fafc] flex flex-col gap-1 pr-2 pb-24 custom-scroll custom-chatbot-scrollbar"
+        ref={scrollRef}
+      >
         <style>{`
           .custom-chatbot-scrollbar::-webkit-scrollbar { width: 5px; }
           .custom-chatbot-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
         `}</style>
+
         {messages.map((msg) => (
-          <ChatMessage key={msg.id} message={msg.text} isBot={msg.isBot} />
+          <ChatMessage
+            key={msg.id}
+            message={msg.text}
+            isBot={msg.isBot}
+            onSpeak={msg.isBot ? (text) => speak(text, language) : undefined}
+          />
         ))}
+
+        {/* Typing indicator */}
         {isTyping && (
           <div className="flex justify-start mb-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
             <div className="bg-white border border-gray-200/60 rounded-[20px] rounded-bl-none px-3 py-2.5 sm:px-4 sm:py-3 flex gap-1 items-center shadow-sm">
@@ -233,7 +262,9 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
             </div>
           </div>
         )}
-        {step === 'REQUIREMENT' && !isTyping && messages.length > 0 && messages[messages.length-1].isBot && (
+
+        {/* Quick suggestion chips */}
+        {step === 'REQUIREMENT' && !isTyping && messages.length > 0 && messages[messages.length - 1].isBot && (
           <div className="flex flex-wrap gap-2 mb-4 animate-in fade-in slide-in-from-top-2 duration-500">
             {getTopSuggestions().map(item => (
               <button
@@ -246,6 +277,8 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
             ))}
           </div>
         )}
+
+        {/* Service results */}
         {suggestions.length > 0 && !isTyping && (
           <div className="animate-[fadeIn_0.3s_ease-out_forwards]">
             <SuggestionsGrid suggestions={suggestions} onSelect={handleServiceSelect} query={query} />

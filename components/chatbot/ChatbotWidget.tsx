@@ -37,7 +37,7 @@ export function ChatbotWidget() {
 
       {isOpen && (
         <div className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 flex flex-col justify-end pointer-events-none">
-          <div className="pointer-events-auto h-full sm:h-auto w-full sm:w-[400px]">
+          <div className="pointer-events-auto h-full sm:h-auto w-full sm:w-[420px]">
             <ChatbotContainer onClose={() => setIsOpen(false)} />
           </div>
         </div>
