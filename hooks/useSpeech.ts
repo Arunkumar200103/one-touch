@@ -28,11 +28,18 @@ export function useSpeech() {
 
     // Pick a natural-sounding voice when available
     const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v =>
-      utterance.lang === 'ta-IN'
-        ? v.lang === 'ta-IN'
-        : v.lang.startsWith('en') && v.name.toLowerCase().includes('female')
-    ) || voices.find(v => v.lang === utterance.lang);
+    const preferred = voices.find(v => {
+      const name = v.name.toLowerCase();
+      if (utterance.lang === 'ta-IN' && v.lang.includes('ta')) {
+        // Look for explicitly female Tamil voices or known female Tamil voice names (Valli, Pallavi, Shruti, etc)
+        return name.includes('female') || name.includes('valli') || name.includes('pallavi') || name.includes('shruti');
+      }
+      if (v.lang.startsWith('en')) {
+        return name.includes('female') || name.includes('zira') || name.includes('samantha');
+      }
+      return false;
+    }) || voices.find(v => v.lang === utterance.lang) || voices.find(v => v.lang.includes('ta') && utterance.lang === 'ta-IN');
+
     if (preferred) utterance.voice = preferred;
 
     utterance.onstart = () => setIsSpeaking(true);

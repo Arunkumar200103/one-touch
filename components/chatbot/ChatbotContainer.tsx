@@ -36,10 +36,16 @@ const botT = {
     selectLanguage: "தயவுசெய்து உங்கள் விருப்பமான மொழியைத் தேர்ந்தெடுக்கவும்:",
     askService: "இன்று நீங்கள் எந்த சேவையைத் தேடுகிறீர்கள்?",
     askName: "உங்கள் பெயர் என்ன?",
+    // Hidden fallback: "ungal peyar enna" so an English voice can read it if Tamil TTS is utterly missing
+    askNameSpeech: "ungal peyar enna?",
     greetName: (name: string) => `வணக்கம் ${name}! நீங்கள் எந்த சேவையைத் தேடுகிறீர்கள்?`,
+    greetNameSpeech: (name: string) => `Vanakkam ${name}! Neengal endha sevaiyai thedugireergal?`,
     foundResults: (count: number) => `${count} பொருத்தமான சேவைகளைக் கண்டறிந்தேன். ஒன்றைத் தேர்ந்தெடுக்கவும்:`,
+    foundResultsSpeech: (count: number) => `${count} poruthamaana sevaigalai kandarinden. Ondrai therndhedukkavum.`,
     noResults: "பொருத்தமான சேவைகள் எதுவும் கிடைக்கவில்லை. மற்றொரு தேடல் சொல்லை முயலவும்.",
+    noResultsSpeech: "Poruthamaana sevaigal yedhuvum kidaikavillai. Mattroru thedal sollai muyalavum.",
     redirecting: (name: string) => `சிறந்த தேர்வு! ${name}-க்கு அழைத்துச் செல்கிறேன்...`,
+    redirectingSpeech: (name: string) => `Sirandha thaervu! ${name} ikku azhaiththu chelgiraen...`,
     placeholderName: "உங்கள் பெயரை உள்ளிடவும்...",
     placeholderService: "சேவையை உள்ளிடவும் அல்லது குரல் மூலம் தேடவும்...",
   }
@@ -58,7 +64,8 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
   const { language, setLanguage, t } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
-  const { speak, isSpeaking } = useSpeech();
+  // Audio TTS Hook
+  const { speak, stop, isSpeaking } = useSpeech();
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -70,12 +77,12 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
   const currentT = botT[language];
 
   /** Add a bot message and optionally speak it */
-  const addBotMessage = useCallback((text: string | React.ReactNode, delay = 0, speakText?: string) => {
+  const addBotMessage = useCallback((text: string | React.ReactNode, delay = 0, speakText?: string, overrideLang?: string) => {
     const doAdd = () => {
       setIsTyping(false);
       setMessages(prev => [...prev, { id: Date.now().toString() + Math.random(), text, isBot: true }]);
       if (speakText || typeof text === 'string') {
-        speak(speakText ?? (typeof text === 'string' ? text : ''), language);
+        speak(speakText ?? (typeof text === 'string' ? text : ''), overrideLang || language);
       }
     };
 
@@ -95,48 +102,42 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     if (initialized.current) return;
     initialized.current = true;
 
-    const storedName = sessionStorage.getItem('chatbot_userName');
-    if (storedName) {
-      setUserName(storedName);
-      setStep('REQUIREMENT');
+    // Always start from first step (Language selection)
+    addBotMessage(
+      <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>,
+      400,
+      'Welcome to One Touch!',
+      'en'
+    );
+    setTimeout(() => {
       addBotMessage(
-        <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcomeBack(storedName)}</span>,
-        400,
-        botT.en.welcomeBack(storedName)
+        <div className="flex flex-col gap-2">
+          <span>{botT.en.selectLanguage}</span>
+          <div className="flex gap-2.5 mt-1">
+            <button
+              onClick={() => handleLanguageSelect('en')}
+              className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
+            >
+              English
+            </button>
+            <button
+              onClick={() => handleLanguageSelect('ta')}
+              className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
+            >
+              Tamil
+            </button>
+          </div>
+        </div>,
+        800,
+        'Please select your preferred language.',
+        'en'
       );
+      
+      // Bilingual Tamil prompt after English finishes
       setTimeout(() => {
-        addBotMessage(botT.en.askService, 600);
-      }, 700);
-    } else {
-      addBotMessage(
-        <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>,
-        400,
-        botT.en.welcome
-      );
-      setTimeout(() => {
-        addBotMessage(
-          <div className="flex flex-col gap-2">
-            <span>{botT.en.selectLanguage}</span>
-            <div className="flex gap-2.5 mt-1">
-              <button
-                onClick={() => handleLanguageSelect('en')}
-                className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
-              >
-                English
-              </button>
-              <button
-                onClick={() => handleLanguageSelect('ta')}
-                className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
-              >
-                Tamil
-              </button>
-            </div>
-          </div>,
-          800,
-          botT.en.selectLanguage
-        );
-      }, 900);
-    }
+        addBotMessage('உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்.', 0, 'Ungal mozhiyai therndhedukkavum.', 'en');
+      }, 3500); 
+    }, 900);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -151,12 +152,15 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     addUserMessage(lang === 'ta' ? 'தமிழ்' : 'English');
     setStep('NAME');
     setTimeout(() => {
-      addBotMessage(botT[lang].askName, 400);
+      stop();
+      // Pass the explicit Speech string if it exists for the language, fallback to text
+      const speechText = (botT[lang] as any).askNameSpeech || botT[lang].askName;
+      addBotMessage(botT[lang].askName, 400, speechText, lang);
     }, 400);
   };
 
   const handleSend = (text: string) => {
-    if (step === 'GREETING') return;
+    if (step === 'GREETING' || step === 'LANGUAGE') return;
 
     addUserMessage(text);
 
@@ -165,7 +169,8 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       sessionStorage.setItem('chatbot_userName', text);
       setStep('REQUIREMENT');
       setTimeout(() => {
-        addBotMessage(currentT.greetName(text), 500);
+        const speechText = (currentT as any).greetNameSpeech ? (currentT as any).greetNameSpeech(text) : currentT.greetName(text);
+        addBotMessage(currentT.greetName(text), 500, speechText);
       }, 500);
       return;
     }
@@ -177,9 +182,11 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       setSuggestions(results);
 
       if (results.length > 0) {
-        addBotMessage(currentT.foundResults(results.length), 800);
+        const speechText = (currentT as any).foundResultsSpeech ? (currentT as any).foundResultsSpeech(results.length) : currentT.foundResults(results.length);
+        addBotMessage(currentT.foundResults(results.length), 800, speechText);
       } else {
-        addBotMessage(currentT.noResults, 800);
+        const speechText = (currentT as any).noResultsSpeech || currentT.noResults;
+        addBotMessage(currentT.noResults, 800, speechText);
       }
     }
   };
@@ -191,14 +198,17 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     addUserMessage(`Selected: ${service.name}`);
     setStep('CONFIRMATION');
     const confirmText = currentT.redirecting(service.name);
+    const speechText = (currentT as any).redirectingSpeech ? (currentT as any).redirectingSpeech(service.name) : confirmText;
+    
     setTimeout(() => {
       addBotMessage(
         <span className="text-green-600 font-medium w-full block">{confirmText} ✓</span>,
         0,
-        confirmText
+        speechText
       );
       setTimeout(() => {
-        router.push(`/search?q=${encodeURIComponent(service.name)}`);
+        // Redirect to the active service category page instead of search
+        router.push(`/category/${encodeURIComponent(service.category)}`);
         onClose();
       }, 1800);
     }, 400);
@@ -289,4 +299,6 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       <ChatInput onSend={handleSend} disabled={isInputDisabled} placeholder={placeholderText} language={language} />
     </div>
   );
+
+
 }

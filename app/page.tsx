@@ -9,6 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "@/lib/location-context"
 import { useSearch, SearchResults } from "@/lib/search-context";
+import Adssection from "@/components/Adssection";
 import { Footer } from "@/components/footer";
 import { 
   FiSmartphone, FiVideo, FiHome, FiTool, FiMonitor,
@@ -322,52 +323,8 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
       </section>
 
-      {/* ── EXCLUSIVE OFFERS & ADS ── */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-16 mt-4 md:-mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-indigo-500 to-purple-600 p-6 flex items-center justify-between">
-            <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("limitedTime")}</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("off20")}</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">{t("cleaningServiceDesc")}</p>
-              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-indigo-200 transition-colors">
-                {t("bookNow")} <ChevronRight size={14} />
-              </button>
-            </div>
-            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
-              <MdOutlineCleaningServices />
-            </div>
-          </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-rose-500 to-pink-600 p-6 flex items-center justify-between">
-            <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("megaDeal")}</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("acRepair")}</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">{t("startingAt")}</p>
-              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-rose-200 transition-colors">
-                {t("claimOffer")} <ChevronRight size={14} />
-              </button>
-            </div>
-            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
-              <FiTool />
-            </div>
-          </div>
-          
-          <div className="relative rounded-2xl overflow-hidden shadow-md group cursor-pointer aspect-[21/9] md:aspect-auto md:h-48 bg-gradient-to-br from-amber-500 to-orange-500 p-6 flex items-center justify-between lg:col-span-1 md:col-span-2">
-            <div className="z-10 text-white w-2/3">
-              <span className="bg-white/20 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm tracking-wider uppercase">{t("festiveSpecial")}</span>
-              <h3 className="text-xl md:text-2xl font-black mt-3 mb-1">{t("freeInspection")}</h3>
-              <p className="text-xs md:text-sm font-medium opacity-90">{t("pestControlDesc")}</p>
-              <button className="mt-4 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center gap-1 hover:text-amber-200 transition-colors">
-                {t("getDeal")} <ChevronRight size={14} />
-              </button>
-            </div>
-            <div className="absolute right-0 bottom-0 text-[100px] text-white/10 translate-x-4 translate-y-4 group-hover:scale-110 group-hover:-translate-y-2 transition duration-500">
-               <FiActivity />
-            </div>
-          </div>
-        </div>
-      </section>
+<Adssection/>
 
        <section className="bg-white py-10 md:py-16 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
