@@ -2,9 +2,8 @@ import { useRef, useState, useEffect, FC } from "react";
 import { IconType } from "react-icons";
 import { ChevronRight } from "lucide-react";
 import { MdOutlineCleaningServices } from "react-icons/md";
-import { FiTool, FiActivity } from "react-icons/fi";
+import { FiTool, FiActivity, FiHome } from "react-icons/fi";
 
-// ─── types ────────────────────────────────────────────────────────────────────
 interface CardBase {
   badge: string;
   title: string;
@@ -13,7 +12,16 @@ interface CardBase {
   gradient: string;
   Icon: IconType;
   img: string;
+  link: string;
 }
+
+import { useRouter } from "next/navigation";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 interface AdsSectionProps {
   t?: (key: string) => string;
@@ -78,13 +86,14 @@ const WideBanner: FC<WideBannerProps> = ({ card, visible }) => (
     <div className="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500" />
     <div className="absolute -right-3 -bottom-3 w-24 h-24 rounded-full bg-white/10 group-hover:scale-110 transition-transform duration-500 delay-75" />
 
-    {/* person image */}
-    <img
-      src={card.img}
-      alt={card.title}
-      className="absolute bottom-0 right-4 h-36 md:h-40 object-contain object-bottom opacity-90
-                 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500 pointer-events-none"
-    />
+    {/* person image - rounded for ad style */}
+    <div className="absolute right-4 top-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 rounded-full border-4 border-white/20 overflow-hidden shadow-2xl z-10 transition-transform duration-500 group-hover:scale-110">
+      <img
+        src={card.img}
+        alt={card.title}
+        className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+      />
+    </div>
 
     {/* left-to-center gradient so text stays readable over image */}
     <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
@@ -139,13 +148,14 @@ const NarrowCard: FC<NarrowCardProps> = ({ card, visible, delay }) => (
       style={{ backgroundImage: NOISE }}
     />
 
-    {/* person image */}
-    <img
-      src={card.img}
-      alt={card.title}
-      className="absolute bottom-0 right-0 h-28 object-contain object-bottom opacity-90
-                 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500 pointer-events-none"
-    />
+    {/* person image - smaller rounded */}
+    <div className="absolute -right-2 -bottom-2 w-24 h-24 rounded-full border-4 border-white/10 overflow-hidden shadow-xl z-0 transition-transform duration-500 group-hover:scale-110">
+      <img
+        src={card.img}
+        alt={card.title}
+        className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+      />
+    </div>
 
     {/* top-to-mid gradient for text legibility */}
     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent" />
@@ -197,21 +207,46 @@ const ScrollDots: FC<ScrollDotsProps> = ({ count }) => (
 // ─── main exported component ──────────────────────────────────────────────────
 const AdsSection: FC<AdsSectionProps> = ({ t }) => {
   const { ref, visible } = useScrollReveal(0.12);
+  const router = useRouter();
+  const [api, setApi] = useState<CarouselApi>();
+
+  // Infinite Auto-scroll
+  useEffect(() => {
+    if (!api) return;
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, [api]);
 
   // safe fallback if t() is not provided
   const label = (key: string, fallback: string): string =>
     t ? t(key) : fallback;
 
-  const wideCard: CardBase = {
-    badge: label("limitedTime", "Limited Time"),
-    title: label("off20", "20% Off"),
-    desc: label("cleaningServiceDesc", "Professional cleaning service at your doorstep"),
-    cta: label("bookNow", "Book Now"),
-    gradient: "from-[#4f46e5] to-[#7c3aed]",
-    Icon: MdOutlineCleaningServices,
-    // ↓ replace with your actual image URL
-    img: "https://placehold.co/200x220/6366f1/ffffff?text=Cleaner",
-  };
+  const wideCards: CardBase[] = [
+    {
+      badge: label("limitedTime", "Limited Time"),
+      title: label("off20", "20% Off"),
+      desc: label("cleaningServiceDesc", "Professional cleaning service at your doorstep"),
+      cta: label("bookNow", "Book Now"),
+      gradient: "from-[#4f46e5] to-[#7c3aed]",
+      Icon: MdOutlineCleaningServices,
+      img: "/ads/cleaning.png",
+      link: "/category/Construction",
+    },
+    {
+      badge: label("exclusive", "Exclusive"),
+      title: label("homeInterior", "Home Interior"),
+      desc: label("interiorDesc", "Transform your living space with our experts"),
+      cta: label("explore", "Explore"),
+      gradient: "from-[#6366f1] to-[#a855f7]",
+      Icon: FiHome,
+      img: "/ads/interior.png",
+      link: "/category/Furniture",
+    },
+  ];
 
   const narrowCards: CardBase[] = [
     {
@@ -221,51 +256,78 @@ const AdsSection: FC<AdsSectionProps> = ({ t }) => {
       cta: label("claimOffer", "Claim Offer"),
       gradient: "from-[#e11d48] to-[#db2777]",
       Icon: FiTool,
-      // ↓ replace with your actual image URL
-      img: "https://placehold.co/120x160/f43f5e/ffffff?text=Technician",
+      img: "/ads/ac.png",
+      link: "/category/Electronics",
     },
     {
-      badge: label("festiveSpecial", "Festive Special"),
-      title: label("freeInspection", "Free Inspection"),
-      desc: label("pestControlDesc", "Pest control nearest vendor"),
-      cta: label("getDeal", "Get Deal"),
-      gradient: "from-[#d97706] to-[#ea580c]",
+      badge: label("24/7Support", "24/7 Support"),
+      title: label("plumbing", "Plumbing"),
+      desc: label("plumbingDesc", "Fast and reliable expert plumbing"),
+      cta: label("bookExtra", "Book Now"),
+      gradient: "from-[#0ea5e9] to-[#2563eb]",
       Icon: FiActivity,
-      // ↓ replace with your actual image URL
-      img: "https://placehold.co/120x160/f59e0b/ffffff?text=Expert",
+      img: "/ads/plumbing.png",
+      link: "/category/Construction",
+    },
+    {
+      badge: label("certified", "Certified"),
+      title: label("electrical", "Electrical"),
+      desc: label("electricalDesc", "Safe and modern wiring solutions"),
+      cta: label("getEstimate", "Get Estimate"),
+      gradient: "from-[#f59e0b] to-[#d97706]",
+      Icon: FiTool,
+      img: "/ads/electrical.png",
+      link: "/category/Electronics",
     },
   ];
 
-  const allCards = [wideCard, ...narrowCards];
+  // Combine and duplicate cards to ensure infinite loop works on all screen sizes
+  const baseCards = [...wideCards, ...narrowCards];
+  const allCards = [...baseCards, ...baseCards, ...baseCards]; // Triplicating to be super safe for 4K screens
+
+  const handleCardClick = (link: string) => {
+    router.push(link);
+  };
 
   return (
     <section
       ref={ref}
       className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-16 mt-4 md:-mt-6"
     >
-      {/* horizontal scroll row */}
-      <div
-        className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory"
-        style={{
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        } as React.CSSProperties}
+      <Carousel
+        setApi={setApi}
+        opts={{
+          loop: true,
+          align: "start",
+        }}
+        className="w-full"
       >
-        <WideBanner card={wideCard} visible={visible} />
+        <CarouselContent className="hide-scrollbar">
+          {allCards.map((card, i) => (
+            <CarouselItem 
+              key={`${card.title}-${i}`} 
+              className="basis-auto pl-4"
+              onClick={() => handleCardClick(card.link)}
+            >
+              {i < wideCards.length ? (
+                <WideBanner card={card} visible={visible} />
+              ) : (
+                <NarrowCard 
+                  card={card} 
+                  visible={visible} 
+                  delay={((i % baseCards.length) - wideCards.length + 1) * 120} 
+                />
+              )}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
-        {narrowCards.map((card, i) => (
-          <NarrowCard
-            key={card.title}
-            card={card}
-            visible={visible}
-            delay={(i + 1) * 160}
-          />
-        ))}
-      </div>
-
-      {/* scroll indicator dots — mobile only */}
-      <ScrollDots count={allCards.length} />
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { SuggestionsGrid } from './SuggestionsGrid';
@@ -225,7 +226,13 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
   const placeholderText = step === 'NAME' ? currentT.placeholderName : currentT.placeholderService;
 
   return (
-    <div className="chatbot-container flex flex-col h-full sm:h-[640px] w-full bg-white sm:rounded-3xl sm:shadow-2xl sm:border sm:border-gray-200/50 overflow-hidden sm:text-sm text-[13px] sm:animate-in sm:zoom-in-95 sm:duration-300">
+    <div className={cn(
+      "chatbot-container flex flex-col w-full bg-white overflow-hidden transition-all duration-300",
+      "h-full sm:h-[640px]",
+      "rounded-none sm:rounded-3xl",
+      "sm:shadow-2xl sm:border sm:border-gray-200/50",
+      "sm:text-sm text-[13px] sm:animate-in sm:zoom-in-95 sm:duration-300"
+    )}>
 
       {/* === Header with Avatar === */}
       <div className="flex flex-col items-center px-4 pt-4 pb-3 bg-gradient-to-b from-indigo-700 via-blue-700 to-blue-600 text-white shrink-0 relative overflow-hidden">

@@ -75,7 +75,6 @@ const allCategories = [
   { name: "Wedding", icon: "💍", bg: "bg-rose-50 group-hover:bg-rose-100" },
   { name: "Rent & Hire", icon: "🚗", bg: "bg-sky-50 group-hover:bg-sky-100" },
   { name: "Hotels", icon: "🏨", bg: "bg-blue-50 group-hover:bg-blue-100" },
-  { name: "Packers & Movers", icon: "📦", bg: "bg-indigo-50 group-hover:bg-indigo-100" },
   { name: "Automotive", icon: "🚘", bg: "bg-slate-100 group-hover:bg-slate-200" },
   { name: "Health & Wellness", icon: "🏥", bg: "bg-red-50 group-hover:bg-red-100" },
   { name: "Events", icon: "🎉", bg: "bg-violet-50 group-hover:bg-violet-100" },
@@ -324,8 +323,6 @@ const filteredCategories = allCategories.filter((cat) => {
       </section>
 
 
-<Adssection/>
-
        <section className="bg-white py-10 md:py-16 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
@@ -398,7 +395,7 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
 
         {/* DESKTOP GRID */}
-        <div className="hidden md:grid grid-cols-5 lg:grid-cols-9 gap-x-6 gap-y-10 mt-6 justify-items-center">
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-10 gap-x-6 gap-y-10 mt-6 justify-items-center">
           {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
             <Link
               key={cat.name}
@@ -420,6 +417,11 @@ const filteredCategories = allCategories.filter((cat) => {
       </div>
     </section>
 
+
+    
+<Adssection/>
+
+
       {/* ── TOP PICKS BENTO ── */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
         <div className="flex justify-between items-end mb-8 md:mb-12">
@@ -436,52 +438,56 @@ const filteredCategories = allCategories.filter((cat) => {
 
         {/* BENTO — responsive: stacked on mobile, grid on md+ */}
         <div className="hidden md:grid grid-cols-4 gap-4" style={{ gridTemplateRows: "256px 216px" }}>
-          {/* Big */}
+          {/* Big: GV Buildtech */}
           <div className="col-span-2 row-span-1 rounded-3xl relative cursor-pointer overflow-hidden hover:shadow-lg transition-shadow">
-            <img src={IMG.interior} alt="" className="w-full h-full object-cover" />
+            <img src="/businesses/gvbuildtech.png" alt="" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,13,20,.72)] via-[rgba(13,13,20,.06)] to-transparent rounded-[20px]" />
             <div className="absolute top-4 left-4">
               <span className="text-[11px] font-bold px-3 py-1.5 rounded-full bg-white/90 text-gray-900">✦ {t("editorsPick")}</span>
             </div>
             <div className="absolute bottom-5 left-5 right-5 flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">{t("Home Decor")} · {t("Mumbai")}</div>
-                <div className="text-white font-extrabold text-xl">{t("EliteSpace Studio")}</div>
-                <div className="text-white/50 text-sm mt-1">4.9 ★ · 2,340 {t("reviews_count")}</div>
+                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">{t("Construction")} · {t("Chennai")}</div>
+                <div className="text-white font-extrabold text-xl">{t("GV Buildtech")}</div>
+                <div className="text-white/50 text-sm mt-1">4.9 ★ · 1,240 {t("reviews_count")}</div>
               </div>
               <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">{t("bookNow")}</button>
             </div>
           </div>
-          <BentoCard img={IMG.restaurant} title="The Grand Kitchen" sub="Restaurant · 4.8 ★" badge="Top Rated" badgeColor="bg-amber-100/90 text-amber-700" />
-          <BentoCard img={IMG.doctor} title="GreenHeal Clinic" sub="Healthcare · 4.9 ★" />
-          <BentoCard img={IMG.movers} title="SwiftMove Packers" sub="4.7 ★ · Verified" />
-          {/* Wide auto */}
+          
+          <BentoCard img="/businesses/techsolutions.png" title="Tech Solutions" sub="Technology · 4.8 ★" badge="Top Rated" badgeColor="bg-amber-100/90 text-amber-700" />
+          <BentoCard img="/businesses/doctor-1.jpg" title="GreenHeal Clinic" sub="Healthcare · 4.9 ★" />
+          
+          <BentoCard img="/businesses/wood.png" title="Wood & Decor" sub="Furniture · 4.7 ★ · Verified" />
+          
+          {/* Wide: Raanuva Veeran Academy */}
           <div className="col-span-2 row-span-1 rounded-3xl relative cursor-pointer overflow-hidden hover:shadow-lg transition-shadow">
-            <img src={IMG.auto} alt="" className="w-full h-full object-cover" />
+            <img src="/businesses/raanuvan.png" alt="" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,13,20,.78)] to-[rgba(13,13,20,.1)]" />
             <div className="absolute bottom-4 left-5 right-5 flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-bold text-white/45 mb-1.5 tracking-[1.5px] uppercase">{t("Automotive")} · {t("Hyderabad")}</div>
-                <div className="text-white font-bold text-lg">{t("AutoCare 360")}</div>
+                <div className="text-[10px] font-bold text-white/45 mb-1.5 tracking-[1.5px] uppercase">{t("Education")} · {t("Chennai")}</div>
+                <div className="text-white font-bold text-lg">{t("Raanuva Veeran Academy")}</div>
               </div>
               <div className="text-right">
-                <div className="font-serif text-2xl text-amber-400">4.7★</div>
-                <div className="text-[11px] text-white/45">1,540 {t("reviews_count")}</div>
+                <div className="font-serif text-2xl text-amber-400">4.9★</div>
+                <div className="text-[11px] text-white/45">850 {t("reviews_count")}</div>
               </div>
             </div>
           </div>
-          <BentoCard img={IMG.wedding} title="Wedding Bliss" sub="Event Planning · 4.8 ★" />
+          
+          <BentoCard img="/businesses/baas.png" title="BAAS Fabrication" sub="Fabrication · 4.8 ★" />
         </div>
 
         {/* Mobile bento — horizontal scroll cards */}
         <div className="md:hidden -mx-4 px-4 overflow-x-auto flex gap-3 pb-2 snap-x snap-mandatory scrollbar-hide">
           {[
-            { img: IMG.interior, title: "EliteSpace Studio", sub: "Interior Design · 4.9 ★", badge: "Editor's Choice" },
-            { img: IMG.restaurant, title: "The Grand Kitchen", sub: "Restaurant · 4.8 ★" },
-            { img: IMG.doctor, title: "GreenHeal Clinic", sub: "Healthcare · 4.9 ★" },
-            { img: IMG.movers, title: "SwiftMove Packers", sub: "Packers & Movers · 4.7 ★" },
-            { img: IMG.auto, title: "AutoCare 360", sub: "Automotive · 4.7 ★" },
-            { img: IMG.wedding, title: "Wedding Bliss", sub: "Event Planning · 4.8 ★" },
+            { img: "/businesses/gvbuildtech.png", title: "GV Buildtech", sub: "Construction · 4.9 ★", badge: "Editor's Choice" },
+            { img: "/businesses/techsolutions.png", title: "Tech Solutions", sub: "Technology · 4.8 ★" },
+            { img: "/businesses/doctor-1.jpg", title: "GreenHeal Clinic", sub: "Healthcare · 4.9 ★" },
+            { img: "/businesses/wood.png", title: "Wood & Decor", sub: "Furniture · 4.7 ★" },
+            { img: "/businesses/raanuvan.png", title: "Raanuva Veeran Academy", sub: "Education · 4.9 ★" },
+            { img: "/businesses/baas.png", title: "BAAS Fabrication", sub: "Fabrication · 4.8 ★" },
           ].map((item, i) => (
             <div key={i} className="snap-start shrink-0 w-56 h-64 rounded-2xl relative overflow-hidden shadow-md cursor-pointer">
               <img src={item.img} alt={t(item.title)} className="w-full h-full object-cover" />

@@ -33,8 +33,15 @@ export function ChatbotWidget() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 flex flex-col justify-end pointer-events-none">
-          <div className="pointer-events-auto h-full sm:h-auto w-full sm:w-[420px]">
+        <div className={cn(
+          "fixed z-[60] flex flex-col transition-all duration-300 ease-out",
+          "inset-0 bottom-0 right-0 sm:inset-auto sm:bottom-24 sm:right-6",
+          "pointer-events-none"
+        )}>
+          <div className={cn(
+            "pointer-events-auto w-full h-full sm:h-auto sm:w-[420px] sm:max-h-[85vh]",
+            "animate-in fade-in slide-in-from-bottom-5 duration-300"
+          )}>
             <ChatbotContainer onClose={() => setIsOpen(false)} />
           </div>
         </div>
