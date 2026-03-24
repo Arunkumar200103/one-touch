@@ -101,7 +101,7 @@ export function Footer() {
                       : "text-gray-400 hover:text-gray-200"
                   }`}
                 >
-                  {lang === "en" ? "EN" : "TA"}
+                  {lang === "en" ? "EN" : "த"}
                 </button>
               ))}
             </div>

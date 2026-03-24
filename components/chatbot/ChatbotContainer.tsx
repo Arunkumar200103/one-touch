@@ -106,7 +106,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
     addBotMessage(
       <span className="font-semibold sm:text-sm text-[13px]">{botT.en.welcome}</span>,
       400,
-      'Welcome to One Touch!',
+      'Hi! Welcome to One Touch!',
       'en'
     );
     setTimeout(() => {
@@ -124,7 +124,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
               onClick={() => handleLanguageSelect('ta')}
               className="px-4 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-all rounded-full text-xs font-semibold shadow-sm"
             >
-              Tamil
+              தமிழ்
             </button>
           </div>
         </div>,
@@ -137,7 +137,7 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       setTimeout(() => {
         addBotMessage('உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்.', 0, 'Ungal mozhiyai therndhedukkavum.', 'en');
       }, 3500); 
-    }, 900);
+    }, 2800);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -182,7 +182,14 @@ export function ChatbotContainer({ onClose }: ChatbotContainerProps) {
       setSuggestions(results);
 
       if (results.length > 0) {
-        const speechText = (currentT as any).foundResultsSpeech ? (currentT as any).foundResultsSpeech(results.length) : currentT.foundResults(results.length);
+        let speechText = (currentT as any).foundResultsSpeech ? (currentT as any).foundResultsSpeech(results.length) : currentT.foundResults(results.length);
+        
+        // 🔥 If Tamil, list the top results to satisfy "flow should all steps"
+        if (language === 'ta') {
+          const names = results.slice(0, 3).map(r => r.name).join(', ');
+          speechText += ` அவையாவன: ${names}. உங்களுக்கு இதில் எது வேண்டும்?`;
+        }
+        
         addBotMessage(currentT.foundResults(results.length), 800, speechText);
       } else {
         const speechText = (currentT as any).noResultsSpeech || currentT.noResults;
