@@ -83,7 +83,7 @@ const allCategories = [
 ];
 
 const serviceCategories = [
-  { name: "b2b", subtitle: "quickQuotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/businesses/construction-1.jpg" ,Category:"Construction"},
+  { name: "Fabrication", subtitle: "quickQuotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/banners/fabrication-banner.jpg" ,Category:"Fabrication"},
   { name: "repairs", subtitle: "getNearest", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
   { name: "Real Estate", subtitle: "finestAgents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
   { name: "Education", subtitle: "bookNow", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg" ,Category:"Education"}
@@ -94,6 +94,10 @@ const testimonials = [
   { name: "Rahul Mehta", city: "Bangalore", text: "The packers & movers I found here were professional and on time. Highly recommended.", rating: 5, service: "Packers & Movers", avatar: "RM" },
   { name: "Ananya Iyer", city: "Chennai", text: "Booked a doctor consultation same day. The platform is incredibly easy to use.", rating: 4, service: "Healthcare", avatar: "AI" },
   { name: "Vijay Nair", city: "Hyderabad", text: "Listed my business and got leads within the first week. Excellent ROI.", rating: 5, service: "Business Listing", avatar: "VN" },
+  { name: "Sneha Reddy", city: "Pune", text: "The CCTV installation team was fantastic. Got everything set up in one day!", rating: 5, service: "CCTV & Networking", avatar: "SR" },
+  { name: "Arjun Das", city: "Delhi", text: "Best platform for finding reliable contractors. Saved me so much time and money.", rating: 5, service: "Construction", avatar: "AD" },
+  { name: "Meera Krishnan", city: "Kochi", text: "Found the perfect wedding planner through this platform. Everything was magical!", rating: 5, service: "Wedding", avatar: "MK" },
+  { name: "Karthik Rajan", city: "Coimbatore", text: "The furniture customization service I found here exceeded all my expectations.", rating: 4, service: "Furniture", avatar: "KR" },
 ];
 
 
@@ -110,24 +114,10 @@ const IMG = {
   food:       "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=700&q=85",
   auto:       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700&q=85",
   app:        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=85",
-  city1:      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=500&q=75",
-  city2:      "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=75",
-  city3:      "https://images.pexels.com/photos/29183751/pexels-photo-29183751.jpeg?w=500&q=75",
-  city4:      "https://images.unsplash.com/photo-1597040663342-45b6af3d91a5?w=500&q=75",
-  city5:      "https://images.unsplash.com/photo-1560179406-1c6c60e0dc76?w=500&q=75",
-  city6:      "https://images.pexels.com/photos/36065203/pexels-photo-36065203.jpeg?w=500&q=75",
 };
 
 const IC = { northeast: "→", check: "✓" };
 
-const CITIES = [
-  { name:"Mumbai",    biz:"8.2L", img: IMG.city1 },
-  { name:"Delhi",     biz:"7.4L", img: IMG.city2 },
-  { name:"Bangalore", biz:"6.1L", img: IMG.city3 },
-  { name:"Hyderabad", biz:"4.8L", img: IMG.city4 },
-  { name:"Chennai",   biz:"3.9L", img: IMG.city5 },
-  { name:"Pune",      biz:"3.2L", img: IMG.city6 },
-];
 
 
 
@@ -277,47 +267,49 @@ const filteredCategories = allCategories.filter((cat) => {
             </div>
           </div>
 
-          {/* SERVICE CATEGORY CARDS — 2 cols on mobile, 2 cols on lg */}
- 
-<div className="lg:col-span-2 grid grid-cols-2 gap-3 md:gap-5">
-  {serviceCategories.map((service) => (
-    
-    <Link
-      key={service.name}
-      href={`/category/${encodeURIComponent(service.Category)}`}
-    >
-      <div
-        className={`relative rounded-xl md:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white p-4 md:p-6 cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
-      >
-        <Image
-          src={service.image}
-          alt={service.name}
-          fill
-          className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-        />
+          {/* SERVICE CATEGORY CARDS — compact 2x2 on mobile, larger 2-col grid on lg */}
+          <div className="lg:col-span-2 grid grid-cols-2 gap-2.5 sm:gap-3 lg:gap-5">
+            {serviceCategories.map((service) => (
+              <Link
+                key={service.name}
+                href={`/category/${encodeURIComponent(service.Category)}`}
+              >
+                <div
+                  className={`relative rounded-xl lg:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]`}
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.name}
+                    fill
+                    className="object-cover opacity-50 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700"
+                  />
 
-        <div className="relative flex flex-col justify-between h-full min-h-[100px] md:min-h-[130px]">
+                  {/* Glassmorphism overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-          <div className="text-2xl md:text-3xl">
-            {service.icon}
+                  <div className="relative flex flex-col justify-between h-full min-h-[110px] sm:min-h-[120px] lg:min-h-[130px] p-3.5 sm:p-4 lg:p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-lg sm:text-xl lg:text-2xl">
+                        {service.icon}
+                      </div>
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-white text-xs">→</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-[13px] sm:text-sm lg:text-lg leading-tight drop-shadow-sm">
+                        {t(service.name)}
+                      </h3>
+                      <p className="text-[10px] sm:text-xs opacity-80 mt-0.5 lg:mt-1 drop-shadow-sm">
+                        {t(service.subtitle)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-
-          <div>
-            <h3 className="font-bold text-xs sm:text-sm md:text-lg leading-tight">
-              {t(service.name)}
-            </h3>
-
-            <p className="text-xs opacity-90 mt-0.5 md:mt-1">
-              {t(service.subtitle)}
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </Link>
-
-  ))}
-</div>
 
         </div>
       </section>
@@ -506,7 +498,7 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
       </section>
 
-      {/* ── CITY GRID ── */}
+      {/* ── CITY GRID ──
       <section ref={r4.ref} className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
         <div className="text-center mb-8 md:mb-14">
           <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-green-600 mb-2 md:mb-3">Pan-India Coverage</p>
@@ -536,11 +528,11 @@ const filteredCategories = allCategories.filter((cat) => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ── TESTIMONIALS ── */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
-        <div className="text-center mb-8 md:mb-12">
+      <section className="py-12 md:py-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 text-center mb-8 md:mb-12">
           <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-blue-600 uppercase mb-2 md:mb-3">Social Proof</p>
           <h2 className="font-serif text-[clamp(22px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
             What Our Users{" "}
@@ -551,18 +543,16 @@ const filteredCategories = allCategories.filter((cat) => {
           </p>
         </div>
 
-        {/* Mobile: horizontal scroll; md+: grid */}
-        <div className="hidden sm:grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((t, i) => <TestimonialCard key={i} t={t} />)}
-        </div>
-
-        {/* Mobile horizontal scroll */}
-        <div className="sm:hidden -mx-4 px-4 overflow-x-auto flex gap-3 pb-2 snap-x snap-mandatory scrollbar-hide">
-          {testimonials.map((t, i) => (
-            <div key={i} className="snap-start shrink-0 w-72">
-              <TestimonialCard t={t} />
-            </div>
-          ))}
+        {/* Infinite auto-scroll marquee */}
+        <div className="testimonial-marquee-wrapper group">
+          <div className="testimonial-marquee">
+            {/* Render cards twice for seamless infinite loop */}
+            {[...testimonials, ...testimonials].map((t, i) => (
+              <div key={i} className="testimonial-slide">
+                <TestimonialCard t={t} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -663,6 +653,44 @@ const filteredCategories = allCategories.filter((cat) => {
 
         @keyframes fadeUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
         @keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+        /* Testimonial infinite marquee */
+        @keyframes marqueeScroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .testimonial-marquee-wrapper {
+          width: 100%;
+          overflow: hidden;
+          mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+        }
+
+        .testimonial-marquee {
+          display: flex;
+          gap: 16px;
+          width: max-content;
+          animation: marqueeScroll 40s linear infinite;
+        }
+
+        .testimonial-marquee-wrapper:hover .testimonial-marquee {
+          animation-play-state: paused;
+        }
+
+        .testimonial-slide {
+          flex-shrink: 0;
+          width: 280px;
+        }
+
+        @media (min-width: 768px) {
+          .testimonial-slide {
+            width: 320px;
+          }
+          .testimonial-marquee {
+            gap: 24px;
+          }
+        }
       `}</style>
     </main>
   );

@@ -118,6 +118,7 @@ export const translations = {
     editorsPick: "Editor's Pick",
     topPicks: "Top picks",
     thisWeek: "this week",
+
     panIndia: "Pan-India Coverage",
     liveIn: "Live in",
     cities950: "950+ cities",
