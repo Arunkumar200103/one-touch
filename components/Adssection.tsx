@@ -292,7 +292,7 @@ const AdsSection: FC<AdsSectionProps> = ({ t }) => {
   return (
     <section
       ref={ref}
-      className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-16 mt-4 md:-mt-6"
+      className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-16 mt-4 md:mt-8 relative z-20"
     >
       <Carousel
         setApi={setApi}
@@ -303,23 +303,26 @@ const AdsSection: FC<AdsSectionProps> = ({ t }) => {
         className="w-full"
       >
         <CarouselContent className="hide-scrollbar">
-          {allCards.map((card, i) => (
-            <CarouselItem 
-              key={`${card.title}-${i}`} 
-              className="basis-auto pl-4"
-              onClick={() => handleCardClick(card.link)}
-            >
-              {i < wideCards.length ? (
-                <WideBanner card={card} visible={visible} />
-              ) : (
-                <NarrowCard 
-                  card={card} 
-                  visible={visible} 
-                  delay={((i % baseCards.length) - wideCards.length + 1) * 120} 
-                />
-              )}
-            </CarouselItem>
-          ))}
+          {allCards.map((card, i) => {
+            const isWide = (i % baseCards.length) < wideCards.length;
+            return (
+              <CarouselItem 
+                key={`${card.title}-${i}`} 
+                className="basis-auto pl-4"
+                onClick={() => handleCardClick(card.link)}
+              >
+                {isWide ? (
+                  <WideBanner card={card} visible={visible} />
+                ) : (
+                  <NarrowCard 
+                    card={card} 
+                    visible={visible} 
+                    delay={((i % baseCards.length) - wideCards.length + 1) * 120} 
+                  />
+                )}
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
       </Carousel>
 

@@ -6,12 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 import { useLocation } from "@/lib/location-context"
 import { useSearch, SearchResults } from "@/lib/search-context";
 import Adssection from "@/components/Adssection";
 import { Footer } from "@/components/footer";
-import { 
+import {
   FiSmartphone, FiVideo, FiHome, FiTool, FiMonitor,
   FiBookOpen, FiDollarSign, FiBriefcase, FiAperture,
   FiWind, FiGift, FiTruck, FiCoffee,
@@ -21,7 +21,7 @@ import {
 import { MdOutlineCleaningServices, MdOutlineRealEstateAgent } from "react-icons/md";
 import { FaRegBuilding, FaRegHospital } from "react-icons/fa";
 
- interface Slide {
+interface Slide {
   title: string
   subtitle: string
   image: string
@@ -31,7 +31,7 @@ import { FaRegBuilding, FaRegHospital } from "react-icons/fa";
 }
 
 const featuredServices: Slide[] = [
-  { 
+  {
     title: "constructionTitle",
     subtitle: "constructionSub",
     image: "/banners/construction-banner.jpg",
@@ -39,7 +39,7 @@ const featuredServices: Slide[] = [
     accent: "#f97316",
     category: "Construction"
   },
-  { 
+  {
     title: "cctvTitle",
     subtitle: "cctvSub",
     image: "/banners/cctv-banner.jpg",
@@ -47,7 +47,7 @@ const featuredServices: Slide[] = [
     accent: "#ef4444",
     category: "CCTV & Networking"
   },
-  { 
+  {
     title: "furnitureTitle",
     subtitle: "furnitureSub",
     image: "/banners/furniture-banner.jpg",
@@ -59,7 +59,7 @@ const featuredServices: Slide[] = [
 
 
 
-const allCategories = [
+export const allCategories = [
   { name: "Electronics", icon: "📱", bg: "bg-blue-50 group-hover:bg-blue-100" },
   { name: "CCTV & Networking", icon: "📹", bg: "bg-red-50 group-hover:bg-red-100" },
   { name: "Furniture", icon: "🛋️", bg: "bg-amber-50 group-hover:bg-amber-100" },
@@ -83,10 +83,10 @@ const allCategories = [
 ];
 
 const serviceCategories = [
-  { name: "Fabrication", subtitle: "quickQuotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/banners/fabrication-banner.jpg" ,Category:"Fabrication"},
-  { name: "repairs", subtitle: "getNearest", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg" ,Category:"Electronics"},
-  { name: "Real Estate", subtitle: "finestAgents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg" ,Category:"Real Estate"},
-  { name: "Education", subtitle: "bookNow", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg" ,Category:"Education"}
+  { name: "Fabrication", subtitle: "quickQuotes", gradient: "from-blue-600 to-blue-800", icon: <FiBriefcase />, image: "/banners/fabrication-banner.jpg", Category: "Fabrication" },
+  { name: "repairs", subtitle: "getNearest", gradient: "from-slate-700 to-slate-900", icon: <FiTool />, image: "/businesses/electronics-1.jpg", Category: "Electronics" },
+  { name: "Real Estate", subtitle: "finestAgents", gradient: "from-violet-600 to-purple-800", icon: <MdOutlineRealEstateAgent />, image: "/businesses/furniture-1.jpg", Category: "Real Estate" },
+  { name: "Education", subtitle: "bookNow", gradient: "from-emerald-500 to-green-700", icon: <FiBookOpen />, image: "/businesses/education-1.jpg", Category: "Education" }
 ];
 
 const testimonials = [
@@ -104,16 +104,16 @@ const testimonials = [
 
 const IMG = {
   restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85",
-  spa:        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=85",
-  doctor:     "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=85",
-  interior:   "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=85",
-  wedding:    "https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=85",
-  tech:       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=85",
-  movers:     "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85",
-  fitness:    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=85",
-  food:       "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=700&q=85",
-  auto:       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700&q=85",
-  app:        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=85",
+  spa: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=85",
+  doctor: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=85",
+  interior: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=85",
+  wedding: "https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=85",
+  tech: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=85",
+  movers: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85",
+  fitness: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=85",
+  food: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=700&q=85",
+  auto: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700&q=85",
+  app: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=85",
 };
 
 const IC = { northeast: "→", check: "✓" };
@@ -140,26 +140,30 @@ function useReveal(threshold = 0.1) {
 }
 
 export default function LandingPageV2({ slides = featuredServices }: { slides?: Slide[] }) {
-const { location } = useLocation()
+  const { location } = useLocation()
   const { t } = useLanguage();
   const { search, results } = useSearch();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const nextTestimonial = () => setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+  const prevTestimonial = () => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
   const scrollTo = (index: number) => emblaApi && emblaApi.scrollTo(index);
   const onSelect = () => { if (!emblaApi) return; setSelectedIndex(emblaApi.selectedScrollSnap()); };
 
   const [city, setCity] = useState("Mumbai");
   const r4 = useReveal(), r7 = useReveal();
-  const hoverIn  = (e: any) => { e.currentTarget.style.color = "#1A56DB"; };
+  const hoverIn = (e: any) => { e.currentTarget.style.color = "#1A56DB"; };
   const hoverOut = (e: any) => { e.currentTarget.style.color = "#6B7280"; };
 
-const filteredCategories = allCategories.filter((cat) => {
-  const q = search.toLowerCase();
-  if (!q) return true;
-  return cat.name.toLowerCase().includes(q);
-});
+  const filteredCategories = allCategories.filter((cat) => {
+    const q = search.toLowerCase();
+    if (!q) return true;
+    return cat.name.toLowerCase().includes(q);
+  });
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -168,7 +172,7 @@ const filteredCategories = allCategories.filter((cat) => {
     return () => clearInterval(autoplay);
   }, [emblaApi]);
 
-    const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return
@@ -181,18 +185,33 @@ const filteredCategories = allCategories.filter((cat) => {
   }
 
   return (
-    <main className="bg-[#f8f9fc] min-h-screen">
-      <Navbar />
+    <main className="bg-[#f8f9fc] min-h-screen relative overflow-hidden">
+      {/* Background Decor for Hero */}
+      <div className="absolute top-[-5%] right-[-10%] md:right-[-5%] pointer-events-none z-0">
+        <svg viewBox="0 0 705 724" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[350px] md:w-[500px] lg:w-[705px] h-auto">
+          <defs>
+            <linearGradient id="hero-shape-gradient" x1="0" y1="0" x2="705" y2="724" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#3B82F6" stopOpacity="0.08" />
+              <stop offset="1" stopColor="#06B6D4" stopOpacity="0.12" />
+            </linearGradient>
+          </defs>
+          <path d="M22.3069 222C-18.0931 153.2 5.4736 13.3333 22.3069 -48L701.807 -149L766.307 122.5L727.807 723.5C649.14 724.5 473.707 717 401.307 679C310.807 631.5 351.807 555 276.807 515C201.807 475 244.807 369.5 218.807 329.5C192.807 289.5 72.8069 308 22.3069 222Z" fill="url(#hero-shape-gradient)" />
+        </svg>
+      </div>
+
+      <div className="relative z-10">
+        <Navbar />
+      </div>
 
       {/* ── FEATURED SERVICES ── */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-20 mt-6 md:mt-15">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 pb-12 md:pb-20 mt-6 md:mt-15 relative z-10">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6 md:mb-10">
           <div>
-            <h2 className="font-serif text-[clamp(18px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
+            <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight mb-2 md:mb-4">
               {t("featured")}{" "}
-              <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">
                 {t("services")}
               </span>
             </h2>
@@ -200,62 +219,62 @@ const filteredCategories = allCategories.filter((cat) => {
               {t("featuredDesc")}
             </p>
           </div>
-          <Link href="/service-inquiry" className="text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+          <Link href="/categories" className="text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
             {t("viewAll")} →
           </Link>
         </div>
 
         {/* GRID — stacked on mobile, side-by-side on lg */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 lg:items-stretch">
 
           {/* CAROUSEL */}
-          <div className="lg:col-span-1">
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl md:rounded-3xl shadow-lg" ref={emblaRef}>
-                <div className="flex">
-  {slides.map((slide, index) => (
-    
-    <Link
-      key={index}
-      href={`/category/${encodeURIComponent(slide.category)}`}
-      className="min-w-full"
-    >
-      <div className="relative h-56 sm:h-72 md:h-80 lg:h-100 w-full">
-        
-        <Image
-          src={slide.image}
-          alt={slide.title}
-          fill
-          className="object-cover"
-        />
+          <div className="lg:col-span-5 flex flex-col h-full">
+            <div className="relative flex-grow flex flex-col">
+              <div className="overflow-hidden rounded-2xl md:rounded-3xl shadow-lg flex-grow" ref={emblaRef}>
+                <div className="flex h-full">
+                  {slides.map((slide, index) => (
 
-        <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between">
-          
-          <div>
-            <p className="text-xs font-bold text-white uppercase tracking-wider">
-              {t("featured")}
-            </p>
+                    <Link
+                      key={index}
+                      href={`/category/${encodeURIComponent(slide.category)}`}
+                      className="min-w-full block h-full"
+                    >
+                      <div className="relative h-[240px] sm:h-[300px] lg:h-full lg:min-h-[320px] w-full">
 
-            <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white mt-1">
-              {t(slide.title)}
-            </h3>
-          </div>
+                        <Image
+                          src={slide.image}
+                          alt={slide.title}
+                          fill
+                          className="object-cover"
+                        />
 
-          <button
-            className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95"
-          >
-            {t(slide.cta)}
-          </button>
+                        <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between">
 
-        </div>
-      </div>
-    </Link>
+                          <div>
+                            <p className="text-xs font-bold text-white uppercase tracking-wider">
+                              {t("featured")}
+                            </p>
 
-  ))}
-</div>
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white mt-1">
+                              {t(slide.title)}
+                            </h3>
+                          </div>
+
+                          <button
+                            className="w-fit bg-orange-500 hover:bg-orange-600 text-white px-5 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition active:scale-95"
+                          >
+                            {t(slide.cta)}
+                          </button>
+
+                        </div>
+                      </div>
+                    </Link>
+
+                  ))}
+                </div>
               </div>
               {/* Dots */}
-              <div className="flex justify-center gap-2 mt-3">
+              <div className="flex justify-center gap-2 mt-4 shrink-0">
                 {slides.map((_, index) => (
                   <button
                     key={index}
@@ -268,14 +287,15 @@ const filteredCategories = allCategories.filter((cat) => {
           </div>
 
           {/* SERVICE CATEGORY CARDS — compact 2x2 on mobile, larger 2-col grid on lg */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-2.5 sm:gap-3 lg:gap-5">
+          <div className="lg:col-span-7 grid grid-cols-2 gap-3 lg:gap-5 h-full">
             {serviceCategories.map((service) => (
               <Link
                 key={service.name}
                 href={`/category/${encodeURIComponent(service.Category)}`}
+                className="block h-full"
               >
                 <div
-                  className={`relative rounded-xl lg:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]`}
+                  className={`relative h-[130px] sm:h-[160px] lg:h-full min-h-[130px] rounded-xl lg:rounded-2xl overflow-hidden shadow-md bg-gradient-to-br ${service.gradient} text-white cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]`}
                 >
                   <Image
                     src={service.image}
@@ -287,7 +307,7 @@ const filteredCategories = allCategories.filter((cat) => {
                   {/* Glassmorphism overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-                  <div className="relative flex flex-col justify-between h-full min-h-[110px] sm:min-h-[120px] lg:min-h-[130px] p-3.5 sm:p-4 lg:p-6">
+                  <div className="relative flex flex-col justify-between h-full p-4 lg:p-6">
                     <div className="flex items-start justify-between">
                       <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-lg sm:text-xl lg:text-2xl">
                         {service.icon}
@@ -315,103 +335,96 @@ const filteredCategories = allCategories.filter((cat) => {
       </section>
 
 
-       <section className="bg-white py-10 md:py-16 border-y border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      {/* ── POPULAR NEAR SECTIONS (Figma Design)  ── */}
+      <section className="bg-white py-12 md:py-24 border-y border-gray-100 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 md:mb-16 relative">
+            <div className="text-center sm:text-left relative z-20">
+              <p className="text-[#5E6282] font-semibold text-sm md:text-base tracking-widest uppercase mb-2">
+                {t("services")}
+              </p>
+              <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight">
+                {t("popularNear")}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">
+                  {t(location)}
+                </span>
+              </h2>
+            </div>
 
-        {/* HEADER */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 gap-4">
-          <div>
-            <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-500 uppercase mb-1">
-              {t("services")}
-            </p>
+            {/* Desktop "See all" Arrow Button */}
+            <div className="hidden sm:block pb-2 relative z-20">
+              <Link href="/categories" className="text-[13px] md:text-sm font-semibold text-[#5E6282] hover:text-[#181E4B] transition-colors flex gap-2 items-center group">
+                See all category <span className="text-[#DF6951] w-6 h-6 flex items-center justify-center transition-transform group-hover:translate-x-1 text-xl">→</span>
+              </Link>
+            </div>
 
-            <h2 className="font-serif text-[clamp(18px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-1 md:mb-5">
-              {t("popularNear")}{" "}
-              <span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                {t(location)}
-              </span>
-            </h2>
+            {/* Plus Grid Decoration */}
+            <svg width="100" height="100" viewBox="0 0 100 100" className="absolute top-0 right-0 -z-10 translate-x-4 -translate-y-4 md:translate-x-12 md:-translate-y-8 opacity-50 hidden sm:block">
+              <pattern id="plus" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M10 5V15M5 10H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </pattern>
+              <rect width="100" height="100" fill="url(#plus)" className="text-[#E0E0E0]" />
+            </svg>
           </div>
 
-          <Link
-            href="/category/Construction"
-            className="text-xs md:text-sm font-semibold text-blue-600 hover:underline whitespace-nowrap"
-          >
-            {t("browseAll")} →
-          </Link>
-        </div>
-
-        {/* MOBILE SCROLL CONTROLS */}
-        <div className="relative md:hidden">
-
-          <button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          <button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full"
-          >
-            <ChevronRight size={18} />
-          </button>
-
-          {/* SCROLL AREA */}
-          <div
-            ref={scrollRef}
-            className="overflow-x-auto scrollbar-hide py-2"
-          >
-            <div className="flex gap-4 w-max pr-10">
-
-              {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
-                <Link
-                  key={cat.name}
-                  href={`/category/${encodeURIComponent(cat.name)}`}
-                  className="flex flex-col items-center gap-2 group cursor-pointer min-w-[76px] md:min-w-[84px]"
-                >
-                  <div className={`w-[60px] h-[60px] md:w-[72px] md:h-[72px] flex items-center justify-center rounded-2xl md:rounded-[20px] transition-all duration-300 group-hover:scale-105 group-hover:shadow-md border border-gray-100 group-hover:border-blue-200 ${cat.bg || 'bg-gray-100'}`}>
-                    <span className="text-2xl md:text-3xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
-                      {cat.icon}
-                    </span>
-                  </div>
-                  <p className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-700 group-hover:text-gray-900 text-center leading-tight">
-                    {t(cat.name)}
-                  </p>
-                </Link>
-              ))}
-
+          {/* MOBILE SCROLL CONTROLS */}
+          <div className="relative md:hidden mt-6">
+            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full hidden sm:block">
+              <ChevronLeft size={18} />
+            </button>
+            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full hidden sm:block">
+              <ChevronRight size={18} />
+            </button>
+            {/* SCROLL AREA */}
+            <div ref={scrollRef} className="overflow-x-auto scrollbar-hide py-4 px-2">
+              <div className="flex gap-4 w-max pr-10">
+                {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
+                  <Link key={cat.name} href={`/category/${encodeURIComponent(cat.name)}`} className="flex flex-col items-center gap-3 group cursor-pointer w-[80px]">
+                    <div className="w-[64px] h-[64px] flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105 group-hover:shadow-md border border-gray-100 bg-[#FFF1DA]">
+                      <span className="text-3xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">{cat.icon}</span>
+                    </div>
+                    <p className="text-[11px] font-bold text-[#181E4B] text-center leading-tight">
+                      {t(cat.name)}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* DESKTOP GRID */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-6">
+            {(filteredCategories.length > 0 ? filteredCategories : allCategories).slice(0, 8).map((item: any, i: number) => (
+              <Link href={`/category/${encodeURIComponent(item.name)}`} key={i}>
+                <div className="relative group cursor-pointer p-4 h-full">
+                  {/* Backing shape on hover */}
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#DF6951] rounded-tl-3xl rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+
+                  {/* Main Card */}
+                  <div className="relative bg-transparent group-hover:bg-white rounded-[36px] p-6 md:p-8 flex flex-col items-center text-center transition-all duration-300 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.05)] h-full z-10 border border-transparent group-hover:border-white">
+
+                    {/* Icon Container */}
+                    <div className="relative w-[70px] h-[70px] mb-4 md:mb-6 flex items-center justify-center">
+                      <div className="absolute bottom-[-10px] right-[-10px] w-12 h-12 bg-[#FFF1DA] rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm z-0 transition-transform group-hover:scale-110 duration-300" />
+                      <span className="text-4xl drop-shadow-sm relative z-10 transition-transform group-hover:-translate-y-1 duration-300">{item.icon}</span>
+                    </div>
+
+                    <h3 className="text-[#181E4B] font-bold text-lg md:text-[20px] mb-3">{item.name}</h3>
+                    <p className="text-[#5E6282] text-sm leading-[1.6] font-medium">
+                      Find the best {item.name.toLowerCase()} services trusted by thousands of customers near you.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
         </div>
-
-        {/* DESKTOP GRID */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-10 gap-x-6 gap-y-10 mt-6 justify-items-center">
-          {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
-            <Link
-              key={cat.name}
-              href={`/category/${encodeURIComponent(cat.name)}`}
-              className="flex flex-col items-center gap-3 group cursor-pointer w-[96px]"
-            >
-              <div className={`w-[80px] h-[80px] lg:w-[94px] lg:h-[94px] flex items-center justify-center rounded-2xl md:rounded-[24px] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg border border-gray-100 group-hover:border-blue-200 ${cat.bg || 'bg-gray-100'}`}>
-                <span className="text-3xl lg:text-4xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
-                  {cat.icon}
-                </span>
-              </div>
-              <p className="text-sm font-bold text-gray-700 group-hover:text-gray-900 text-center leading-snug px-1 mt-1">
-                {t(cat.name)}
-              </p>
-            </Link>
-          ))}
-        </div>
-
-      </div>
-    </section>
+      </section>
 
 
-    
-<Adssection/>
+
+      <Adssection />
 
 
       {/* ── TOP PICKS BENTO ── */}
@@ -419,8 +432,8 @@ const filteredCategories = allCategories.filter((cat) => {
         <div className="flex justify-between items-end mb-8 md:mb-12">
           <div>
             <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-amber-500 mb-2">{t("editorsPick")}</p>
-            <h2 className="font-serif text-[clamp(22px,4vw,50px)] leading-tight tracking-[-1px] text-gray-900">
-              {t("topPicks")}<br /><span className="italic bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">{t("thisWeek")}</span>
+            <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight">
+              {t("topPicks")}<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">{t("thisWeek")}</span>
             </h2>
           </div>
           <a href="#" className="text-xs md:text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors flex gap-1 items-center" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
@@ -446,12 +459,12 @@ const filteredCategories = allCategories.filter((cat) => {
               <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">{t("bookNow")}</button>
             </div>
           </div>
-          
+
           <BentoCard img="/businesses/techsolutions.png" title="Tech Solutions" sub="Technology · 4.8 ★" badge="Top Rated" badgeColor="bg-amber-100/90 text-amber-700" />
           <BentoCard img="/businesses/doctor-1.jpg" title="GreenHeal Clinic" sub="Healthcare · 4.9 ★" />
-          
+
           <BentoCard img="/businesses/wood.png" title="Wood & Decor" sub="Furniture · 4.7 ★ · Verified" />
-          
+
           {/* Wide: Raanuva Veeran Academy */}
           <div className="col-span-2 row-span-1 rounded-3xl relative cursor-pointer overflow-hidden hover:shadow-lg transition-shadow">
             <img src="/businesses/raanuvan.png" alt="" className="w-full h-full object-cover" />
@@ -467,7 +480,7 @@ const filteredCategories = allCategories.filter((cat) => {
               </div>
             </div>
           </div>
-          
+
           <BentoCard img="/businesses/baas.png" title="BAAS Fabrication" sub="Fabrication · 4.8 ★" />
         </div>
 
@@ -530,28 +543,71 @@ const filteredCategories = allCategories.filter((cat) => {
         </div>
       </section> */}
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="py-12 md:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 text-center mb-8 md:mb-12">
-          <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-blue-600 uppercase mb-2 md:mb-3">Social Proof</p>
-          <h2 className="font-serif text-[clamp(22px,4vw,52px)] leading-tight tracking-[-1px] text-gray-900">
-            What Our Users{" "}
-            <span className="italic bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">Say</span>
-          </h2>
-          <p className="text-gray-500 mt-2 md:mt-3 max-w-xl mx-auto text-sm md:text-base">
-            Thousands of people trust our platform to discover reliable local services.
-          </p>
-        </div>
+      {/* ── TESTIMONIALS (Figma Design) ── */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 sm:py-16 md:py-24 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-center">
 
-        {/* Infinite auto-scroll marquee */}
-        <div className="testimonial-marquee-wrapper group">
-          <div className="testimonial-marquee">
-            {/* Render cards twice for seamless infinite loop */}
-            {[...testimonials, ...testimonials].map((t, i) => (
-              <div key={i} className="testimonial-slide">
-                <TestimonialCard t={t} />
+          {/* Left Column */}
+          <div className="max-w-md mx-auto lg:mx-0 text-center lg:text-left">
+            <p className="text-[#5E6282] font-semibold text-xs sm:text-sm md:text-base tracking-widest uppercase mb-2 sm:mb-4">{t("TESTIMONIALS")}</p>
+            <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight mb-6 md:mb-16">
+              What People Say About Us.
+            </h2>
+            <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6">
+              {testimonials.slice(0, 3).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveTestimonial(i)}
+                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${activeTestimonial % 3 === i ? "bg-[#39425D]" : "bg-[#E5E5E5]"
+                    }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="relative min-h-[250px] sm:min-h-[300px] flex flex-col justify-center lg:justify-start lg:pl-10 mt-6 md:mt-0">
+
+            {/* Testimonial Cards Stack */}
+            <div className="relative w-[calc(100%-16px)] sm:w-[85%] max-w-[500px] mx-auto lg:mx-0">
+
+              {/* Background Card */}
+              <div className="absolute top-4 left-4 sm:top-10 sm:left-10 md:top-16 md:left-16 w-full h-full bg-white rounded-[10px] border-2 border-[#F7F7F7] z-0 transition-all duration-500 font-sans p-5 sm:p-6 md:p-8 flex flex-col justify-end">
+                <h4 className="text-[#5E6282] font-semibold opacity-60 text-sm md:text-base">{testimonials[(activeTestimonial + 1) % testimonials.length].name}</h4>
+                <p className="text-[#5E6282] text-[10px] md:text-xs font-medium opacity-60">{testimonials[(activeTestimonial + 1) % testimonials.length].city}, {testimonials[(activeTestimonial + 1) % testimonials.length].service}</p>
               </div>
-            ))}
+
+              {/* Foreground Card */}
+              <div className="relative bg-white rounded-[10px] p-5 pt-8 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.06)] sm:shadow-[0_40px_100px_rgba(0,0,0,0.06)] z-10 transition-all duration-500 w-full font-sans">
+                {/* Avatar */}
+                <div className="absolute -top-5 -left-3 sm:-top-6 sm:-left-6 md:-top-8 md:-left-8 w-12 h-12 sm:w-14 sm:h-14 md:w-[68px] md:h-[68px] rounded-full overflow-hidden bg-slate-100 flex items-center justify-center shadow-md">
+                  <img src={`https://ui-avatars.com/api/?name=${testimonials[activeTestimonial].avatar}&background=EBF4FF&color=3B82F6&size=150&bold=true`} alt="Avatar" className="w-full h-full object-cover" />
+                </div>
+
+                <p className="text-[#5E6282] font-medium leading-relaxed mb-4 md:mb-8 text-xs sm:text-sm md:text-base">
+                  “{testimonials[activeTestimonial].text}”
+                </p>
+
+                <div>
+                  <h4 className="text-[#5E6282] font-bold text-base sm:text-[18px]">{testimonials[activeTestimonial].name}</h4>
+                  <p className="text-[#5E6282] text-[11px] sm:text-sm font-medium mt-0.5">{testimonials[activeTestimonial].city}, {testimonials[activeTestimonial].service}</p>
+                </div>
+              </div>
+
+              {/* Up/Down Controls (positioned on the right for desktop) */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-[-24px] md:right-[-60px] flex flex-col gap-6 hidden sm:flex z-20">
+                <button onClick={prevTestimonial} className="text-[#E5E5E5] hover:text-[#39425D] transition-colors active:-translate-y-1"><ChevronUp size={28} strokeWidth={2.5} /></button>
+                <button onClick={nextTestimonial} className="text-[#39425D] hover:text-[#181E4B] transition-colors active:translate-y-1"><ChevronDown size={28} strokeWidth={2.5} /></button>
+              </div>
+            </div>
+
+            {/* Mobile Controls (below the cards) */}
+            <div className="flex sm:hidden justify-center gap-6 mt-10">
+              <button onClick={prevTestimonial} className="text-[#39425D] hover:text-[#181E4B] transition-colors p-2 bg-white shadow-sm border border-gray-100 rounded-full active:scale-95"><ChevronLeft size={20} strokeWidth={2.5} /></button>
+              <button onClick={nextTestimonial} className="text-[#39425D] hover:text-[#181E4B] transition-colors p-2 bg-white shadow-sm border border-gray-100 rounded-full active:scale-95"><ChevronRight size={20} strokeWidth={2.5} /></button>
+            </div>
+
           </div>
         </div>
       </section>
@@ -564,15 +620,15 @@ const filteredCategories = allCategories.filter((cat) => {
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0">
             <div className="p-7 md:p-10 lg:p-14 flex flex-col justify-center">
               <p className="text-[10px] md:text-xs font-bold tracking-widest text-blue-200 uppercase mb-2 md:mb-3">{t("forBusinessOwners")}</p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight mb-3 md:mb-4">
-                {t("connectWith")} <span className="text-yellow-300">{t("buyersCount")}</span> {t("buyersLabel")}
+              <h2 className="font-serif text-[clamp(28px,4vw,44px)] font-bold leading-[1.2] tracking-tight text-white mb-3 md:mb-4">
+                {t("connectWith")} <span className="text-yellow-400">{t("buyersCount")}</span> {t("buyersLabel")}
               </h2>
               <p className="text-blue-100 mb-5 md:mb-8 text-sm md:text-base">{t("growBizDesc")}</p>
               <div className="flex flex-wrap gap-3 md:gap-4 mb-5 md:mb-8">
                 {[t("freeListing"), t("instantLeads"), t("verifiedBadge")].map((f) => (
                   <div key={f} className="flex items-center gap-1.5 text-xs md:text-sm text-blue-100">
                     <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     {f}
                   </div>
@@ -601,15 +657,15 @@ const filteredCategories = allCategories.filter((cat) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-[80px] items-center">
           <div>
             <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-blue-600 mb-2 md:mb-3">Mobile App</p>
-            <h2 className="font-serif text-[clamp(22px,3.5vw,48px)] leading-tight tracking-[-1px] text-gray-900 mb-3 md:mb-5">
+            <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight mb-4 md:mb-6">
               Search smarter <br />
-              <span className="italic bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">on the go</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">on the go</span>
             </h2>
             <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6 md:mb-9 max-w-[400px]">
               Real-time quotes, instant bookings, and app-only deals. 50M+ downloads across India.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3 mb-6 md:mb-9">
-              {[[t("downloads"),t("downloads")],[t("appStore"),t("appStore")],[t("playStore"),t("playStore")],[t("support"),t("support")]].map(([value,label]) => (
+              {[[t("downloads"), t("downloads")], [t("appStore"), t("appStore")], [t("playStore"), t("playStore")], [t("support"), t("support")]].map(([value, label]) => (
                 <div key={label} className="bg-gray-50 rounded-xl p-3 md:p-4 border border-gray-200">
                   <div className="font-serif text-xl md:text-2xl text-gray-900">{value}</div>
                   <div className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1">{label}</div>
@@ -617,7 +673,7 @@ const filteredCategories = allCategories.filter((cat) => {
               ))}
             </div>
             <div className="flex gap-3 flex-wrap">
-              {[["🍎","App Store",t("Download on the")],["▶","Google Play",t("Get it on")]].map(([icon,label,sub]) => (
+              {[["🍎", "App Store", t("Download on the")], ["▶", "Google Play", t("Get it on")]].map(([icon, label, sub]) => (
                 <button key={label as string} className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3 border border-gray-200 rounded-lg hover:shadow-md transition">
                   <span className="text-lg md:text-xl">{icon}</span>
                   <div className="text-left">
@@ -654,43 +710,7 @@ const filteredCategories = allCategories.filter((cat) => {
         @keyframes fadeUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
         @keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 
-        /* Testimonial infinite marquee */
-        @keyframes marqueeScroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        .testimonial-marquee-wrapper {
-          width: 100%;
-          overflow: hidden;
-          mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-        }
-
-        .testimonial-marquee {
-          display: flex;
-          gap: 16px;
-          width: max-content;
-          animation: marqueeScroll 40s linear infinite;
-        }
-
-        .testimonial-marquee-wrapper:hover .testimonial-marquee {
-          animation-play-state: paused;
-        }
-
-        .testimonial-slide {
-          flex-shrink: 0;
-          width: 280px;
-        }
-
-        @media (min-width: 768px) {
-          .testimonial-slide {
-            width: 320px;
-          }
-          .testimonial-marquee {
-            gap: 24px;
-          }
-        }
+        /* Cleaned up testimonial infinite marquee from previous implementation */
       `}</style>
     </main>
   );
@@ -719,24 +739,4 @@ function BentoCard({ img, title, sub, badge, badgeColor }: {
   );
 }
 
-function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
-  return (
-    <div className="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-      <div className="flex items-center gap-0.5 mb-3 md:mb-4">
-        {Array.from({ length: 5 }).map((_, j) => (
-          <svg key={j} className={`w-3.5 h-3.5 md:w-4 md:h-4 ${j < t.rating ? "text-amber-400" : "text-gray-200"}`} fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-          </svg>
-        ))}
-      </div>
-      <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">"{t.text}"</p>
-      <div className="flex items-center gap-2 md:gap-3 pt-3 md:pt-4 border-t border-gray-100">
-        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-600 text-white text-[10px] md:text-xs font-bold flex items-center justify-center">{t.avatar}</div>
-        <div>
-          <p className="text-xs md:text-sm font-semibold text-gray-900">{t.name}</p>
-          <p className="text-[10px] md:text-xs text-gray-400">{t.city} · {t.service}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+/* TestimonialCard removed in favor of Figma design */
