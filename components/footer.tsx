@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 import { Language } from "@/lib/translations";
@@ -75,13 +76,18 @@ export function Footer() {
           {/* ── Brand Column ── */}
           <div className="col-span-2 md:col-span-1">
             {/* Logo — mirrors Navbar exactly */}
-            <Link href="/" className="inline-flex items-center gap-2 group mb-4">
-              <div className="bg-blue-600 group-hover:bg-blue-700 transition-colors text-white font-black text-sm md:text-base px-2 md:px-3 py-1 md:py-1.5 rounded-xl leading-none">
-                {t("title").slice(0, 2).toUpperCase()}
+            <Link href="/" className="inline-flex items-center gap-3 group mb-4">
+              <div className="relative w-12 h-12 overflow-hidden rounded-xl shadow-sm group-hover:shadow-blue-500/20 transition-all duration-300">
+                <Image
+                  src="/logo.png"
+                  alt="One Touch Logo"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div>
                 <p className="font-black text-white text-sm leading-none tracking-tight">{t("title")}</p>
-                <p className="text-[9px] text-gray-500 font-semibold tracking-widest uppercase">{t("tagline")}</p>
+                <p className="text-[9px] text-gray-500 font-semibold tracking-widest uppercase mt-1">{t("tagline")}</p>
               </div>
             </Link>
 
