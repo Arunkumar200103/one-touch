@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/language-context";
 import { Language } from "@/lib/translations";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useLocation } from "@/lib/location-context";
 import { useSearch } from "@/lib/search-context";
@@ -189,9 +190,15 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-2 md:px-4 py-2.5 md:py-3 flex items-center gap-1.5 md:gap-3">
 
         {/* Logo */}
-        <Link href="/" className="shrink-0 flex items-center gap-1 md:gap-2 group">
-          <div className="bg-blue-600 group-hover:bg-blue-700 transition-colors text-white font-black text-[10px] sm:text-sm md:text-base px-1.5 sm:px-2 md:px-3 py-1 md:py-1.5 rounded-lg md:rounded-xl leading-none">
-            {t("title").slice(0, 2).toUpperCase()}
+        <Link href="/" className="shrink-0 flex items-center gap-2.5 group">
+          <div className="relative w-10 h-10 md:w-14 md:h-14 overflow-hidden rounded-xl md:rounded-2xl shadow-sm group-hover:shadow-md transition-all duration-300">
+            <Image
+              src="/logo.png"
+              alt="One Touch Logo"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
           {/* Hide full logo text on very small screens, show on min-width 420px */}
           <div className="hidden [@media(min-width:420px)]:block">

@@ -199,7 +199,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
         </svg>
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-50">
         <Navbar />
       </div>
 
