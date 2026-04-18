@@ -11,6 +11,7 @@ import { useLocation } from "@/lib/location-context"
 import { useSearch, SearchResults } from "@/lib/search-context";
 import Adssection from "@/components/Adssection";
 import { Footer } from "@/components/footer";
+import { CategoryIcon } from "@/components/category-icons";
 import {
   FiSmartphone, FiVideo, FiHome, FiTool, FiMonitor,
   FiBookOpen, FiDollarSign, FiBriefcase, FiAperture,
@@ -60,26 +61,26 @@ const featuredServices: Slide[] = [
 
 
 export const allCategories = [
-  { name: "Electronics", icon: "📱", bg: "bg-blue-50 group-hover:bg-blue-100" },
-  { name: "CCTV & Networking", icon: "📹", bg: "bg-red-50 group-hover:bg-red-100" },
-  { name: "Furniture", icon: "🛋️", bg: "bg-amber-50 group-hover:bg-amber-100" },
-  { name: "Construction", icon: "🏗️", bg: "bg-orange-50 group-hover:bg-orange-100" },
-  { name: "Fabrication", icon: "⚙️", bg: "bg-zinc-100 group-hover:bg-zinc-200" },
-  { name: "Technology", icon: "💻", bg: "bg-indigo-50 group-hover:bg-indigo-100" },
-  { name: "Education", icon: "🎓", bg: "bg-emerald-50 group-hover:bg-emerald-100" },
-  { name: "Finance", icon: "💰", bg: "bg-green-50 group-hover:bg-green-100" },
-  { name: "Real Estate", icon: "🏢", bg: "bg-teal-50 group-hover:bg-teal-100" },
-  { name: "Restaurants", icon: "🍽️", bg: "bg-orange-50 group-hover:bg-orange-100" },
-  { name: "Beauty Spa", icon: "💆‍♀️", bg: "bg-pink-50 group-hover:bg-pink-100" },
-  { name: "Home Decor", icon: "🏠", bg: "bg-purple-50 group-hover:bg-purple-100" },
-  { name: "Wedding", icon: "💍", bg: "bg-rose-50 group-hover:bg-rose-100" },
-  { name: "Rent & Hire", icon: "🚗", bg: "bg-sky-50 group-hover:bg-sky-100" },
-  { name: "Hotels", icon: "🏨", bg: "bg-blue-50 group-hover:bg-blue-100" },
-  { name: "Automotive", icon: "🚘", bg: "bg-slate-100 group-hover:bg-slate-200" },
-  { name: "Health & Wellness", icon: "🏥", bg: "bg-red-50 group-hover:bg-red-100" },
-  { name: "Events", icon: "🎉", bg: "bg-violet-50 group-hover:bg-violet-100" },
-  { name: "Entertainment", icon: "🎭", bg: "bg-fuchsia-50 group-hover:bg-fuchsia-100" },
-  { name: "Legal", icon: "⚖️", bg: "bg-slate-100 group-hover:bg-slate-200" },
+  { name: "Electronics", bg: "bg-blue-50 group-hover:bg-blue-100" },
+  { name: "CCTV & Networking", bg: "bg-red-50 group-hover:bg-red-100" },
+  { name: "Furniture", bg: "bg-amber-50 group-hover:bg-amber-100" },
+  { name: "Construction", bg: "bg-orange-50 group-hover:bg-orange-100" },
+  { name: "Fabrication", bg: "bg-zinc-100 group-hover:bg-zinc-200" },
+  { name: "Technology", bg: "bg-indigo-50 group-hover:bg-indigo-100" },
+  { name: "Education", bg: "bg-emerald-50 group-hover:bg-emerald-100" },
+  { name: "Finance", bg: "bg-green-50 group-hover:bg-green-100" },
+  { name: "Real Estate", bg: "bg-teal-50 group-hover:bg-teal-100" },
+  { name: "Restaurants", bg: "bg-orange-50 group-hover:bg-orange-100" },
+  { name: "Beauty Spa", bg: "bg-pink-50 group-hover:bg-pink-100" },
+  { name: "Home Decor", bg: "bg-purple-50 group-hover:bg-purple-100" },
+  { name: "Wedding", bg: "bg-rose-50 group-hover:bg-rose-100" },
+  { name: "Rent & Hire", bg: "bg-sky-50 group-hover:bg-sky-100" },
+  { name: "Hotels", bg: "bg-blue-50 group-hover:bg-blue-100" },
+  { name: "Automotive", bg: "bg-slate-100 group-hover:bg-slate-200" },
+  { name: "Health & Wellness", bg: "bg-red-50 group-hover:bg-red-100" },
+  { name: "Events", bg: "bg-violet-50 group-hover:bg-violet-100" },
+  { name: "Entertainment", bg: "bg-fuchsia-50 group-hover:bg-fuchsia-100" },
+  { name: "Legal", bg: "bg-slate-100 group-hover:bg-slate-200" },
 ];
 
 const serviceCategories = [
@@ -379,9 +380,9 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             <div ref={scrollRef} className="overflow-x-auto scrollbar-hide py-4 px-2">
               <div className="flex gap-4 w-max pr-10">
                 {(filteredCategories.length > 0 ? filteredCategories : allCategories).map((cat: any) => (
-                  <Link key={cat.name} href={`/category/${encodeURIComponent(cat.name)}`} className="flex flex-col items-center gap-3 group cursor-pointer w-[80px]">
-                    <div className="w-[64px] h-[64px] flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105 group-hover:shadow-md border border-gray-100 bg-[#FFF1DA]">
-                      <span className="text-3xl transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">{cat.icon}</span>
+                  <Link key={cat.name} href={`/category/${encodeURIComponent(cat.name)}`} className="flex flex-col items-center gap-3 group cursor-pointer w-[90px]">
+                    <div className="w-[76px] h-[76px] flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105 group-hover:shadow-md border border-gray-100 bg-[#FFF1DA]">
+                      <CategoryIcon name={cat.name} size={64} className="transition-transform duration-500 group-hover:scale-110 drop-shadow-sm" />
                     </div>
                     <p className="text-[11px] font-bold text-[#181E4B] text-center leading-tight">
                       {t(cat.name)}
@@ -404,9 +405,9 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
                   <div className="relative bg-transparent group-hover:bg-white rounded-[36px] p-6 md:p-8 flex flex-col items-center text-center transition-all duration-300 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.05)] h-full z-10 border border-transparent group-hover:border-white">
 
                     {/* Icon Container */}
-                    <div className="relative w-[70px] h-[70px] mb-4 md:mb-6 flex items-center justify-center">
-                      <div className="absolute bottom-[-10px] right-[-10px] w-12 h-12 bg-[#FFF1DA] rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm z-0 transition-transform group-hover:scale-110 duration-300" />
-                      <span className="text-4xl drop-shadow-sm relative z-10 transition-transform group-hover:-translate-y-1 duration-300">{item.icon}</span>
+                    <div className="relative w-[96px] h-[96px] mb-4 md:mb-6 flex items-center justify-center">
+                      <div className="absolute bottom-[-10px] right-[-10px] w-14 h-14 bg-[#FFF1DA] rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm z-0 transition-transform group-hover:scale-110 duration-300" />
+                      <CategoryIcon name={item.name} size={80} className="drop-shadow-sm relative z-10 transition-transform group-hover:-translate-y-1 duration-300" />
                     </div>
 
                     <h3 className="text-[#181E4B] font-bold text-lg md:text-[20px] mb-3">{item.name}</h3>
