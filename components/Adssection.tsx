@@ -3,6 +3,7 @@ import { IconType } from "react-icons";
 import { ChevronRight } from "lucide-react";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import { FiTool, FiActivity, FiHome } from "react-icons/fi";
+import { useLanguage } from "@/lib/language-context";
 
 interface CardBase {
   badge: string;
@@ -23,9 +24,6 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 
-interface AdsSectionProps {
-  t?: (key: string) => string;
-}
 
 // ─── hook: fires once when element enters viewport ────────────────────────────
 function useScrollReveal(threshold = 0.12) {
@@ -205,10 +203,11 @@ const ScrollDots: FC<ScrollDotsProps> = ({ count }) => (
 );
 
 // ─── main exported component ──────────────────────────────────────────────────
-const AdsSection: FC<AdsSectionProps> = ({ t }) => {
+const AdsSection: FC = () => {
   const { ref, visible } = useScrollReveal(0.12);
   const router = useRouter();
   const [api, setApi] = useState<CarouselApi>();
+  const { t } = useLanguage();
 
   // Infinite Auto-scroll
   useEffect(() => {
@@ -221,26 +220,23 @@ const AdsSection: FC<AdsSectionProps> = ({ t }) => {
     return () => clearInterval(intervalId);
   }, [api]);
 
-  // safe fallback if t() is not provided
-  const label = (key: string, fallback: string): string =>
-    t ? t(key) : fallback;
 
   const wideCards: CardBase[] = [
     {
-      badge: label("limitedTime", "Limited Time"),
-      title: label("off20", "20% Off"),
-      desc: label("cleaningServiceDesc", "Professional cleaning service at your doorstep"),
-      cta: label("bookNow", "Book Now"),
+      badge: t("limitedTime"),
+      title: t("off20"),
+      desc: t("cleaningServiceDesc"),
+      cta: t("bookNow"),
       gradient: "from-[#4f46e5] to-[#7c3aed]",
       Icon: MdOutlineCleaningServices,
       img: "/ads/cleaning.png",
       link: "/category/Construction",
     },
     {
-      badge: label("exclusive", "Exclusive"),
-      title: label("homeInterior", "Home Interior"),
-      desc: label("interiorDesc", "Transform your living space with our experts"),
-      cta: label("explore", "Explore"),
+      badge: t("exclusive"),
+      title: t("homeInterior"),
+      desc: t("interiorDesc"),
+      cta: t("explore"),
       gradient: "from-[#6366f1] to-[#a855f7]",
       Icon: FiHome,
       img: "/ads/interior.png",
@@ -250,30 +246,30 @@ const AdsSection: FC<AdsSectionProps> = ({ t }) => {
 
   const narrowCards: CardBase[] = [
     {
-      badge: label("megaDeal", "Mega Deal"),
-      title: label("acRepair", "AC Repair"),
-      desc: label("startingAt", "Starting at ₹299"),
-      cta: label("claimOffer", "Claim Offer"),
+      badge: t("megaDeal"),
+      title: t("acRepair"),
+      desc: t("startingAt"),
+      cta: t("claimOffer"),
       gradient: "from-[#e11d48] to-[#db2777]",
       Icon: FiTool,
       img: "/ads/ac.png",
       link: "/category/Electronics",
     },
     {
-      badge: label("24/7Support", "24/7 Support"),
-      title: label("plumbing", "Plumbing"),
-      desc: label("plumbingDesc", "Fast and reliable expert plumbing"),
-      cta: label("bookExtra", "Book Now"),
+      badge: t("24/7Support"),
+      title: t("plumbing"),
+      desc: t("plumbingDesc"),
+      cta: t("bookExtra"),
       gradient: "from-[#0ea5e9] to-[#2563eb]",
       Icon: FiActivity,
       img: "/ads/plumbing.png",
       link: "/category/Construction",
     },
     {
-      badge: label("certified", "Certified"),
-      title: label("electrical", "Electrical"),
-      desc: label("electricalDesc", "Safe and modern wiring solutions"),
-      cta: label("getEstimate", "Get Estimate"),
+      badge: t("certified"),
+      title: t("electrical"),
+      desc: t("electricalDesc"),
+      cta: t("getEstimate"),
       gradient: "from-[#f59e0b] to-[#d97706]",
       Icon: FiTool,
       img: "/ads/electrical.png",

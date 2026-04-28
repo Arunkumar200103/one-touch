@@ -355,7 +355,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             {/* Desktop "See all" Arrow Button */}
             <div className="hidden sm:block pb-2 relative z-20">
               <Link href="/categories" className="text-[13px] md:text-sm font-semibold text-[#5E6282] hover:text-[#181E4B] transition-colors flex gap-2 items-center group">
-                See all category <span className="text-[#DF6951] w-6 h-6 flex items-center justify-center transition-transform group-hover:translate-x-1 text-xl">→</span>
+                {t("seeAllCategory")} <span className="text-[#DF6951] w-6 h-6 flex items-center justify-center transition-transform group-hover:translate-x-1 text-xl">→</span>
               </Link>
             </div>
 
@@ -410,9 +410,9 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
                       <CategoryIcon name={item.name} size={80} className="drop-shadow-sm relative z-10 transition-transform group-hover:-translate-y-1 duration-300" />
                     </div>
 
-                    <h3 className="text-[#181E4B] font-bold text-lg md:text-[20px] mb-3">{item.name}</h3>
+                    <h3 className="text-[#181E4B] font-bold text-lg md:text-[20px] mb-3">{t(item.name)}</h3>
                     <p className="text-[#5E6282] text-sm leading-[1.6] font-medium">
-                      Find the best {item.name.toLowerCase()} services trusted by thousands of customers near you.
+                      {t("findBest").replace("{category}", t(item.name).toLowerCase())}
                     </p>
                   </div>
                 </div>
@@ -438,7 +438,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             </h2>
           </div>
           <a href="#" className="text-xs md:text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors flex gap-1 items-center" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
-            See all {IC.northeast}
+            {t("viewAll")} {IC.northeast}
           </a>
         </div>
 
@@ -453,7 +453,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             </div>
             <div className="absolute bottom-5 left-5 right-5 flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">{t("Construction")} · {t("Chennai")}</div>
+                <div className="text-[10px] font-bold tracking-[1.5px] text-white/50 mb-1.5 uppercase">{t("Fabrication")} · {t("Chennai")}</div>
                 <div className="text-white font-extrabold text-xl">{t("GV Buildtech")}</div>
                 <div className="text-white/50 text-sm mt-1">4.9 ★ · 1,240 {t("reviews_count")}</div>
               </div>
@@ -550,9 +550,9 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
 
           {/* Left Column */}
           <div className="max-w-md mx-auto lg:mx-0 text-center lg:text-left">
-            <p className="text-[#5E6282] font-semibold text-xs sm:text-sm md:text-base tracking-widest uppercase mb-2 sm:mb-4">{t("TESTIMONIALS")}</p>
+            <p className="text-[#5E6282] font-semibold text-xs sm:text-sm md:text-base tracking-widest uppercase mb-2 sm:mb-4">{t("testimonials")}</p>
             <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight mb-6 md:mb-16">
-              What People Say About Us.
+              {t("whatPeopleSay")}
             </h2>
             <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6">
               {testimonials.slice(0, 3).map((_, i) => (
@@ -643,7 +643,7 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
               <Image src="/businesses/tech-1.jpg" alt="Business Growth" fill className="object-cover opacity-60" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="grid grid-cols-2 gap-3 md:gap-4 p-6 md:p-8">
-                  {["500+ New Leads/Day", "4.8★ Avg Rating", "2M+ Monthly Searches", "100% Free Signup"].map((s) => (
+                  {[t("stat_leads"), t("stat_rating"), t("stat_searches"), t("stat_freeSignup")].map((s) => (
                     <div key={s} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3 md:px-4 py-2 md:py-3 text-white text-[10px] md:text-xs font-bold text-center">{s}</div>
                   ))}
                 </div>
@@ -657,13 +657,13 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
       <section ref={r7.ref} className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16 lg:py-[88px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-[80px] items-center">
           <div>
-            <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-blue-600 mb-2 md:mb-3">Mobile App</p>
+            <p className="text-[10px] md:text-[11px] font-bold tracking-[2px] uppercase text-blue-600 mb-2 md:mb-3">{t("mobileApp")}</p>
             <h2 className="text-[#181E4B] font-serif text-3xl sm:text-4xl md:text-[50px] font-bold leading-[1.2] tracking-tight mb-4 md:mb-6">
-              Search smarter <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">on the go</span>
+              {t("searchSmarter")} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]">{t("onTheGo")}</span>
             </h2>
             <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6 md:mb-9 max-w-[400px]">
-              Real-time quotes, instant bookings, and app-only deals. 50M+ downloads across India.
+              {t("appDesc")}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3 mb-6 md:mb-9">
               {[[t("downloads"), t("downloads")], [t("appStore"), t("appStore")], [t("playStore"), t("playStore")], [t("support"), t("support")]].map(([value, label]) => (
@@ -693,8 +693,8 @@ export default function LandingPageV2({ slides = featuredServices }: { slides?: 
             <div className="absolute bottom-[-16px] md:bottom-[-22px] left-3 md:left-[-24px] bg-white border border-gray-200 rounded-xl px-4 md:px-5 py-3 md:py-4 flex items-center gap-2 md:gap-3 shadow-[0_20px_48px_-8px_rgba(13,13,20,.13)]">
               <div className="w-9 h-9 md:w-11 md:h-11 rounded-lg bg-gray-900 flex items-center justify-center text-lg md:text-xl text-white">⚡</div>
               <div>
-                <div className="font-bold text-xs md:text-sm text-gray-900">Instant Booking</div>
-                <div className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1">Confirmed in under 60 seconds</div>
+                <div className="font-bold text-xs md:text-sm text-gray-900">{t("instantBooking")}</div>
+                <div className="text-[10px] md:text-xs text-gray-500 mt-0.5 md:mt-1">{t("confirmedIn")}</div>
               </div>
             </div>
           </div>
